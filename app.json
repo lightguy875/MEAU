@@ -1,0 +1,12 @@
+{
+  "name": "MEAU",
+  "displayName": "MEAU",
+  "expo": {
+    "name": "MEAU",
+    "slug": "MEAU",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
