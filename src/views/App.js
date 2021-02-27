@@ -6,9 +6,7 @@ import { TextInput } from 'react-native-gesture-handler';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Meu deus é a patroa! Testando o emulador no meu celular</Text>
-      <Text>Test</Text>
-      <TextInput>Test</TextInput>
+      <Text>Tela principal</Text>
       <StatusBar style="auto" />
     </View>
   );
