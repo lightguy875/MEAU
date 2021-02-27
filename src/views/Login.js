@@ -4,8 +4,6 @@ import { Button, StyleSheet, Text, View, TouchableOpacity, Alert} from 'react-na
 import { TextInput } from 'react-native-gesture-handler';
 
 export default function Login() {
-
-
   return (
     <View style={styles.container}>
 
@@ -60,7 +58,6 @@ const styles = StyleSheet.create({
         padding: 5,
         borderRadius: 5,
         backgroundColor: '#88c9bf',
-
         justifyContent: 'center',
         alignItems: 'center',
 
