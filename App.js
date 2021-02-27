@@ -8,7 +8,7 @@ export default function App() {
     <View style={styles.container}>
       <Text>Meu deus é a patroa! Testando o emulador no meu celular</Text>
       <Text>Test</Text>
-      <TextInput></TextInput>
+      <TextInput>Test</TextInput>
       <StatusBar style="auto" />
     </View>
   );
