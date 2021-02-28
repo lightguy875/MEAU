@@ -1,10 +1,11 @@
 
 const cores = {
-    topo: 'red',
+    topo: '#88c9bf',
     fundoBranco: 'white',
     fundoFacebook: '#194f7c',
     fundoGoogle: '#f15f5c',
-    fundoPadrao: '#88c9bf',
+    fundoPadrao: '#cfe9e5',
+    titulo: '#88c9bf'
 };
 
 export default cores;

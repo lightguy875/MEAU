@@ -10,11 +10,31 @@ export default StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
+        padding: 16,
+    },
+
+    
+
+    text_inf_cadastroPessoal: {
+        textAlign: 'center',
+        height: 80,
+        padding: 5,
+        textAlign: 'center',
+        backgroundColor: cor.fundoPadrao,
+        borderRadius: 4,
     },
 
     status: {
         
         backgroundColor: 'black',
+    },
+
+    titulo: {
+        flex: 2,
+        justifyContent: 'flex-end',
+        
+        marginTop: 28,
+        color: cor.titulo,
     },
 
     input: {
