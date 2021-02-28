@@ -5,6 +5,7 @@ import { ScrollView, TextInput } from 'react-native-gesture-handler';
 import  Estilo from '../estilo/estilo'
 import {CheckBox} from 'react-native-elements'
 import ImagePicker from 'react-native-image-picker'
+import {BotaoImagem} from '../componente/botao'
 
 
 export default function Cadastro_animal() {
@@ -76,6 +77,8 @@ export default function Cadastro_animal() {
             placeholder="Nome do animal"
         />
         <Text>Fotos do animal</Text>
+
+        <BotaoImagem onClick = {OpenPicker}/>
 
         <Button title="Imagens" style={{
           flex: 1,

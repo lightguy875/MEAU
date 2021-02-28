@@ -10,7 +10,7 @@ export default function App() {
   return (
     <View style={Estilo.container}>
       
-      <Login/>
+      <Cadastroanimal/>
       
     </View>
   );
