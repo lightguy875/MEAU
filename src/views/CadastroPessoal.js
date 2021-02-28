@@ -3,6 +3,7 @@ import { Button, StyleSheet, Text, View, TouchableOpacity, Alert, StatusBar, Scr
 import { TextInput } from 'react-native-gesture-handler';
 import  Estilo from '../estilo/estilo'
 import Cor from '../estilo/cor'
+import {BotaoPrimario, BotaoImagem} from '../componente/botao'
 
 export default function CadastroPessoal() {
 
@@ -81,17 +82,12 @@ export default function CadastroPessoal() {
             <Text style={Estilo.titulo}>FOTO DE PERFIL</Text>
             
             
-            <TouchableOpacity style={Estilo.botaoEnviarImagem}>
-                <Text style={{textAlign: 'center'}}>+</Text>
-                <Text>adicionar foto</Text>
-            </TouchableOpacity>
-
-        
-            
+            <BotaoImagem/>
                 
+            <BotaoPrimario name='FAZER CADASTRO'/>
 
             </View>
-
+            
 
         </ScrollView>
     );

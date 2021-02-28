@@ -32,7 +32,7 @@ export default StyleSheet.create({
     titulo: {
         flex: 2,
         justifyContent: 'flex-end',
-        
+        alignSelf: 'flex-start',
         marginTop: 28,
         color: cor.titulo,
     },
@@ -41,6 +41,8 @@ export default StyleSheet.create({
         fontSize: fonte.input,
         borderBottomColor: 'black',
         width: 300,
+        /*Adicionar width automatico na flex */
+        alignSelf: 'flex-start',
         borderBottomWidth: 1,
         padding: 8,
       
@@ -50,12 +52,11 @@ export default StyleSheet.create({
     botaoPadrao: {
         width: 232,
         height: 40,
-        marginTop: 52,
-        padding: 5,
         borderRadius: 5,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: cor.fundoPadrao,
+        elevation: 5,
     },
 
 
