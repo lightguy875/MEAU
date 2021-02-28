@@ -80,7 +80,13 @@ export default function CadastroPessoal() {
 
             <Text style={Estilo.titulo}>FOTO DE PERFIL</Text>
             
+            
+            <TouchableOpacity style={Estilo.botaoEnviarImagem}>
+                <Text style={{textAlign: 'center'}}>+</Text>
+                <Text>adicionar foto</Text>
+            </TouchableOpacity>
 
+        
             
                 
 

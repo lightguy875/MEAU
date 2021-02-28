@@ -81,6 +81,15 @@ export default StyleSheet.create({
         backgroundColor: cor.fundoGoogle,
     },
 
+    botaoEnviarImagem: {
+        borderRadius: 2,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 128,
+        height: 120,
+        backgroundColor: cor.fundoCinza,
+    },
+
     textoBranco: {
         color: cor.fundoBranco,
     }
