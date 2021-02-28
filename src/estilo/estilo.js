@@ -34,4 +34,8 @@ export default StyleSheet.create({
     botaoText: {
         color: '#434343',
     },
+
+    TextAnimal: {
+        
+    }
 });
