@@ -8,7 +8,7 @@ import Cadastroanimal from './views/Cadastroanimal'
 export default function App() {
   return (
     <View style={Estilo.container}>
-      <Cadastroanimal/> 
+      <Login/> 
     </View>
   );
 }
