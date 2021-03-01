@@ -5,7 +5,7 @@ import { ScrollView, TextInput } from 'react-native-gesture-handler';
 import  Estilo from '../estilo/estilo'
 import {CheckBox} from 'react-native-elements'
 import ImagePicker from 'react-native-image-picker'
-import {BotaoImagem} from '../componente/botao'
+import {BotaoPrimario, BotaoImagem, BotaoFacebook, BotaoGoogle} from '../componente/botao'
 import Icon from 'react-native-vector-icons/Feather';
 
 export default function Cadastro_animal() {
@@ -84,7 +84,7 @@ export default function Cadastro_animal() {
         <Text>Espécie</Text>
         <View style={Estilo.caixaAnimal}>
         <CheckBox 
-  
+
             title="Cachorro"
             checkedIcon={<Icon name="check-circle" color="green"/>}
             uncheckedIcon={<Icon name="circle" color="#000"/>}
@@ -353,12 +353,10 @@ export default function Cadastro_animal() {
             placeholder="Compartilhe histórias do animal"
         />
 
-        <TouchableOpacity
-            style={Estilo.botao}
-            
-        >
-            <Text style={Estilo.botaoText}>Cadastrar animal</Text>
-        </TouchableOpacity>
+      <BotaoPrimario style={{
+        justifyContent:"center",
+        flexDirection:"row",
+      }}name='Cadastrar Animal'/>
         
 
 
