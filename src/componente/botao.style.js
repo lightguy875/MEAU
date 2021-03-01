@@ -18,7 +18,7 @@ export default StyleSheet.create({
         borderRadius: 2,
         justifyContent: 'center',
         alignItems: 'center',
-        width: 128,
+        width: "100%",
         height: 120,
         backgroundColor: cor.fundoCinza,
     },
