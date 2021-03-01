@@ -9,83 +9,83 @@
 9        android:targetSdkVersion="29" />
 10
 11    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-11-->/run/media/luis/54FC3AA1FC3A7CF4/faculdade/11º_semestre/Devapp/projeto/MEAU/android/app/src/main/AndroidManifest.xml:5:5-77
-11-->/run/media/luis/54FC3AA1FC3A7CF4/faculdade/11º_semestre/Devapp/projeto/MEAU/android/app/src/main/AndroidManifest.xml:5:22-75
+11-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:5:5-77
+11-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:5:22-75
 12    <uses-permission android:name="android.permission.INTERNET" />
-12-->/run/media/luis/54FC3AA1FC3A7CF4/faculdade/11º_semestre/Devapp/projeto/MEAU/android/app/src/main/AndroidManifest.xml:4:5-67
-12-->/run/media/luis/54FC3AA1FC3A7CF4/faculdade/11º_semestre/Devapp/projeto/MEAU/android/app/src/main/AndroidManifest.xml:4:22-64
+12-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:4:5-67
+12-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:4:22-64
 13    <uses-permission android:name="android.permission.CAMERA" />
-13-->/run/media/luis/54FC3AA1FC3A7CF4/faculdade/11º_semestre/Devapp/projeto/MEAU/android/app/src/main/AndroidManifest.xml:6:5-65
-13-->/run/media/luis/54FC3AA1FC3A7CF4/faculdade/11º_semestre/Devapp/projeto/MEAU/android/app/src/main/AndroidManifest.xml:6:22-62
+13-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:6:5-65
+13-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:6:22-62
 14    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-14-->/run/media/luis/54FC3AA1FC3A7CF4/faculdade/11º_semestre/Devapp/projeto/MEAU/android/app/src/main/AndroidManifest.xml:7:5-80
-14-->/run/media/luis/54FC3AA1FC3A7CF4/faculdade/11º_semestre/Devapp/projeto/MEAU/android/app/src/main/AndroidManifest.xml:7:22-78
+14-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:7:5-80
+14-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:7:22-78
 15    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-15-->[com.facebook.flipper:flipper:0.54.0] /home/luis/.gradle/caches/transforms-2/files-2.1/1c7787ec82631e0394972c76bdabe608/flipper-0.54.0/AndroidManifest.xml:16:5-76
-15-->[com.facebook.flipper:flipper:0.54.0] /home/luis/.gradle/caches/transforms-2/files-2.1/1c7787ec82631e0394972c76bdabe608/flipper-0.54.0/AndroidManifest.xml:16:22-73
+15-->[com.facebook.flipper:flipper:0.54.0] C:\Users\Alternative\.gradle\caches\transforms-2\files-2.1\1c7787ec82631e0394972c76bdabe608\flipper-0.54.0\AndroidManifest.xml:16:5-76
+15-->[com.facebook.flipper:flipper:0.54.0] C:\Users\Alternative\.gradle\caches\transforms-2\files-2.1\1c7787ec82631e0394972c76bdabe608\flipper-0.54.0\AndroidManifest.xml:16:22-73
 16
 17    <application
-17-->/run/media/luis/54FC3AA1FC3A7CF4/faculdade/11º_semestre/Devapp/projeto/MEAU/android/app/src/main/AndroidManifest.xml:9:5-28:19
+17-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:9:5-28:19
 18        android:name="com.meau.MainApplication"
-18-->/run/media/luis/54FC3AA1FC3A7CF4/faculdade/11º_semestre/Devapp/projeto/MEAU/android/app/src/main/AndroidManifest.xml:10:7-38
+18-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:10:7-38
 19        android:allowBackup="false"
-19-->/run/media/luis/54FC3AA1FC3A7CF4/faculdade/11º_semestre/Devapp/projeto/MEAU/android/app/src/main/AndroidManifest.xml:14:7-34
+19-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:14:7-34
 20        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-20-->[androidx.core:core:1.3.1] /home/luis/.gradle/caches/transforms-2/files-2.1/4f3e3536c8bf9e8cb1939d2a5eeaba3a/core-1.3.1/AndroidManifest.xml:24:18-86
+20-->[androidx.core:core:1.3.1] C:\Users\Alternative\.gradle\caches\transforms-2\files-2.1\4f3e3536c8bf9e8cb1939d2a5eeaba3a\core-1.3.1\AndroidManifest.xml:24:18-86
 21        android:debuggable="true"
 22        android:icon="@mipmap/ic_launcher"
-22-->/run/media/luis/54FC3AA1FC3A7CF4/faculdade/11º_semestre/Devapp/projeto/MEAU/android/app/src/main/AndroidManifest.xml:12:7-41
+22-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:12:7-41
 23        android:label="@string/app_name"
-23-->/run/media/luis/54FC3AA1FC3A7CF4/faculdade/11º_semestre/Devapp/projeto/MEAU/android/app/src/main/AndroidManifest.xml:11:7-39
+23-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:11:7-39
 24        android:roundIcon="@mipmap/ic_launcher_round"
-24-->/run/media/luis/54FC3AA1FC3A7CF4/faculdade/11º_semestre/Devapp/projeto/MEAU/android/app/src/main/AndroidManifest.xml:13:7-52
+24-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:13:7-52
 25        android:theme="@style/AppTheme"
-25-->/run/media/luis/54FC3AA1FC3A7CF4/faculdade/11º_semestre/Devapp/projeto/MEAU/android/app/src/main/AndroidManifest.xml:15:7-38
+25-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:15:7-38
 26        android:usesCleartextTraffic="true" >
-26-->/run/media/luis/54FC3AA1FC3A7CF4/faculdade/11º_semestre/Devapp/projeto/MEAU/android/app/src/debug/AndroidManifest.xml:7:18-53
+26-->C:\Users\Alternative\Projetos\MEAU\android\app\src\debug\AndroidManifest.xml:7:18-53
 27        <activity
-27-->/run/media/luis/54FC3AA1FC3A7CF4/faculdade/11º_semestre/Devapp/projeto/MEAU/android/app/src/main/AndroidManifest.xml:16:7-26:18
+27-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:16:7-26:18
 28            android:name="com.meau.MainActivity"
-28-->/run/media/luis/54FC3AA1FC3A7CF4/faculdade/11º_semestre/Devapp/projeto/MEAU/android/app/src/main/AndroidManifest.xml:17:9-37
+28-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:17:9-37
 29            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
-29-->/run/media/luis/54FC3AA1FC3A7CF4/faculdade/11º_semestre/Devapp/projeto/MEAU/android/app/src/main/AndroidManifest.xml:19:9-86
+29-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:19:9-86
 30            android:label="@string/app_name"
-30-->/run/media/luis/54FC3AA1FC3A7CF4/faculdade/11º_semestre/Devapp/projeto/MEAU/android/app/src/main/AndroidManifest.xml:18:9-41
+30-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:18:9-41
 31            android:launchMode="singleTask"
-31-->/run/media/luis/54FC3AA1FC3A7CF4/faculdade/11º_semestre/Devapp/projeto/MEAU/android/app/src/main/AndroidManifest.xml:20:9-40
+31-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:20:9-40
 32            android:windowSoftInputMode="adjustResize" >
-32-->/run/media/luis/54FC3AA1FC3A7CF4/faculdade/11º_semestre/Devapp/projeto/MEAU/android/app/src/main/AndroidManifest.xml:21:9-51
+32-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:21:9-51
 33            <intent-filter>
-33-->/run/media/luis/54FC3AA1FC3A7CF4/faculdade/11º_semestre/Devapp/projeto/MEAU/android/app/src/main/AndroidManifest.xml:22:9-25:25
+33-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:22:9-25:25
 34                <action android:name="android.intent.action.MAIN" />
-34-->/run/media/luis/54FC3AA1FC3A7CF4/faculdade/11º_semestre/Devapp/projeto/MEAU/android/app/src/main/AndroidManifest.xml:23:13-65
-34-->/run/media/luis/54FC3AA1FC3A7CF4/faculdade/11º_semestre/Devapp/projeto/MEAU/android/app/src/main/AndroidManifest.xml:23:21-62
+34-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:23:13-65
+34-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:23:21-62
 35
 36                <category android:name="android.intent.category.LAUNCHER" />
-36-->/run/media/luis/54FC3AA1FC3A7CF4/faculdade/11º_semestre/Devapp/projeto/MEAU/android/app/src/main/AndroidManifest.xml:24:13-73
-36-->/run/media/luis/54FC3AA1FC3A7CF4/faculdade/11º_semestre/Devapp/projeto/MEAU/android/app/src/main/AndroidManifest.xml:24:23-70
+36-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:24:13-73
+36-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:24:23-70
 37            </intent-filter>
 38        </activity>
 39        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
-39-->/run/media/luis/54FC3AA1FC3A7CF4/faculdade/11º_semestre/Devapp/projeto/MEAU/android/app/src/main/AndroidManifest.xml:27:7-84
-39-->/run/media/luis/54FC3AA1FC3A7CF4/faculdade/11º_semestre/Devapp/projeto/MEAU/android/app/src/main/AndroidManifest.xml:27:17-81
+39-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:27:7-84
+39-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:27:17-81
 40
 41        <provider
-41-->[:react-native-image-picker] /run/media/luis/54FC3AA1FC3A7CF4/faculdade/11º_semestre/Devapp/projeto/MEAU/node_modules/react-native-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:9-20:20
+41-->[:react-native-image-picker] C:\Users\Alternative\Projetos\MEAU\node_modules\react-native-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:12:9-20:20
 42            android:name="com.imagepicker.ImagePickerProvider"
-42-->[:react-native-image-picker] /run/media/luis/54FC3AA1FC3A7CF4/faculdade/11º_semestre/Devapp/projeto/MEAU/node_modules/react-native-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-63
+42-->[:react-native-image-picker] C:\Users\Alternative\Projetos\MEAU\node_modules\react-native-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-63
 43            android:authorities="com.meau.imagepickerprovider"
-43-->[:react-native-image-picker] /run/media/luis/54FC3AA1FC3A7CF4/faculdade/11º_semestre/Devapp/projeto/MEAU/node_modules/react-native-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:14:13-71
+43-->[:react-native-image-picker] C:\Users\Alternative\Projetos\MEAU\node_modules\react-native-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:14:13-71
 44            android:exported="false"
-44-->[:react-native-image-picker] /run/media/luis/54FC3AA1FC3A7CF4/faculdade/11º_semestre/Devapp/projeto/MEAU/node_modules/react-native-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:13-37
+44-->[:react-native-image-picker] C:\Users\Alternative\Projetos\MEAU\node_modules\react-native-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:15:13-37
 45            android:grantUriPermissions="true" >
-45-->[:react-native-image-picker] /run/media/luis/54FC3AA1FC3A7CF4/faculdade/11º_semestre/Devapp/projeto/MEAU/node_modules/react-native-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:16:13-47
+45-->[:react-native-image-picker] C:\Users\Alternative\Projetos\MEAU\node_modules\react-native-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:16:13-47
 46            <meta-data
-46-->[:react-native-image-picker] /run/media/luis/54FC3AA1FC3A7CF4/faculdade/11º_semestre/Devapp/projeto/MEAU/node_modules/react-native-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:17:13-19:70
+46-->[:react-native-image-picker] C:\Users\Alternative\Projetos\MEAU\node_modules\react-native-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:17:13-19:70
 47                android:name="android.support.FILE_PROVIDER_PATHS"
-47-->[:react-native-image-picker] /run/media/luis/54FC3AA1FC3A7CF4/faculdade/11º_semestre/Devapp/projeto/MEAU/node_modules/react-native-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:18:17-67
+47-->[:react-native-image-picker] C:\Users\Alternative\Projetos\MEAU\node_modules\react-native-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:18:17-67
 48                android:resource="@xml/imagepicker_provider_paths" />
-48-->[:react-native-image-picker] /run/media/luis/54FC3AA1FC3A7CF4/faculdade/11º_semestre/Devapp/projeto/MEAU/node_modules/react-native-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:19:17-67
+48-->[:react-native-image-picker] C:\Users\Alternative\Projetos\MEAU\node_modules\react-native-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:19:17-67
 49        </provider>
 50    </application>
 51

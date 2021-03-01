@@ -6,12 +6,13 @@ import Login from './views/Login'
 import CadastroPessoal from './views/CadastroPessoal'
 import Cadastroanimal from './views/Cadastroanimal'
 import ErroLogin from './views/ErroLogin'
+import TelaInicial from './views/TelaInicial'
 
 export default function App() {
   return (
     <View style={Estilo.container}>
       
-      <ErroLogin/>
+      <Login/>
       
     </View>
   );
