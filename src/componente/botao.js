@@ -18,36 +18,9 @@ import ImagePicker from 'react-native-image-picker'
 export function BotaoImagem(props) {
 
 
-
-
-  const OpenPicker = () => {
-    const options = {
-      title: 'Cadastre uma foto',
-      storageOptions: {
-        skipBackup: true,
-        path: 'images',
-      },
-
-    }
-    ImagePicker.showImagePicker(options, (response) => {
-      if(response.didCancel) {
-        console.log('User cancelled image picker');
-      } else if( response.error) {
-        console.log('ImagePicker Error:' , response.error);
-      } else {
-        const source = {uri: response.uri};
-      }
-    })
-  }
-
-
-
-
-
-
   return (
 
-    <TouchableOpacity style={botao.botaoImagem} onPress={OpenPicker}>
+    <TouchableOpacity style={botao.botaoImagem}>
       <Text>+</Text>
       <Text>adicionar imagem</Text>
     </TouchableOpacity>

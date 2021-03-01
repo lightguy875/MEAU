@@ -5,14 +5,13 @@ import Estilo from './estilo/estilo'
 import Login from './views/Login'
 import CadastroPessoal from './views/CadastroPessoal'
 import Cadastroanimal from './views/Cadastroanimal'
-import Icon from 'react-native-vector-icons/Feather';
+import ErroLogin from './views/ErroLogin'
 
 export default function App() {
   return (
     <View style={Estilo.container}>
-
-       <Cadastroanimal/> 
-
+      
+      <ErroLogin/>
       
     </View>
   );
