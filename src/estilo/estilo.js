@@ -99,6 +99,14 @@ export default StyleSheet.create({
         flexDirection:'row',
         flexWrap: 'wrap',
         justifyContent: 'flex-start',
-        
-    }
+        width: 380,
+    },
+
+     tituloAnimal: {
+        flexDirection:'row',
+        justifyContent:'center',
+        fontFamily: 'Roboto Regular',
+        fontSize: 16,
+        color: '#000',
+     },
 });

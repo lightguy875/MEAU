@@ -2,6 +2,7 @@ import React from 'react'
 import { Button, StyleSheet, Text, View, TouchableOpacity, Alert, StatusBar, ScrollView} from 'react-native';
 import botao from './botao.style'
 import ImagePicker from 'react-native-image-picker'
+import Icon from 'react-native-vector-icons/Feather'
 
 
 
@@ -21,7 +22,7 @@ export function BotaoImagem(props) {
   return (
 
     <TouchableOpacity style={botao.botaoImagem}>
-      <Text>+</Text>
+      <Icon name="plus-circle" size={18}></Icon>
       <Text>adicionar imagem</Text>
     </TouchableOpacity>
     

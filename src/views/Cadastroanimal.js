@@ -1,12 +1,13 @@
 
 import React, {useState} from 'react';
-import { Button, StyleSheet, Text, View, TouchableOpacity, Alert  } from 'react-native';
+import { Button, StyleSheet, Text, View, TouchableOpacity, Alert ,SafeAreaView } from 'react-native';
 import { ScrollView, TextInput } from 'react-native-gesture-handler';
 import  Estilo from '../estilo/estilo'
 import {CheckBox} from 'react-native-elements'
 import ImagePicker from 'react-native-image-picker'
 import {BotaoPrimario, BotaoImagem, BotaoFacebook, BotaoGoogle} from '../componente/botao'
 import Icon from 'react-native-vector-icons/Feather';
+import estilo from '../estilo/estilo';
 
 export default function Cadastro_animal() {
 
@@ -69,22 +70,28 @@ export default function Cadastro_animal() {
     })
   }
   return (
+
       <ScrollView>
 
-        <Text>Cadastro de animal</Text>
-        <Text>Nome do animal</Text>
+    <SafeAreaView>
+                <SafeAreaView style={Estilo.container}>
+        <Text style={estilo.tituloAnimal}>Cadastro de animal</Text>
+        </SafeAreaView>
+        <Text style={Estilo.titulo}>Nome do animal</Text>
         <TextInput 
             style={Estilo.input}
             placeholder="Nome do animal"
         />
-        <Text>Fotos do animal</Text>
+        <Text style={Estilo.titulo}>Fotos do animal</Text>
 
         <BotaoImagem onClick = {OpenPicker}/>
 
-        <Text>Espécie</Text>
+        <Text style={Estilo.titulo}>Espécie</Text>
         <View style={Estilo.caixaAnimal}>
         <CheckBox 
 
+
+            textStyle={{ fontSize:14}}
             title="Cachorro"
             checkedIcon={<Icon name="check-circle" color="green"/>}
             uncheckedIcon={<Icon name="circle" color="#000"/>}
@@ -104,7 +111,7 @@ export default function Cadastro_animal() {
         
         </View>
       
-        <Text>Sexo</Text>
+        <Text style={Estilo.titulo}>Sexo</Text>
         <View style={Estilo.caixaAnimal}>
         <CheckBox
             title="Macho"
@@ -114,15 +121,14 @@ export default function Cadastro_animal() {
             onPress={() => setSelected({...isSelected, checkbox3: true, checkbox4 : false})}
         /> 
           <CheckBox
-            title="Fêma"
+            title="Fêmea"
             checkedIcon={<Icon name="check-circle" color="green"/>}
             uncheckedIcon={<Icon name="circle" color="#000"/>}
             checked={isSelected.checkbox4}
             onPress={() => setSelected({...isSelected, checkbox4: true, checkbox3: false})}
         /> 
         </View>
-        <View>
-        <Text>Porte</Text>
+        <Text style={Estilo.titulo}>Porte</Text>
         <View style={Estilo.caixaAnimal}>
         <CheckBox
             title="Pequeno"
@@ -149,7 +155,7 @@ export default function Cadastro_animal() {
             
         /> 
         </View>
-        <Text>Idade</Text>
+        <Text style={Estilo.titulo}>Idade</Text>
         <View style={Estilo.caixaAnimal}>
         <CheckBox
             title="Filhote"
@@ -177,7 +183,7 @@ export default function Cadastro_animal() {
         /> 
         </View>
 
-        <Text>Temperamento</Text>
+        <Text style={Estilo.titulo}>Temperamento</Text>
         <View style={Estilo.caixaAnimal}>
           <CheckBox
             title="Brincalhão"
@@ -228,7 +234,7 @@ export default function Cadastro_animal() {
         /> 
         </View>
 
-        <Text>Saúde</Text>
+        <Text style={Estilo.titulo}>Saúde</Text>
         <View style={Estilo.caixaAnimal}> 
         <CheckBox
             title="Vacinado"
@@ -268,7 +274,7 @@ export default function Cadastro_animal() {
             placeholder="Doenças do animal"
         />
 
-        <Text>Exigências para Adoção</Text>
+        <Text style={Estilo.titulo}>Exigências para Adoção</Text>
         <View style={Estilo.caixaAnimal}>
           <CheckBox
             title="Termo de adoção"
@@ -345,22 +351,21 @@ export default function Cadastro_animal() {
             
         /> 
         </View>
-        <Text>Sobre o animal</Text>
-
-                
+        <Text style={Estilo.titulo}>Sobre o animal</Text>
+        <SafeAreaView style={Estilo.container}>
         <TextInput
             style={Estilo.input}
             placeholder="Compartilhe histórias do animal"
         />
 
-      <BotaoPrimario style={{
-        justifyContent:"center",
-        flexDirection:"row",
-      }}name='Cadastrar Animal'/>
+      <BotaoPrimario name='Cadastrar Animal'/>
+      </SafeAreaView>
+
+
         
-
-
-    </View>
+      </SafeAreaView>
     </ScrollView>
+
+    
   );
 }
