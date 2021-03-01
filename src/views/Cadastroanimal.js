@@ -6,11 +6,13 @@ import  Estilo from '../estilo/estilo'
 import {CheckBox} from 'react-native-elements'
 import ImagePicker from 'react-native-image-picker'
 import {BotaoImagem} from '../componente/botao'
-
+import Icon from 'react-native-vector-icons/Feather';
 
 export default function Cadastro_animal() {
 
   //State variables
+
+
 
   const [isSelected, setSelected] = useState({
       checkbox: false,
@@ -68,7 +70,6 @@ export default function Cadastro_animal() {
   }
   return (
       <ScrollView>
-    <View style={Estilo.container}>
 
         <Text>Cadastro de animal</Text>
         <Text>Nome do animal</Text>
@@ -80,110 +81,104 @@ export default function Cadastro_animal() {
 
         <BotaoImagem onClick = {OpenPicker}/>
 
-        <Button title="Imagens" style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-        onPress = {OpenPicker}>
-
-        </Button>
-
         <Text>Espécie</Text>
+        <View style={Estilo.caixaAnimal}>
         <CheckBox 
+  
             title="Cachorro"
-            //checkedIcon="check"
+            checkedIcon={<Icon name="check-circle" color="green"/>}
+            uncheckedIcon={<Icon name="circle" color="#000"/>}
             checkedColor="green"
             checked={isSelected.checkbox1}
-            onPress={() => setSelected({...isSelected, checkbox1: !isSelected["checkbox1"]})}
+            onPress={() => setSelected({...isSelected, checkbox1: true , checkbox2: false})}
         />
           <CheckBox
             title="Gato"
-            //checkedIcon="check"
-            checkedColor="green"
+            checkedIcon={<Icon name="check-circle" color="green"/>}
+            uncheckedIcon={<Icon name="circle" color="#000"/>}
             //uncheckedIcon="red"
             checked={isSelected.checkbox2}
-            onPress={() => setSelected({...isSelected, checkbox2: !isSelected["checkbox2"]})}
+            onPress={() => setSelected({...isSelected, checkbox2: true, checkbox1: false})}
             
         /> 
         
-
+        </View>
+      
         <Text>Sexo</Text>
+        <View style={Estilo.caixaAnimal}>
         <CheckBox
             title="Macho"
-            //checkedIcon="check"
-            checkedColor="green"
+            checkedIcon={<Icon name="check-circle" color="green"/>}
+            uncheckedIcon={<Icon name="circle" color="#000"/>}
             checked={isSelected.checkbox3}
-            onPress={() => setSelected({...isSelected, checkbox3: !isSelected["checkbox3"]})}
+            onPress={() => setSelected({...isSelected, checkbox3: true, checkbox4 : false})}
         /> 
           <CheckBox
             title="Fêma"
-            //checkedIcon="check"
-            checkedColor="green"
-            //uncheckedIcon="red"
+            checkedIcon={<Icon name="check-circle" color="green"/>}
+            uncheckedIcon={<Icon name="circle" color="#000"/>}
             checked={isSelected.checkbox4}
-            onPress={() => setSelected({...isSelected, checkbox4: !isSelected["checkbox4"]})}
+            onPress={() => setSelected({...isSelected, checkbox4: true, checkbox3: false})}
         /> 
+        </View>
+        <View>
         <Text>Porte</Text>
+        <View style={Estilo.caixaAnimal}>
         <CheckBox
             title="Pequeno"
-            //checkedIcon="check"
-            checkedColor="green"
-            //uncheckedIcon="red"
+            checkedIcon={<Icon name="check-circle" color="green"/>}
+            uncheckedIcon={<Icon name="circle" color="#000"/>}
             checked={isSelected.checkbox5}
-            onPress={() => setSelected({...isSelected, checkbox5: !isSelected["checkbox5"]})}
+            onPress={() => setSelected({...isSelected, checkbox5: true, checkbox6: false, checkbox7: false})}
             
         /> 
           <CheckBox
             title="Médio"
-            //checkedIcon="check"
-            checkedColor="green"
-            //uncheckedIcon="red"
+            checkedIcon={<Icon name="check-circle" color="green"/>}
+            uncheckedIcon={<Icon name="circle" color="#000"/>}
             checked={isSelected.checkbox6}
-            onPress={() => setSelected({...isSelected, checkbox6: !isSelected["checkbox6"]})}
+            onPress={() => setSelected({...isSelected, checkbox5: false, checkbox6: true, checkbox7: false})}
             
         /> 
           <CheckBox
             title="Grande"
-            //checkedIcon="check"
-            checkedColor="green"
-            //uncheckedIcon="red"
+            checkedIcon={<Icon name="check-circle" color="green"/>}
+            uncheckedIcon={<Icon name="circle" color="#000"/>}
             checked={isSelected.checkbox7}
-            onPress={() => setSelected({...isSelected, checkbox7: !isSelected["checkbox7"]})}
+            onPress={() => setSelected({...isSelected, checkbox5: false, checkbox6: false, checkbox7: true})}
             
         /> 
-
+        </View>
         <Text>Idade</Text>
+        <View style={Estilo.caixaAnimal}>
         <CheckBox
             title="Filhote"
-            //checkedIcon="check"
-            checkedColor="green"
-            //uncheckedIcon="red"
+            checkedIcon={<Icon name="check-circle" color="green"/>}
+            uncheckedIcon={<Icon name="circle" color="#000"/>}
             checked={isSelected.checkbox8}
-            onPress={() => setSelected({...isSelected, checkbox8: !isSelected["checkbox8"]})}
+            onPress={() => setSelected({...isSelected, checkbox8: true, checkbox9: false, checkbox10: false})}
             
         /> 
           <CheckBox
             title="Adulto"
-            //checkedIcon="check"
-            checkedColor="green"
-            //uncheckedIcon="red"
+            checkedIcon={<Icon name="check-circle" color="green"/>}
+            uncheckedIcon={<Icon name="circle" color="#000"/>}
             checked={isSelected.checkbox9}
-            onPress={() => setSelected({...isSelected, checkbox9: !isSelected["checkbox9"]})}
+            onPress={() => setSelected({...isSelected, checkbox8: false, checkbox9: true, checkbox10: false})}
             
         /> 
           <CheckBox
             title="Idoso"
-            //checkedIcon="check"
-            checkedColor="green"
-            //uncheckedIcon="red"
+            checkedIcon={<Icon name="check-circle" color="green"/>}
+            uncheckedIcon={<Icon name="circle" color="#000"/>}
             checked={isSelected.checkbox10}
-            onPress={() => setSelected({...isSelected, checkbox10: !isSelected["checkbox10"]})}
+            onPress={() => setSelected({...isSelected, checkbox8: false, checkbox9: false, checkbox10: true})}
             
         /> 
+        </View>
 
         <Text>Temperamento</Text>
-
+        <View style={Estilo.caixaAnimal}>
           <CheckBox
             title="Brincalhão"
             //checkedIcon="check"
@@ -231,9 +226,10 @@ export default function Cadastro_animal() {
             checked={isSelected.checkbox16}
             onPress={() => setSelected({...isSelected, checkbox16: !isSelected["checkbox16"]})}
         /> 
-        
+        </View>
 
         <Text>Saúde</Text>
+        <View style={Estilo.caixaAnimal}> 
         <CheckBox
             title="Vacinado"
             //checkedIcon="check"
@@ -266,13 +262,14 @@ export default function Cadastro_animal() {
             checked={isSelected.checkbox20}
             onPress={() => setSelected({...isSelected, checkbox20: !isSelected["checkbox20"]})}
         /> 
-        
+        </View>
         <TextInput
             style={Estilo.input}
             placeholder="Doenças do animal"
         />
 
         <Text>Exigências para Adoção</Text>
+        <View style={Estilo.caixaAnimal}>
           <CheckBox
             title="Termo de adoção"
             //checkedIcon="check"
@@ -306,10 +303,48 @@ export default function Cadastro_animal() {
             checkedColor="green"
             //uncheckedIcon="red"
             checked={isSelected.checkbox24}
-            onPress={() => setSelected({...isSelected, checkbox24: !isSelected["checkbox24"]})}
+            onPress={() => isSelected.checkbox24 == false ? setSelected({...isSelected, checkbox24: !isSelected["checkbox24"]}) : setSelected({...isSelected, checkbox24: !isSelected["checkbox24"] , checkbox25: false, checkbox26: false, checkbox27: false})}
             
         /> 
-
+        </View>
+        <View style={{justifyContent:"center",
+      flexDirection:'row'}}>
+        <CheckBox
+            
+            title="1 mês"
+            //checkedIcon="check"
+            checkedColor="green"
+            //uncheckedIcon="red"
+            checked={isSelected.checkbox25}
+            onPress={() => isSelected.checkbox24 == true ? setSelected({...isSelected, checkbox25: true , checkbox26: false , checkbox27: false}) : setSelected({...isSelected, checkbox25: false})}
+            
+        /> 
+      </View>
+      <View style={{justifyContent:"center",
+      flexDirection:'row'}}>
+        <CheckBox
+            
+            title="3 meses"
+            //checkedIcon="check"
+            checkedColor="green"
+            //uncheckedIcon="red"
+            checked={isSelected.checkbox26}
+            onPress={() => isSelected.checkbox24 == true ? setSelected({...isSelected, checkbox25: false , checkbox26: true , checkbox27: false}) : setSelected({...isSelected, checkbox25: false})}
+            
+        /> 
+        </View>
+        <View style={{justifyContent:"center",
+      flexDirection:'row'}}>
+                <CheckBox
+            title="6 meses"
+            //checkedIcon="check"
+            checkedColor="green"
+            //uncheckedIcon="red"
+            checked={isSelected.checkbox27}
+            onPress={() => isSelected.checkbox24 == true ? setSelected({...isSelected, checkbox25: false , checkbox26: false , checkbox27: true}) : setSelected({...isSelected, checkbox25: false})}
+            
+        /> 
+        </View>
         <Text>Sobre o animal</Text>
 
                 

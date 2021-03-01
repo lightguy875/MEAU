@@ -93,5 +93,12 @@ export default StyleSheet.create({
 
     textoBranco: {
         color: cor.fundoBranco,
+    },
+
+    caixaAnimal: {
+        flexDirection:'row',
+        flexWrap: 'wrap',
+        justifyContent: 'flex-start',
+        
     }
 });
