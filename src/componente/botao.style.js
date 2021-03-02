@@ -11,6 +11,7 @@ export default StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: cor.fundoPadrao,
+        marginBottom: 10,
         elevation: 5,
     },
 

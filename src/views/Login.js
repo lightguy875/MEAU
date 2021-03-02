@@ -5,16 +5,16 @@ import { TextInput } from 'react-native-gesture-handler';
 import  Estilo from '../estilo/estilo'
 import Cor from '../estilo/cor'
 import {BotaoPrimario, BotaoImagem, BotaoFacebook, BotaoGoogle} from '../componente/botao'
+import CadastroPessoal from './CadastroPessoal'
 
 
-
-export default function Login() {
+export default function Login({navigation}) {
   return (
 
     
     
 
-    <KeyboardAvoidingView>
+    <KeyboardAvoidingView style={{flex: 1,}}>
 
         <View style={Estilo.container}>
 
@@ -22,6 +22,8 @@ export default function Login() {
             backgroundColor={Cor.topo}
             
         />
+
+        
 
         <TextInput 
             style={Estilo.input}

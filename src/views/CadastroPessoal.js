@@ -5,7 +5,7 @@ import  Estilo from '../estilo/estilo'
 import Cor from '../estilo/cor'
 import {BotaoPrimario, BotaoImagem} from '../componente/botao'
 
-export default function CadastroPessoal() {
+export default function CadastroPessoal({navigation}) {
 
     return(
         <ScrollView>
