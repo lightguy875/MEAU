@@ -16,6 +16,7 @@ import {
   StatusBar,
   Image,
   Dimensions,
+  TouchableOpacity
 } from 'react-native';
 
 import {
@@ -26,6 +27,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import {BotaoPrimario, BotaoImagem, BotaoFacebook, BotaoGoogle} from '../componente/botao'
+import Estilo from '../estilo/estilo'
 
 const largura = Dimensions.get("screen").width;
 const TelaInicial: () => React$Node = () => {
@@ -36,36 +38,52 @@ const TelaInicial: () => React$Node = () => {
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
-          
+
+          <Header />
+          {global.HermesInternal == null ? null : (
+            <View style={styles.engine}>
+              <Text style={styles.footer}>Engine: Hermes</Text>
+            </View>
+          )}
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Projeto - MEAU</Text>
 
               <Text style={styles.sectionDescription}>
                 Conheça os <Text style={styles.highlight}>animais</Text> que precisam de ajuda.
               </Text>
-              
-              
-              <Image 
-                source={require('.././img/3gatos.jpeg')}
-                style={{
-                  width:largura,
-                  height:largura
-                }}
-              />
-
-            </View>
-                        
-            <View style={styles.sectionContainer}>
+              <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>Cães e gatos</Text>
               <Text style={styles.sectionDescription}>
                 Que necessitam de carinho e um lar.
               </Text>
             </View>
-            
+                                                   
+            </View>          
             <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Para saber mais clique em:</Text>
-              <BotaoPrimario name='ACESSAR'/>
+              <Text style={styles.sectionTitle}>Você pode:</Text>
+
+
+
+
+
+
+
+              <BotaoPrimario name='ADOTAR'/>
+              <Text style={styles.sectionTitle}>Ou</Text>
+              
+
+              <BotaoPrimario name='CADASTRAR'/>
+              <Text style={styles.sectionTitle}>Para adoção.</Text>
+
+              <Image 
+                source={require('.././img/3gatos.jpeg')}
+                style={styles.imagemBasica}
+              />
+
+              <Image 
+                source={require('.././img/3caes.jpeg')}
+                style={styles.imagemBasica}
+              />
               
             </View>
 
@@ -112,6 +130,19 @@ const styles = StyleSheet.create({
     padding: 4,
     paddingRight: 12,
     textAlign: 'right',
+  },
+    imagemBasica: {
+        width:largura,
+        height:largura,
+        marginTop: 8,
+  },
+    botao:{
+      width: 300,
+      height: 42,
+      marginTop: 10,
+      borderRadius: 4,
+      alignItems: 'center',
+      justifyContent: 'center',
   },
 });
 
