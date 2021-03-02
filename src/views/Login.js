@@ -2,7 +2,7 @@
 import React from 'react';
 import { Button, StyleSheet, Text, View, TouchableOpacity, Alert, StatusBar, KeyboardAvoidingView} from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
-import  Estilo from './Login.estilo'
+import  Estilo from '../estilo/Login.estilo'
 import Cor from '../estilo/cor'
 import {BotaoPrimario, BotaoImagem, BotaoFacebook, BotaoGoogle} from '../componente/botao'
 import CadastroPessoal from './CadastroPessoal'

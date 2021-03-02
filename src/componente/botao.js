@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, StyleSheet, Text, View, TouchableOpacity, Alert, StatusBar, ScrollView} from 'react-native';
-import botao from './botao.style'
+import botao from '../estilo/botao.style'
 import ImagePicker from 'react-native-image-picker'
 import Icon from 'react-native-vector-icons/Feather'
 

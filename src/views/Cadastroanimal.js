@@ -73,10 +73,8 @@ export default function Cadastro_animal() {
 
       <ScrollView>
 
-    <SafeAreaView>
-                <SafeAreaView style={Estilo.container}>
-        <Text style={estilo.tituloAnimal}>Cadastro de animal</Text>
-        </SafeAreaView>
+    <SafeAreaView style={estilo.container}>
+
         <Text style={Estilo.titulo}>Nome do animal</Text>
         <TextInput 
             style={Estilo.input}

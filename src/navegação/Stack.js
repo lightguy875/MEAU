@@ -21,22 +21,22 @@ export default function Pilha() {
   return (
     <Stack.Navigator  initialRouteName="Principal">
       <Stack.Screen name="Login" options={{
-        title: 'Tela Login',
+        title: 'Login',
         headerStyle: {
           backgroundColor: cor.fundoNavLogin,
           height: 56,
         }
         }} component={Login}/>
 
-        <Stack.Screen name="CadastroPessoal" component={CadastroPessoal}/>
+        <Stack.Screen options={{title: "Cadastro de Conta"}} name="CadastroPessoal" component={CadastroPessoal}/>
 
-        <Stack.Screen name="TelaInicial" component={TelaInicial}/>
+        <Stack.Screen options={{title: "Tela Inicial"}} name="Tela Inicial" component={TelaInicial}/>
 
         <Stack.Screen name="Principal" component={Principal} options={{
           headerShown: false,
         }}/>
 
-      <Stack.Screen name="Cadastroanimal" component={Cadastroanimal}/>
+      <Stack.Screen options={{title: "Cadastro de Animal"}}name="Cadastroanimal" component={Cadastroanimal}/>
 
 
 

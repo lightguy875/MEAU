@@ -44,7 +44,7 @@ export default function Principal({navigation}) {
         </TouchableOpacity>
 
         <TouchableOpacity style={botao.botaoPrimario} onPress={() => navigation.navigate('CadastroPessoal')}>
-          <Text>Cadastro Pessoal</Text>
+          <Text>Cadastro de Conta</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={botao.botaoPrimario} onPress={() => navigation.navigate('Cadastroanimal')}>
