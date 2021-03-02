@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native'
-import cor from '../estilo/cor'
+import cor from './cor'
 
 
 

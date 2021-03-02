@@ -7,7 +7,7 @@ import cor from '../estilo/cor'
 import {BotaoPrimario, BotaoImagem, BotaoFacebook, BotaoGoogle} from '../componente/botao'
 import CadastroPessoal from './CadastroPessoal'
 import { SafeAreaView } from 'react-native-safe-area-context';
-import botao from '../componente/botao.style'
+import botao from '../estilo/botao.style'
 
 
 
