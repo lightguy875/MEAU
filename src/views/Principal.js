@@ -18,7 +18,9 @@ export default function Principal({navigation}) {
          <View style={{
           
           backgroundColor: cor.fundoPadrao,
-          width: 400,
+          position: 'absolute',
+          right: 0,
+          left: 0,
           height: 250,
           alignItems: 'center',
           justifyContent: 'center',
@@ -30,7 +32,7 @@ export default function Principal({navigation}) {
 
         </View>
 
-        <SafeAreaView style={{ alignItems: 'center', marginTop: 100,}}>
+        <SafeAreaView style={{ alignItems: 'center', marginTop: 100,marginTop: 400,}}>
 
         <StatusBar
             backgroundColor={cor.topo}
@@ -49,6 +51,10 @@ export default function Principal({navigation}) {
 
         <TouchableOpacity style={botao.botaoPrimario} onPress={() => navigation.navigate('Cadastroanimal')}>
           <Text>Cadastro Animal</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={botao.botaoPrimario} onPress={() => navigation.navigate('TelaInicial')}>
+          <Text>Tela inicial do Miguel</Text>
         </TouchableOpacity>
 
 
