@@ -51,6 +51,11 @@ export default function Principal({navigation}) {
           <Text>Cadastro Animal</Text>
         </TouchableOpacity>
 
+        <TouchableOpacity style={botao.botaoPrimario} onPress={() => navigation.navigate('Camera')}>
+          <Text>Camera</Text>
+        </TouchableOpacity>
+
+
 
 
 
