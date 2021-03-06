@@ -37,6 +37,39 @@ export default StyleSheet.create({
         marginTop: 100,
         marginBottom: 100,
         
-    }
+    },
 
+    botaoFacebook: {
+        flexDirection: 'row',
+
+        width: 232,
+        height: 40,
+        padding: 5,
+        borderRadius: 5,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: Cor.fundoFacebook,
+        marginBottom: 25,
+        
+    },
+
+    botaoGoogle: {
+        flexDirection: 'row',
+        width: 232,
+        height: 40,
+        padding: 5,
+        borderRadius: 5,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: Cor.fundoGoogle,
+    },
+
+    txtBotao:{
+        fontSize: 12,
+        color: '#fff',
+        marginLeft: 10,
+
+    },
+
+    
 })

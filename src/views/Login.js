@@ -4,8 +4,8 @@ import { Button, StyleSheet, Text, View, TouchableOpacity, Alert, StatusBar, Key
 import { TextInput } from 'react-native-gesture-handler';
 import  Estilo from './Login.estilo'
 import Cor from '../estilo/cor'
-import {BotaoPrimario, BotaoImagem, BotaoFacebook, BotaoGoogle} from '../componente/botao'
-import CadastroPessoal from './CadastroPessoal'
+import { BotaoFacebook, BotaoGoogle} from '../componente/botao'
+import Icon from 'react-native-vector-icons/Feather';
 
 export default function Login({navigation}) {
   return (
@@ -38,13 +38,20 @@ export default function Login({navigation}) {
       <TouchableOpacity style={Estilo.botaoLogin} 
         onPress={() => navigation.navigate('ErroLogin')}
       >
-        <Text>LOGIN</Text>
+        <Text style={[Estilo.txtBotao, {color: 'black'}]}>LOGIN</Text>
       </TouchableOpacity>
         
         
-      <BotaoFacebook />
-      <BotaoGoogle/>
+      <TouchableOpacity style={Estilo.botaoFacebook}>
+        <Icon  name="facebook" style={Estilo.txtBotao} resizeMode="contain"/>
+        <Text style={[Estilo.txtBotao]}>ENTRAR COM FACEBOOK</Text>
+      </TouchableOpacity>
+    
+      <TouchableOpacity style={Estilo.botaoGoogle}>
+        <Icon  name="user-plus" style={[Estilo.txtBotao]} resizeMode="contain"/>
 
+        <Text style={[Estilo.txtBotao]}>ENTRAR COM GOOGLE</Text>
+      </TouchableOpacity>
 
 
 
