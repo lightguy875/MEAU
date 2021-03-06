@@ -7,7 +7,7 @@ import cor from '../estilo/cor'
 import {BotaoPrimario, BotaoImagem, BotaoFacebook, BotaoGoogle} from '../componente/botao'
 import CadastroPessoal from './CadastroPessoal'
 import { SafeAreaView } from 'react-native-safe-area-context';
-import botao from '../componente/botao.style'
+import botao from '../estilo/botao.style'
 
 
 
@@ -46,7 +46,7 @@ export default function Principal({navigation}) {
         </TouchableOpacity>
 
         <TouchableOpacity style={botao.botaoPrimario} onPress={() => navigation.navigate('CadastroPessoal')}>
-          <Text>Cadastro Pessoal</Text>
+          <Text>Cadastro de Conta</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={botao.botaoPrimario} onPress={() => navigation.navigate('Cadastroanimal')}>
@@ -56,6 +56,7 @@ export default function Principal({navigation}) {
         <TouchableOpacity style={botao.botaoPrimario} onPress={() => navigation.navigate('TelaInicial')}>
           <Text>Tela inicial do Miguel</Text>
         </TouchableOpacity>
+
 
 
 

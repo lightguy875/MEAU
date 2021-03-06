@@ -47,7 +47,6 @@ export function LoginStack({navigation}) {
 }
 
 
-
 export function CadastroPessoalStack({navigation}) {
   return ( 
     <Stack.Navigator  initialRouteName="CadastroPessoal">

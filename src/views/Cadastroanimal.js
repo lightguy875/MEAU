@@ -4,7 +4,6 @@ import { Button, StyleSheet, Text, View, TouchableOpacity, Alert ,SafeAreaView }
 import { ScrollView, TextInput } from 'react-native-gesture-handler';
 import  Estilo from '../estilo/estilo'
 import {CheckBox} from 'react-native-elements'
-import ImagePicker from 'react-native-image-picker'
 import {BotaoPrimario, BotaoImagem, BotaoFacebook, BotaoGoogle} from '../componente/botao'
 import Icon from 'react-native-vector-icons/Feather';
 import estilo from '../estilo/estilo';
@@ -50,25 +49,7 @@ export default function Cadastro_animal() {
 
   //funções
 
-  const OpenPicker = () => {
-    const options = {
-      title: 'Cadastre uma foto',
-      storageOptions: {
-        skipBackup: true,
-        path: 'images',
-      },
 
-    }
-    ImagePicker.showImagePicker(options, (response) => {
-      if(response.didCancel) {
-        console.log('User cancelled image picker');
-      } else if( response.error) {
-        console.log('ImagePicker Error:' , response.error);
-      } else {
-        const source = {uri: response.uri};
-      }
-    })
-  }
   return (
 
       <ScrollView>
@@ -82,7 +63,7 @@ export default function Cadastro_animal() {
         />
         <Text style={Estilo.titulo}>Fotos do animal</Text>
 
-        <BotaoImagem onClick = {OpenPicker}/>
+        <BotaoImagem onClick = {null}/>
 
         <Text style={Estilo.titulo}>Espécie</Text>
         <View style={Estilo.caixaAnimal}>
