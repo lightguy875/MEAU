@@ -6,6 +6,8 @@ import  Estilo from './Login.estilo'
 import Cor from '../estilo/cor'
 import {BotaoPrimario, BotaoImagem, BotaoFacebook, BotaoGoogle} from '../componente/botao'
 import CadastroPessoal from './CadastroPessoal'
+import Pilha from '../navegação/Stack';
+import Cabecalho from '../componente/HeaderCustom'
 
 
 export default function Login({navigation}) {
@@ -14,15 +16,17 @@ export default function Login({navigation}) {
     
     
 
-    <KeyboardAvoidingView style={{flex: 1,}}>
-
-        <View style={Estilo.container}>
-
-        <StatusBar
+    <KeyboardAvoidingView style={{ flex: 1}}>
+      <StatusBar
             backgroundColor={Cor.topo}
             
         />
 
+        <Cabecalho titulo="Login"/>
+
+        <View style={{ flex: 1}}>
+
+        
         
 
         <TextInput 
@@ -36,7 +40,9 @@ export default function Login({navigation}) {
             placeholder="Senha"
         />
 
-        <TouchableOpacity style={Estilo.botaoLogin}>
+        <TouchableOpacity style={Estilo.botaoLogin} 
+          onPress={() => navigation.navigate('ErroLogin')}
+        >
           <Text>LOGIN</Text>
         </TouchableOpacity>
         

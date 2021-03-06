@@ -10,8 +10,8 @@ import TelaInicial from './views/TelaInicial'
 
 export default function App() {
   return (
-    <View style={Estilo.container}>
-      
+    <View style={{flex: 1}}>
+      <Login/>
     </View>
   );
 }
