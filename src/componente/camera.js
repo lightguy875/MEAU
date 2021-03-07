@@ -16,9 +16,10 @@ import ImagePicker from 'react-native-image-crop-picker'
 import botao from '../estilo/botao.style'
 import estilo from '../estilo/estilo'
 
-export default function camera({navigation}) {
+export default function camera({navigation , route}) {
 
-    
+
+
       const [state , setState] = useState({
         image: null,
         images: null
@@ -80,12 +81,16 @@ export default function camera({navigation}) {
         <TouchableOpacity style={botao.botaoPrimario}
           onPress={pickMultiple.bind(this)}
         >
-          <Text>Selecionar Imagem</Text>
+          <Text>Selecionar Imagens</Text>
           
         </TouchableOpacity>
 
         <TouchableOpacity style={botao.botaoPrimario}
-        onPress={() => navigation.navigate('Cadastroanimal')}
+        onPress={ () => navigation.navigate( "Cadastroanimal" , {
+          elemento: state
+        })
+
+      }
         >
           <Text> Salvar </Text>
 

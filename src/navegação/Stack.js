@@ -6,7 +6,8 @@ import cor from '../estilo/cor'
 import Login from '../views/Login'
 import CadastroPessoal from '../views/CadastroPessoal'
 import Cadastroanimal from '../views/Cadastroanimal'
- import Camera from '../componente/camera'
+import Camera from '../componente/camera'
+import Camerapessoa from '../componente/camerapessoa'
 
 import Principal from '../views/Principal'
 
@@ -40,6 +41,8 @@ export default function Pilha() {
       <Stack.Screen options={{title: "Cadastro de Animal"}}name="Cadastroanimal" component={Cadastroanimal}/>
 
        <Stack.Screen options={{title: "Escolha uma imagem"}} name="Camera" component={Camera}/> 
+
+       <Stack.Screen options={{title: "Escolha uma imagem"}} name="Camerapessoa" component={Camerapessoa}/> 
 
      </Stack.Navigator>
   );

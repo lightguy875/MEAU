@@ -1,11 +1,51 @@
-import React from 'react';
-import { Button, StyleSheet, Text, View, TouchableOpacity, Alert, StatusBar, ScrollView} from 'react-native';
+import React, {useState} from 'react';
+import { Button, StyleSheet, Text, View, TouchableOpacity, Alert, StatusBar, ScrollView, Image} from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import  Estilo from '../estilo/estilo'
 import Cor from '../estilo/cor'
 import {BotaoPrimario, BotaoImagem} from '../componente/botao'
 
-export default function CadastroPessoal({navigation}) {
+export default function CadastroPessoal({navigation , route }) {
+
+
+  React.useEffect(() => {
+    if (route.params) {
+      setImage(route.params.dado)
+    }
+  }, [route.params]);
+
+
+
+  const [estado, setImage] = useState({
+    image: null,
+    images: null
+  })
+
+  const renderImage = (imagem) => {
+    return (
+      <Image
+        style={{ width: 300, height: 300, resizeMode: 'contain' }}
+        source={imagem}
+      />
+    );
+  }
+
+  const fotopessoa = (estado) => {
+
+    if(estado.image) {
+      return <ScrollView horizontal={true}>
+          {estado.image ? renderImage(estado.image) : null}
+        </ScrollView>
+    }
+    else if(!estado.image)
+    {
+    return  <BotaoImagem  onPress={ () => navigation.push('Camerapessoa')}/>  
+    }
+    
+  }
+
+
+
 
     return(
         <ScrollView>
@@ -82,7 +122,7 @@ export default function CadastroPessoal({navigation}) {
             <Text style={Estilo.titulo}>FOTO DE PERFIL</Text>
             
             
-            <BotaoImagem onPress={() => navigation.navigate('Camera')}/>
+            {fotopessoa(estado)}
                 
             <BotaoPrimario name='FAZER CADASTRO'/>
 
