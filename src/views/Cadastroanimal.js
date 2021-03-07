@@ -8,11 +8,14 @@ import {BotaoPrimario, BotaoImagem, BotaoFacebook, BotaoGoogle} from '../compone
 import Icon from 'react-native-vector-icons/Feather';
 import estilo from '../estilo/estilo';
 
-export default function Cadastro_animal() {
+export default function Cadastro_animal({ navigation }, props) {
 
   //State variables
 
-
+const[state, setImage] = useState({
+  image: null,
+  images: null
+})
 
   const [isSelected, setSelected] = useState({
       checkbox: false,
@@ -48,7 +51,22 @@ export default function Cadastro_animal() {
 
 
   //funções
+  const renderImage = (image) => {
+    return (
+      <Image
+        style={{ width: 300, height: 300, resizeMode: 'contain' }}
+        source={image}
+      />
+    );
+  }
 
+  const renderAsset = (image) => {
+    if (image.mime && image.mime.toLowerCase().indexOf('video/') !== -1) {
+      return renderVideo(image);
+    }
+
+    return renderImage(image);
+  }
 
   return (
 
@@ -63,7 +81,8 @@ export default function Cadastro_animal() {
         />
         <Text style={Estilo.titulo}>Fotos do animal</Text>
 
-        <BotaoImagem onClick = {null}/>
+
+         <BotaoImagem  onPress={() => navigation.navigate('Camera')}/> 
 
         <Text style={Estilo.titulo}>Espécie</Text>
         <View style={Estilo.caixaAnimal}>

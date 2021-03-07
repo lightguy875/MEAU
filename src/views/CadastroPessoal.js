@@ -82,7 +82,7 @@ export default function CadastroPessoal({navigation}) {
             <Text style={Estilo.titulo}>FOTO DE PERFIL</Text>
             
             
-            <BotaoImagem/>
+            <BotaoImagem onPress={() => navigation.navigate('Camera')}/>
                 
             <BotaoPrimario name='FAZER CADASTRO'/>
 

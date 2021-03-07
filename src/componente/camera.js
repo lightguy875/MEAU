@@ -9,12 +9,14 @@ import {
     Platform,
     ScrollView,
     Alert,
-    Dimensions
+    Dimensions,
+    SafeAreaView
 } from 'react-native'
 import ImagePicker from 'react-native-image-crop-picker'
+import botao from '../estilo/botao.style'
+import estilo from '../estilo/estilo'
 
-
-export default function Camera() {
+export default function camera({navigation}) {
 
     
       const [state , setState] = useState({
@@ -65,7 +67,7 @@ export default function Camera() {
           }
 
         return (
-          <>
+          <SafeAreaView style={estilo.container}>
           <ScrollView>
           {state.image ? renderAsset(this.state.image) : null}
           {state.images
@@ -75,17 +77,23 @@ export default function Camera() {
             : null}
         </ScrollView>
 
-        <TouchableOpacity
+        <TouchableOpacity style={botao.botaoPrimario}
           onPress={pickMultiple.bind(this)}
-          style={styles.button}
         >
-          <Text style={styles.text}>Select Multiple</Text>
+          <Text>Selecionar Imagem</Text>
+          
         </TouchableOpacity>
 
+        <TouchableOpacity style={botao.botaoPrimario}
+        onPress={() => navigation.navigate('Cadastroanimal')}
+        >
+          <Text> Salvar </Text>
+
+        </TouchableOpacity>
+
+        </SafeAreaView>
+
         
-
-
-        </>
         )
 }
 
