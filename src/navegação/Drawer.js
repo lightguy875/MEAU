@@ -9,6 +9,7 @@ import CadastroPessoal from '../views/CadastroPessoal'
 import Cadastroanimal from '../views/Cadastroanimal'
 import Principal from '../views/Principal'
 import TelaInicial from '../views/TelaInicial';
+import CustomDrawer from './CustomDrawer'
 
 
 
@@ -18,7 +19,7 @@ const Drawer = createDrawerNavigator();
 export default () => {
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Principal">
+      <Drawer.Navigator initialRouteName="Login" drawerContent={CustomDrawer}>
         <Drawer.Screen name="Login" component={LoginStack} />
         <Drawer.Screen name="CadastroPessoal" component={CadastroPessoalStack}/>
         <Drawer.Screen name="TelaInicial" component={TelaInicial}/>
