@@ -1,6 +1,6 @@
 
 import React, {useState} from 'react';
-import { Button, StyleSheet, Text, View, TouchableOpacity, Alert ,SafeAreaView } from 'react-native';
+import { Button, StyleSheet, Text, View, TouchableOpacity, Alert ,SafeAreaView, Image } from 'react-native';
 import { ScrollView, TextInput } from 'react-native-gesture-handler';
 import  Estilo from '../estilo/estilo'
 import {CheckBox} from 'react-native-elements'
@@ -8,11 +8,21 @@ import {BotaoPrimario, BotaoImagem, BotaoFacebook, BotaoGoogle} from '../compone
 import Icon from 'react-native-vector-icons/Feather';
 import estilo from '../estilo/estilo';
 
-export default function Cadastro_animal() {
+export default function Cadastro_animal({navigation , route}) {
+  
 
-  //State variables
+  React.useEffect(() => {
+    if (route.params) {
+      setImage(route.params.elemento)
+    }
+  }, [route.params]);
 
 
+
+  const [estado, setImage] = useState({
+    image: null,
+    images: null
+  })
 
   const [isSelected, setSelected] = useState({
       checkbox: false,
@@ -46,8 +56,34 @@ export default function Cadastro_animal() {
   })
   // Variáveis
 
-
   //funções
+  const renderImage = (imagem) => {
+    return (
+      <Image
+        style={{ width: 300, height: 300, resizeMode: 'contain' }}
+        source={imagem}
+      />
+    );
+  }
+
+   const fotosanimal = (estado) => {
+
+    if(estado.images) {
+      return <ScrollView horizontal={true}>
+          {estado.image ? renderImage(this.estado.image) : null}
+          {estado.images
+            ? estado.images.map((i) => (
+                <View key={i.uri}>{renderImage(i)}</View>
+              ))
+            : null}
+        </ScrollView>
+    }
+    else if(!estado.images)
+    {
+    return  <BotaoImagem  onPress={ () => navigation.push('Camera')}/>  
+    }
+    
+  }
 
 
   return (
@@ -61,10 +97,23 @@ export default function Cadastro_animal() {
             style={Estilo.input}
             placeholder="Nome do animal"
         />
-        <Text style={Estilo.titulo}>Fotos do animal</Text>
+        <Text style={Estilo.titulo}>Fotos do animal </Text>
 
-        <BotaoImagem onClick = {null}/>
+       {/* <ScrollView horizontal={true}>
+          {estado.image ? renderImage(this.estado.image) : null}
+          {estado.images
+            ? estado.images.map((i) => (
+                <View key={i.uri}>{renderImage(i)}</View>
+              ))
+            : null}
+        </ScrollView>
+         <BotaoImagem  onPress={ () => navigation.push('Camera')          
+       }
+         />  */}
 
+         {fotosanimal(estado)}
+
+       
         <Text style={Estilo.titulo}>Espécie</Text>
         <View style={Estilo.caixaAnimal}>
         <CheckBox 

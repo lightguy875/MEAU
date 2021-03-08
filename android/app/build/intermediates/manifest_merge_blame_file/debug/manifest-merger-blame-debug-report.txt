@@ -24,144 +24,87 @@
 15-->[com.facebook.flipper:flipper:0.54.0] C:\Users\Alternative\.gradle\caches\transforms-2\files-2.1\d92c5f067fd27d344c4449517e711b7d\jetified-flipper-0.54.0\AndroidManifest.xml:16:5-76
 15-->[com.facebook.flipper:flipper:0.54.0] C:\Users\Alternative\.gradle\caches\transforms-2\files-2.1\d92c5f067fd27d344c4449517e711b7d\jetified-flipper-0.54.0\AndroidManifest.xml:16:22-73
 16
-17    <application
-17-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:9:5-28:19
-18        android:name="com.meau.MainApplication"
-18-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:10:7-38
-19        android:allowBackup="false"
-19-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:14:7-34
-20        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-20-->[androidx.core:core:1.3.1] C:\Users\Alternative\.gradle\caches\transforms-2\files-2.1\75db17b2af63ddabf5cd589d47931981\core-1.3.1\AndroidManifest.xml:24:18-86
-21        android:debuggable="true"
-22        android:extractNativeLibs="false"
-23        android:icon="@mipmap/ic_launcher"
-23-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:12:7-41
-24        android:label="@string/app_name"
-24-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:11:7-39
-25        android:roundIcon="@mipmap/ic_launcher_round"
-25-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:13:7-52
-26        android:theme="@style/AppTheme"
-26-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:15:7-38
-27        android:usesCleartextTraffic="true" >
-27-->C:\Users\Alternative\Projetos\MEAU\android\app\src\debug\AndroidManifest.xml:7:18-53
-28        <activity
-28-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:16:7-26:18
-29            android:name="com.meau.MainActivity"
-29-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:17:9-37
-30            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
-30-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:19:9-86
-31            android:label="@string/app_name"
-31-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:18:9-41
-32            android:launchMode="singleTask"
-32-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:20:9-40
-33            android:windowSoftInputMode="adjustResize" >
-33-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:21:9-51
-34            <intent-filter>
-34-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:22:9-25:25
-35                <action android:name="android.intent.action.MAIN" />
-35-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:23:13-65
-35-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:23:21-62
-36
-37                <category android:name="android.intent.category.LAUNCHER" />
-37-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:24:13-73
-37-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:24:23-70
-38            </intent-filter>
-39        </activity>
-40        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
-40-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:27:7-84
-40-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:27:17-81
-41
-42        <provider
-42-->[:react-native-image-picker] C:\Users\Alternative\Projetos\MEAU\node_modules\react-native-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:12:9-20:20
-43            android:name="com.imagepicker.ImagePickerProvider"
-43-->[:react-native-image-picker] C:\Users\Alternative\Projetos\MEAU\node_modules\react-native-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-63
-44            android:authorities="com.meau.imagepickerprovider"
-44-->[:react-native-image-picker] C:\Users\Alternative\Projetos\MEAU\node_modules\react-native-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:14:13-71
-45            android:exported="false"
-45-->[:react-native-image-picker] C:\Users\Alternative\Projetos\MEAU\node_modules\react-native-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:15:13-37
-46            android:grantUriPermissions="true" >
-46-->[:react-native-image-picker] C:\Users\Alternative\Projetos\MEAU\node_modules\react-native-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:16:13-47
-47            <meta-data
-47-->[:react-native-image-picker] C:\Users\Alternative\Projetos\MEAU\node_modules\react-native-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:17:13-19:70
-48                android:name="android.support.FILE_PROVIDER_PATHS"
-48-->[:react-native-image-picker] C:\Users\Alternative\Projetos\MEAU\node_modules\react-native-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:18:17-67
-49                android:resource="@xml/imagepicker_provider_paths" />
-49-->[:react-native-image-picker] C:\Users\Alternative\Projetos\MEAU\node_modules\react-native-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:19:17-67
-50        </provider>
-51        <provider
-51-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Alternative\.gradle\caches\transforms-2\files-2.1\44b1c0788697518864b2bf56fccffe4a\jetified-firebase-common-19.5.0\AndroidManifest.xml:26:9-31:39
-52            android:name="com.google.firebase.provider.FirebaseInitProvider"
-52-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Alternative\.gradle\caches\transforms-2\files-2.1\44b1c0788697518864b2bf56fccffe4a\jetified-firebase-common-19.5.0\AndroidManifest.xml:27:13-77
-53            android:authorities="com.meau.firebaseinitprovider"
-53-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Alternative\.gradle\caches\transforms-2\files-2.1\44b1c0788697518864b2bf56fccffe4a\jetified-firebase-common-19.5.0\AndroidManifest.xml:28:13-72
-54            android:directBootAware="true"
-54-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Alternative\.gradle\caches\transforms-2\files-2.1\44b1c0788697518864b2bf56fccffe4a\jetified-firebase-common-19.5.0\AndroidManifest.xml:29:13-43
-55            android:exported="false"
-55-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Alternative\.gradle\caches\transforms-2\files-2.1\44b1c0788697518864b2bf56fccffe4a\jetified-firebase-common-19.5.0\AndroidManifest.xml:30:13-37
-56            android:initOrder="100" />
-56-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Alternative\.gradle\caches\transforms-2\files-2.1\44b1c0788697518864b2bf56fccffe4a\jetified-firebase-common-19.5.0\AndroidManifest.xml:31:13-36
+17    <queries>
+17-->[:react-native-image-crop-picker] C:\Users\Alternative\Projetos\MEAU\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:10:5-14:15
+18        <intent>
+18-->[:react-native-image-crop-picker] C:\Users\Alternative\Projetos\MEAU\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:11:9-13:18
+19            <action android:name="android.media.action.IMAGE_CAPTURE" />
+19-->[:react-native-image-crop-picker] C:\Users\Alternative\Projetos\MEAU\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:12:13-73
+19-->[:react-native-image-crop-picker] C:\Users\Alternative\Projetos\MEAU\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:12:21-70
+20        </intent>
+21    </queries>
+22
+23    <application
+23-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:9:5-28:19
+24        android:name="com.meau.MainApplication"
+24-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:10:7-38
+25        android:allowBackup="false"
+25-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:14:7-34
+26        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+26-->[androidx.core:core:1.1.0] C:\Users\Alternative\.gradle\caches\transforms-2\files-2.1\9e41a29be065ebd8ff69331687648d12\core-1.1.0\AndroidManifest.xml:24:18-86
+27        android:debuggable="true"
+28        android:extractNativeLibs="false"
+29        android:icon="@mipmap/ic_launcher"
+29-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:12:7-41
+30        android:label="@string/app_name"
+30-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:11:7-39
+31        android:roundIcon="@mipmap/ic_launcher_round"
+31-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:13:7-52
+32        android:theme="@style/AppTheme"
+32-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:15:7-38
+33        android:usesCleartextTraffic="true" >
+33-->C:\Users\Alternative\Projetos\MEAU\android\app\src\debug\AndroidManifest.xml:7:18-53
+34        <activity
+34-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:16:7-26:18
+35            android:name="com.meau.MainActivity"
+35-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:17:9-37
+36            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
+36-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:19:9-86
+37            android:label="@string/app_name"
+37-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:18:9-41
+38            android:launchMode="singleTask"
+38-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:20:9-40
+39            android:windowSoftInputMode="adjustResize" >
+39-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:21:9-51
+40            <intent-filter>
+40-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:22:9-25:25
+41                <action android:name="android.intent.action.MAIN" />
+41-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:23:13-65
+41-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:23:21-62
+42
+43                <category android:name="android.intent.category.LAUNCHER" />
+43-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:24:13-73
+43-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:24:23-70
+44            </intent-filter>
+45        </activity>
+46        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+46-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:27:7-84
+46-->C:\Users\Alternative\Projetos\MEAU\android\app\src\main\AndroidManifest.xml:27:17-81
+47
+48        <provider
+48-->[:react-native-image-crop-picker] C:\Users\Alternative\Projetos\MEAU\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:19:9-27:20
+49            android:name="androidx.core.content.FileProvider"
+49-->[:react-native-image-crop-picker] C:\Users\Alternative\Projetos\MEAU\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:20:13-62
+50            android:authorities="com.meau.provider"
+50-->[:react-native-image-crop-picker] C:\Users\Alternative\Projetos\MEAU\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:21:13-60
+51            android:exported="false"
+51-->[:react-native-image-crop-picker] C:\Users\Alternative\Projetos\MEAU\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:22:13-37
+52            android:grantUriPermissions="true" >
+52-->[:react-native-image-crop-picker] C:\Users\Alternative\Projetos\MEAU\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:23:13-47
+53            <meta-data
+53-->[:react-native-image-crop-picker] C:\Users\Alternative\Projetos\MEAU\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:24:13-26:58
+54                android:name="android.support.FILE_PROVIDER_PATHS"
+54-->[:react-native-image-crop-picker] C:\Users\Alternative\Projetos\MEAU\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:25:17-67
+55                android:resource="@xml/provider_paths" />
+55-->[:react-native-image-crop-picker] C:\Users\Alternative\Projetos\MEAU\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:26:17-55
+56        </provider>
 57
-58        <service
-58-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Alternative\.gradle\caches\transforms-2\files-2.1\44b1c0788697518864b2bf56fccffe4a\jetified-firebase-common-19.5.0\AndroidManifest.xml:33:9-46:19
-59            android:name="com.google.firebase.components.ComponentDiscoveryService"
-59-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Alternative\.gradle\caches\transforms-2\files-2.1\44b1c0788697518864b2bf56fccffe4a\jetified-firebase-common-19.5.0\AndroidManifest.xml:34:13-84
-60            android:directBootAware="true"
-60-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Alternative\.gradle\caches\transforms-2\files-2.1\44b1c0788697518864b2bf56fccffe4a\jetified-firebase-common-19.5.0\AndroidManifest.xml:35:13-43
-61            android:exported="false" >
-61-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Alternative\.gradle\caches\transforms-2\files-2.1\44b1c0788697518864b2bf56fccffe4a\jetified-firebase-common-19.5.0\AndroidManifest.xml:36:13-37
+58        <activity
+58-->[:react-native-image-crop-picker] C:\Users\Alternative\Projetos\MEAU\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:29:9-31:72
+59            android:name="com.yalantis.ucrop.UCropActivity"
+59-->[:react-native-image-crop-picker] C:\Users\Alternative\Projetos\MEAU\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:30:13-60
+60            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+60-->[:react-native-image-crop-picker] C:\Users\Alternative\Projetos\MEAU\node_modules\react-native-image-crop-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:31:13-69
+61    </application>
 62
-63            <!--
-64                This registrar is not defined in the dynamic-module-support sdk itself to allow non-firebase
-65                clients to use it as well, by defining this registrar in their own core/common library.
-66            -->
-67            <meta-data
-67-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Alternative\.gradle\caches\transforms-2\files-2.1\44b1c0788697518864b2bf56fccffe4a\jetified-firebase-common-19.5.0\AndroidManifest.xml:43:13-45:85
-68                android:name="com.google.firebase.components:com.google.firebase.dynamicloading.DynamicLoadingRegistrar"
-68-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Alternative\.gradle\caches\transforms-2\files-2.1\44b1c0788697518864b2bf56fccffe4a\jetified-firebase-common-19.5.0\AndroidManifest.xml:44:17-121
-69                android:value="com.google.firebase.components.ComponentRegistrar" />
-69-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Alternative\.gradle\caches\transforms-2\files-2.1\44b1c0788697518864b2bf56fccffe4a\jetified-firebase-common-19.5.0\AndroidManifest.xml:45:17-82
-70        </service>
-71
-72        <activity
-72-->[com.google.android.gms:play-services-auth:19.0.0] C:\Users\Alternative\.gradle\caches\transforms-2\files-2.1\5f409fcf4a58bb3fc11778471ffdedb6\jetified-play-services-auth-19.0.0\AndroidManifest.xml:23:9-27:75
-73            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
-73-->[com.google.android.gms:play-services-auth:19.0.0] C:\Users\Alternative\.gradle\caches\transforms-2\files-2.1\5f409fcf4a58bb3fc11778471ffdedb6\jetified-play-services-auth-19.0.0\AndroidManifest.xml:24:13-93
-74            android:excludeFromRecents="true"
-74-->[com.google.android.gms:play-services-auth:19.0.0] C:\Users\Alternative\.gradle\caches\transforms-2\files-2.1\5f409fcf4a58bb3fc11778471ffdedb6\jetified-play-services-auth-19.0.0\AndroidManifest.xml:25:13-46
-75            android:exported="false"
-75-->[com.google.android.gms:play-services-auth:19.0.0] C:\Users\Alternative\.gradle\caches\transforms-2\files-2.1\5f409fcf4a58bb3fc11778471ffdedb6\jetified-play-services-auth-19.0.0\AndroidManifest.xml:26:13-37
-76            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-76-->[com.google.android.gms:play-services-auth:19.0.0] C:\Users\Alternative\.gradle\caches\transforms-2\files-2.1\5f409fcf4a58bb3fc11778471ffdedb6\jetified-play-services-auth-19.0.0\AndroidManifest.xml:27:13-72
-77        <!--
-78            Service handling Google Sign-In user revocation. For apps that do not integrate with
-79            Google Sign-In, this service will never be started.
-80        -->
-81        <service
-81-->[com.google.android.gms:play-services-auth:19.0.0] C:\Users\Alternative\.gradle\caches\transforms-2\files-2.1\5f409fcf4a58bb3fc11778471ffdedb6\jetified-play-services-auth-19.0.0\AndroidManifest.xml:33:9-37:51
-82            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
-82-->[com.google.android.gms:play-services-auth:19.0.0] C:\Users\Alternative\.gradle\caches\transforms-2\files-2.1\5f409fcf4a58bb3fc11778471ffdedb6\jetified-play-services-auth-19.0.0\AndroidManifest.xml:34:13-89
-83            android:exported="true"
-83-->[com.google.android.gms:play-services-auth:19.0.0] C:\Users\Alternative\.gradle\caches\transforms-2\files-2.1\5f409fcf4a58bb3fc11778471ffdedb6\jetified-play-services-auth-19.0.0\AndroidManifest.xml:35:13-36
-84            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
-84-->[com.google.android.gms:play-services-auth:19.0.0] C:\Users\Alternative\.gradle\caches\transforms-2\files-2.1\5f409fcf4a58bb3fc11778471ffdedb6\jetified-play-services-auth-19.0.0\AndroidManifest.xml:36:13-107
-85            android:visibleToInstantApps="true" />
-85-->[com.google.android.gms:play-services-auth:19.0.0] C:\Users\Alternative\.gradle\caches\transforms-2\files-2.1\5f409fcf4a58bb3fc11778471ffdedb6\jetified-play-services-auth-19.0.0\AndroidManifest.xml:37:13-48
-86
-87        <activity
-87-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\Alternative\.gradle\caches\transforms-2\files-2.1\9be31e637c3050502a7557d51b0a0859\jetified-play-services-base-17.1.0\AndroidManifest.xml:23:9-26:75
-88            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-88-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\Alternative\.gradle\caches\transforms-2\files-2.1\9be31e637c3050502a7557d51b0a0859\jetified-play-services-base-17.1.0\AndroidManifest.xml:24:13-79
-89            android:exported="false"
-89-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\Alternative\.gradle\caches\transforms-2\files-2.1\9be31e637c3050502a7557d51b0a0859\jetified-play-services-base-17.1.0\AndroidManifest.xml:25:13-37
-90            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-90-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\Alternative\.gradle\caches\transforms-2\files-2.1\9be31e637c3050502a7557d51b0a0859\jetified-play-services-base-17.1.0\AndroidManifest.xml:26:13-72
-91
-92        <meta-data
-92-->[com.google.android.gms:play-services-basement:17.1.1] C:\Users\Alternative\.gradle\caches\transforms-2\files-2.1\dc76ec9375e6d8644cfdee206457bfe5\jetified-play-services-basement-17.1.1\AndroidManifest.xml:23:9-25:69
-93            android:name="com.google.android.gms.version"
-93-->[com.google.android.gms:play-services-basement:17.1.1] C:\Users\Alternative\.gradle\caches\transforms-2\files-2.1\dc76ec9375e6d8644cfdee206457bfe5\jetified-play-services-basement-17.1.1\AndroidManifest.xml:24:13-58
-94            android:value="@integer/google_play_services_version" />
-94-->[com.google.android.gms:play-services-basement:17.1.1] C:\Users\Alternative\.gradle\caches\transforms-2\files-2.1\dc76ec9375e6d8644cfdee206457bfe5\jetified-play-services-basement-17.1.1\AndroidManifest.xml:25:13-66
-95    </application>
-96
-97</manifest>
+63</manifest>

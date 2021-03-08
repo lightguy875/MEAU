@@ -7,6 +7,7 @@ import Cadastroanimal from '../views/Cadastroanimal'
 import { createStackNavigator } from '@react-navigation/stack';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Feather';
+import Camerapessoa from '../componente/camerapessoa'
 
 
 const Stack = createStackNavigator(); // Criar uma constante para cada Stack
@@ -71,6 +72,8 @@ export function CadastroAnimalStack({navigation}) {
         headerLeft: () => AbrirMenu({navigation}),
       }}/>
 
-     </Stack.Navigator>
+      <Stack.Screen options={{title: "Escolha uma imagem"}} name="Camerapessoa" component={Camerapessoa}/> 
+
+     </Stack.Navigator> 
   );
-}
+}  
