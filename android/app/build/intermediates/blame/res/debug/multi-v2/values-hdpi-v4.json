@@ -4,7 +4,11 @@
             "outputFile": "C:\\Users\\Alternative\\Projetos\\MEAU\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-hdpi-v4\\values-hdpi-v4.xml",
             "map": [
                 {
+<<<<<<< HEAD
                     "source": "C:\\Users\\Alternative\\.gradle\\caches\\transforms-2\\files-2.1\\b058cda32d7fc75b0153169eacbd0342\\appcompat-1.1.0\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
+=======
+                    "source": "/home/luis/.gradle/caches/transforms-2/files-2.1/b6e19839ae703069bf28b191b7d09647/appcompat-1.1.0/res/values-hdpi-v4/values-hdpi-v4.xml",
+>>>>>>> 1193b6df619b488cd295aeb7645d1d2f97bdfae2
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

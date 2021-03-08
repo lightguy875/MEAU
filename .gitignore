@@ -7,3 +7,9 @@ GoogleService-Info.plist
 # Firebase Hosting
 .firebaserc
 firebase-debug.log
+
+#ignorar compilação
+build
+
+#ignorar bloqueio de pacotes
+yarn.lock

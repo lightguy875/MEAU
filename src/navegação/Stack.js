@@ -4,9 +4,16 @@ import Login from '../views/Login'
 import ErroLogin from '../views/ErroLogin'
 import CadastroPessoal from '../views/CadastroPessoal'
 import Cadastroanimal from '../views/Cadastroanimal'
+<<<<<<< HEAD
 import { createStackNavigator } from '@react-navigation/stack';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Feather';
+=======
+import Camera from '../componente/camera'
+import Camerapessoa from '../componente/camerapessoa'
+
+import Principal from '../views/Principal'
+>>>>>>> 1193b6df619b488cd295aeb7645d1d2f97bdfae2
 
 
 const Stack = createStackNavigator(); // Criar uma constante para cada Stack
@@ -70,6 +77,8 @@ export function CadastroAnimalStack({navigation}) {
         title: 'Cadastro Animal',
         headerLeft: () => AbrirMenu({navigation}),
       }}/>
+
+       <Stack.Screen options={{title: "Escolha uma imagem"}} name="Camerapessoa" component={Camerapessoa}/> 
 
      </Stack.Navigator>
   );
