@@ -8,8 +8,5 @@ GoogleService-Info.plist
 .firebaserc
 firebase-debug.log
 
-#ignorar compilação
-build
-
 #ignorar bloqueio de pacotes
 yarn.lock
