@@ -19,26 +19,31 @@ export default function Login({navigation}) {
     function Render(){
     if(initializing) return null
 
-    if(auth().currentUser){
+    if(!auth().currentUser){
       return(
         <TouchableOpacity
-          onPress={() => Cadastrar().then(() => {
-            Component.forceUpdate()
+          onPress={() => Cadastrar()}
+          style={{
+            width: 232,
+          height: 40,
+          borderRadius: 5,
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: '#88c9bf',
+          marginBottom: 60,
+          elevation: 5,
+          marginTop: 50,
 
-
-          })}
+          }}
         >
-          <Text>Cadrastrar</Text>
+          <Text style={{color: '#000'}}>Cadastrar</Text>
 
         </TouchableOpacity>
       )
     }else{
       return(
         <TouchableOpacity
-          onPress={() => Sair().then(() => {
-            Component.forceUpdate()
-
-          })}
+          onPress={() => Sair()}
         >
           <Text>Sair</Text>
 
