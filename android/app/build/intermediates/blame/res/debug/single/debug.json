@@ -24,12 +24,12 @@
         "source": "C:\\Users\\Alternative\\Projetos\\MEAU\\android\\app\\src\\main\\res\\drawable-ldpi\\icon.png"
     },
     {
-        "merged": "C:\\Users\\Alternative\\Projetos\\MEAU\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_icon.png.flat",
-        "source": "C:\\Users\\Alternative\\Projetos\\MEAU\\android\\app\\src\\main\\res\\drawable-xhdpi\\icon.png"
-    },
-    {
         "merged": "C:\\Users\\Alternative\\Projetos\\MEAU\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_launcher.png.flat",
         "source": "C:\\Users\\Alternative\\Projetos\\MEAU\\android\\app\\src\\main\\res\\drawable-xxxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\Alternative\\Projetos\\MEAU\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_icon.png.flat",
+        "source": "C:\\Users\\Alternative\\Projetos\\MEAU\\android\\app\\src\\main\\res\\drawable-xhdpi\\icon.png"
     },
     {
         "merged": "C:\\Users\\Alternative\\Projetos\\MEAU\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_icon.png.flat",

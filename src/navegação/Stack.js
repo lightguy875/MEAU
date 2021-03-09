@@ -58,6 +58,8 @@ export function CadastroPessoalStack({navigation}) {
             },
             headerLeft: () => AbrirMenu({navigation}),
       }}/>
+      <Stack.Screen options={{title: "Escolha uma imagem"}} name="Camerapessoa" component={Camerapessoa}/> 
+
 
      </Stack.Navigator>
   );
