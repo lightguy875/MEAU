@@ -57,7 +57,7 @@ export default function CadastroPessoal({navigation , route }) {
             <View style={Estilo.container}>
 
             <Text style={Estilo.text_inf_cadastroPessoal}>
-                As informações preenchidas serão divulgadas apenas para a pessoa com a qual você realizar o processo de adoção. após a formalização do processo.
+                As informações preenchidas serão divulgadas apenas para a pessoa com a qual você realizar o processo de adoção, após a formalização do processo.
             </Text>
 
             <Text style={Estilo.titulo}>INFORMAÇÕES PESSOAIS</Text>

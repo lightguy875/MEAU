@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/primary" />
+    <item android:drawable="@drawable/meau_malha" />
+    <item
+        android:width="276dp"
+        android:height="100dp"
+        android:drawable="@drawable/meau_marca"
+        android:gravity="center"
+    />
+</layer-list>
