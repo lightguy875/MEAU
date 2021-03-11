@@ -71,7 +71,7 @@ export function CadastroPessoalStack({navigation}) {
 export function CadastroAnimalStack({navigation}) {
   return ( 
     <Stack.Navigator  initialRouteName="Cadastroanimal">
-      <Stack.Screen name="Cadastro Animal" component={Cadastroanimal} options={{
+      <Stack.Screen name="Cadastroanimal" component={Cadastroanimal} options={{
         title: 'Cadastro Animal',
         headerLeft: () => AbrirMenu({navigation}),
       }}/>
