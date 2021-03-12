@@ -8,6 +8,7 @@ import {BotaoPrimario, BotaoImagem, BotaoFacebook, BotaoGoogle} from '../compone
 import Icon from 'react-native-vector-icons/Feather';
 import estilo from '../estilo/estilo';
 import firestore from '@react-native-firebase/firestore';
+import storage from '@react-native-firebase/storage';
 
 
 export default function Cadastro_animal({navigation , route}) {
@@ -93,9 +94,13 @@ export default function Cadastro_animal({navigation , route}) {
     
   }
 
-  const Cadastro_animal = () => {
+  async function Cadastro_animal() {
 
-    firestore().collection('Animais').add({
+    for(const i in estado.images) {
+      reference = storage().ref(estado.images[i].uri)
+      await reference.putFile(estado.images[i].uri)
+    }
+    await firestore().collection('Animais').add({
       Nome_do_animal: nome_animal,
       Especie: isSelected.cachorro == true ? 'cachorro' : 'gato',
       Sexo: isSelected.macho == true ? 'macho' : 'fêmea',

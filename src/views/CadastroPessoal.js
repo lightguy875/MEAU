@@ -7,11 +7,12 @@ import {BotaoPrimario, BotaoImagem} from '../componente/botao'
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth'
 import { set } from 'react-native-reanimated';
+import storage from '@react-native-firebase/storage';
+
 
 
 export default function CadastroPessoal({navigation , route }) {
 
-  const usersCollection = firestore().collection('Users');
 
 
   React.useEffect(() => {
@@ -62,11 +63,13 @@ export default function CadastroPessoal({navigation , route }) {
     
   }
 
-  const Cadastro = () => {
+  async function Cadastro() {
 
     if(senha === confirmação_de_senha)
     {
-      firestore().collection('Users').add({
+      const reference = storage().ref(estado.image.uri)
+      await reference.putFile(estado.image.uri)
+      await firestore().collection('Users').add({
         name: nome_completo,
         idade: idade,
         email: email,
@@ -74,7 +77,8 @@ export default function CadastroPessoal({navigation , route }) {
         cidade: cidade,
         endereço: endereço,
         telefone: telefone,
-        imagem: estado.image
+        imagem: estado.image,
+
       }).then(() => {
         Alert.alert('Cadastro', 'Novo usuário cadastrado')
       }).then(() => {
@@ -196,7 +200,7 @@ export default function CadastroPessoal({navigation , route }) {
             {fotopessoa(estado)}
                 
             <BotaoPrimario name='FAZER CADASTRO'
-            onPress={() => Cadastro()}
+            onPress={ async () => Cadastro()}
             />
 
             </View>
