@@ -10,7 +10,7 @@ import Icon from 'react-native-vector-icons/Feather'
  export function BotaoPrimario(props) {
   return (
 
-    <TouchableOpacity style={botao.botaoPrimario}>
+    <TouchableOpacity style={botao.botaoPrimario} onPress={props.onPress}>
         <Text>{props.name}</Text>
     </TouchableOpacity>
     

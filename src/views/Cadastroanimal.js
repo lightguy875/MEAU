@@ -7,6 +7,8 @@ import {CheckBox} from 'react-native-elements'
 import {BotaoPrimario, BotaoImagem, BotaoFacebook, BotaoGoogle} from '../componente/botao'
 import Icon from 'react-native-vector-icons/Feather';
 import estilo from '../estilo/estilo';
+import firestore from '@react-native-firebase/firestore';
+
 
 export default function Cadastro_animal({navigation , route}) {
   
@@ -17,7 +19,12 @@ export default function Cadastro_animal({navigation , route}) {
     }
   }, [route.params]);
 
+  
 
+
+  const [nome_animal, setnome] = useState('')
+  const [doenca_animal, setdoenca] = useState('')
+  const [sobre_animal, setsobreanimal] = useState('')
 
   const [estado, setImage] = useState({
     image: null,
@@ -25,35 +32,36 @@ export default function Cadastro_animal({navigation , route}) {
   })
 
   const [isSelected, setSelected] = useState({
-      checkbox: false,
-      checkbox1: false,
-      checkbox2: false,
-      checkbox3: false,
-      checkbox4: false,
-      checkbox5: false,
-      checkbox6: false,
-      checkbox7: false,
-      checkbox8: false,
-      checkbox9: false,
-      checkbox10: false,
-      checkbox11: false,
-      checkbox12: false,
-      checkbox13: false,
-      checkbox14: false,
-      checkbox15: false,
-      checkbox16: false,
-      checkbox17: false,
-      checkbox18: false,
-      checkbox19: false,
-      checkbox20: false,
-      checkbox21: false,
-      checkbox22: false,
-      checkbox23: false,
-      checkbox24: false,
-      checkbox25: false,
-      checkbox26: false,
-      checkbox27: false,
+
+      cachorro: false,
+      gato: false,
+      macho: false,
+      femea: false,
+      pequeno: false,
+      medio: false,
+      grande: false,
+      filhote: false,
+      adulto: false,
+      idoso: false,
+      brincalhao: false,
+      timido: false,
+      calmo: false,
+      guarda: false,
+      amoroso: false,
+      preguiçoso: false,
+      vacinado: false,
+      vermifugado: false,
+      castrado: false,
+      doente: false,
+      Termo_de_adocao: false,
+      Fotos_de_casa: false,
+      Visita_previa_ao_animal: false,
+      Acompanhamento_pos_adocao: false,
+      um_mes: false,
+      tres_meses: false,
+      seis_meses: false,
   })
+
   // Variáveis
 
   //funções
@@ -85,31 +93,63 @@ export default function Cadastro_animal({navigation , route}) {
     
   }
 
+  const Cadastro_animal = () => {
+
+    firestore().collection('Animais').add({
+      Nome_do_animal: nome_animal,
+      Especie: isSelected.cachorro == true ? 'cachorro' : 'gato',
+      Sexo: isSelected.macho == true ? 'macho' : 'fêmea',
+      Porte: isSelected.pequeno == true ? 'pequeno' : isSelected.medio == true ? 'medio' : isSelected.grande == true ? 'grade' : '',
+      Idade: isSelected.filhote == true ? 'filhote' : isSelected.adulto == true ? 'adulto' : isSelected.idoso == true ? 'idoso' : '',
+      Temperamento: {
+        Brincalhao: isSelected.brincalhao,
+        Timido: isSelected.timido,
+        Calmo: isSelected.calmo,
+        Guarda: isSelected.guarda,
+        Amoroso: isSelected.amoroso,
+        Preguiçoso: isSelected.preguiçoso
+      },
+      Saúde: {
+        Vacinado: isSelected.vacinado,
+        Vermifugado: isSelected.vermifugado,
+        Castrado: isSelected.castrado,
+        Doente: isSelected.doente
+      },
+      Doenças: doenca_animal,
+      Termo_de_adoção: isSelected.Termo_de_adocao,
+      Fotos_de_casa: isSelected.Fotos_de_casa,
+      Acompanhamento_pos_adocao: isSelected.Acompanhamento_pos_adocao,
+      um_mes: isSelected.um_mes,
+      tres_meses: isSelected.tres_meses,
+      seis_meses: isSelected.seis_meses,
+      sobre_o_animal: sobre_animal,
+      imagens: estado.images,
+    }).then(() => {
+      Alert.alert('Cadastro', 'Novo animal cadastrado')
+    }).then(() => {
+      setSelected(false)
+      setnome('')
+      setdoenca('')
+      setsobreanimal('')
+      setImage('')
+    })
+  }
+
 
   return (
 
       <ScrollView>
 
-    <SafeAreaView>
+    <SafeAreaView style={Estilo.container}>
                 
         <Text style={Estilo.titulo}>Nome do animal</Text>
         <TextInput 
+            value={nome_animal}
             style={Estilo.input}
             placeholder="Nome do animal"
+            onChangeText={nome_animal => setnome(nome_animal)}
         />
         <Text style={Estilo.titulo}>Fotos do animal </Text>
-
-       {/* <ScrollView horizontal={true}>
-          {estado.image ? renderImage(this.estado.image) : null}
-          {estado.images
-            ? estado.images.map((i) => (
-                <View key={i.uri}>{renderImage(i)}</View>
-              ))
-            : null}
-        </ScrollView>
-         <BotaoImagem  onPress={ () => navigation.push('Camera')          
-       }
-         />  */}
 
          {fotosanimal(estado)}
 
@@ -124,16 +164,16 @@ export default function Cadastro_animal({navigation , route}) {
             checkedIcon={<Icon name="check-circle" color="green"/>}
             uncheckedIcon={<Icon name="circle" color="#000"/>}
             checkedColor="green"
-            checked={isSelected.checkbox1}
-            onPress={() => setSelected({...isSelected, checkbox1: true , checkbox2: false})}
+            checked={isSelected.cachorro}
+            onPress={() => setSelected({...isSelected, cachorro: true , gato: false})}
         />
           <CheckBox
             title="Gato"
             checkedIcon={<Icon name="check-circle" color="green"/>}
             uncheckedIcon={<Icon name="circle" color="#000"/>}
             //uncheckedIcon="red"
-            checked={isSelected.checkbox2}
-            onPress={() => setSelected({...isSelected, checkbox2: true, checkbox1: false})}
+            checked={isSelected.gato}
+            onPress={() => setSelected({...isSelected, gato: true, cachorro: false})}
             
         /> 
         
@@ -145,15 +185,15 @@ export default function Cadastro_animal({navigation , route}) {
             title="Macho"
             checkedIcon={<Icon name="check-circle" color="green"/>}
             uncheckedIcon={<Icon name="circle" color="#000"/>}
-            checked={isSelected.checkbox3}
-            onPress={() => setSelected({...isSelected, checkbox3: true, checkbox4 : false})}
+            checked={isSelected.macho}
+            onPress={() => setSelected({...isSelected, macho: true, femea : false})}
         /> 
           <CheckBox
             title="Fêmea"
             checkedIcon={<Icon name="check-circle" color="green"/>}
             uncheckedIcon={<Icon name="circle" color="#000"/>}
-            checked={isSelected.checkbox4}
-            onPress={() => setSelected({...isSelected, checkbox4: true, checkbox3: false})}
+            checked={isSelected.femea}
+            onPress={() => setSelected({...isSelected, femea: true, macho: false})}
         /> 
         </View>
         <Text style={Estilo.titulo}>Porte</Text>
@@ -162,24 +202,24 @@ export default function Cadastro_animal({navigation , route}) {
             title="Pequeno"
             checkedIcon={<Icon name="check-circle" color="green"/>}
             uncheckedIcon={<Icon name="circle" color="#000"/>}
-            checked={isSelected.checkbox5}
-            onPress={() => setSelected({...isSelected, checkbox5: true, checkbox6: false, checkbox7: false})}
+            checked={isSelected.pequeno}
+            onPress={() => setSelected({...isSelected, pequeno: true, medio: false, grande: false})}
             
         /> 
           <CheckBox
             title="Médio"
             checkedIcon={<Icon name="check-circle" color="green"/>}
             uncheckedIcon={<Icon name="circle" color="#000"/>}
-            checked={isSelected.checkbox6}
-            onPress={() => setSelected({...isSelected, checkbox5: false, checkbox6: true, checkbox7: false})}
+            checked={isSelected.medio}
+            onPress={() => setSelected({...isSelected, pequeno: false, medio: true, grande: false})}
             
         /> 
           <CheckBox
             title="Grande"
             checkedIcon={<Icon name="check-circle" color="green"/>}
             uncheckedIcon={<Icon name="circle" color="#000"/>}
-            checked={isSelected.checkbox7}
-            onPress={() => setSelected({...isSelected, checkbox5: false, checkbox6: false, checkbox7: true})}
+            checked={isSelected.grande}
+            onPress={() => setSelected({...isSelected, pequeno: false, medio: false, grande: true})}
             
         /> 
         </View>
@@ -189,24 +229,24 @@ export default function Cadastro_animal({navigation , route}) {
             title="Filhote"
             checkedIcon={<Icon name="check-circle" color="green"/>}
             uncheckedIcon={<Icon name="circle" color="#000"/>}
-            checked={isSelected.checkbox8}
-            onPress={() => setSelected({...isSelected, checkbox8: true, checkbox9: false, checkbox10: false})}
+            checked={isSelected.filhote}
+            onPress={() => setSelected({...isSelected, filhote: true, adulto: false, idoso: false})}
             
         /> 
           <CheckBox
             title="Adulto"
             checkedIcon={<Icon name="check-circle" color="green"/>}
             uncheckedIcon={<Icon name="circle" color="#000"/>}
-            checked={isSelected.checkbox9}
-            onPress={() => setSelected({...isSelected, checkbox8: false, checkbox9: true, checkbox10: false})}
+            checked={isSelected.adulto}
+            onPress={() => setSelected({...isSelected, filhote: false, adulto: true, idoso: false})}
             
         /> 
           <CheckBox
             title="Idoso"
             checkedIcon={<Icon name="check-circle" color="green"/>}
             uncheckedIcon={<Icon name="circle" color="#000"/>}
-            checked={isSelected.checkbox10}
-            onPress={() => setSelected({...isSelected, checkbox8: false, checkbox9: false, checkbox10: true})}
+            checked={isSelected.idoso}
+            onPress={() => setSelected({...isSelected, filhote: false, adulto: false, idoso: true})}
             
         /> 
         </View>
@@ -217,48 +257,48 @@ export default function Cadastro_animal({navigation , route}) {
             title="Brincalhão"
             //checkedIcon="check"
             checkedColor="green"
-            checked={isSelected.checkbox11}
-            onPress={() => setSelected({...isSelected, checkbox11: !isSelected["checkbox11"]})}
+            checked={isSelected.brincalhao}
+            onPress={() => setSelected({...isSelected, brincalhao: !isSelected["brincalhao"]})}
         /> 
           <CheckBox
             title="Tímido"
             //checkedIcon="check"
             checkedColor="green"
             //uncheckedIcon="red"
-            checked={isSelected.checkbox12}
-            onPress={() => setSelected({...isSelected, checkbox12: !isSelected["checkbox12"]})}
+            checked={isSelected.timido}
+            onPress={() => setSelected({...isSelected, timido: !isSelected["timido"]})}
         /> 
           <CheckBox
             title="Calmo"
             //checkedIcon="check"
             checkedColor="green"
             //uncheckedIcon="red"
-            checked={isSelected.checkbox13}
-            onPress={() => setSelected({...isSelected, checkbox13: !isSelected["checkbox13"]})}
+            checked={isSelected.calmo}
+            onPress={() => setSelected({...isSelected, calmo: !isSelected["calmo"]})}
         />
           <CheckBox
             title="Guarda"
             //checkedIcon="check"
             checkedColor="green"
             //uncheckedIcon="red"
-            checked={isSelected.checkbox14}
-            onPress={() => setSelected({...isSelected, checkbox14: !isSelected["checkbox14"]})}
+            checked={isSelected.guarda}
+            onPress={() => setSelected({...isSelected, guarda: !isSelected["guarda"]})}
         /> 
           <CheckBox
             title="Amoroso"
             //checkedIcon="check"
             checkedColor="green"
             //uncheckedIcon="red"
-            checked={isSelected.checkbox15}
-            onPress={() => setSelected({...isSelected, checkbox15: !isSelected["checkbox15"]})}
+            checked={isSelected.amoroso}
+            onPress={() => setSelected({...isSelected, amoroso: !isSelected["amoroso"]})}
         /> 
           <CheckBox
             title="Preguiçoso"
             //checkedIcon="check"
             checkedColor="green"
             //uncheckedIcon="red"
-            checked={isSelected.checkbox16}
-            onPress={() => setSelected({...isSelected, checkbox16: !isSelected["checkbox16"]})}
+            checked={isSelected.preguiçoso}
+            onPress={() => setSelected({...isSelected, preguiçoso: !isSelected["preguiçoso"]})}
         /> 
         </View>
 
@@ -269,37 +309,39 @@ export default function Cadastro_animal({navigation , route}) {
             //checkedIcon="check"
             checkedColor="green"
             //uncheckedIcon="red"
-            checked={isSelected.checkbox17}
-            onPress={() => setSelected({...isSelected, checkbox17: !isSelected["checkbox17"]})}
+            checked={isSelected.vacinado}
+            onPress={() => setSelected({...isSelected, vacinado: !isSelected["vacinado"]})}
         /> 
           <CheckBox
             title="Vermifugado"
             //checkedIcon="check"
             checkedColor="green"
             //uncheckedIcon="red"
-            checked={isSelected.checkbox18}
-            onPress={() => setSelected({...isSelected, checkbox18: !isSelected["checkbox18"]})}
+            checked={isSelected.vermifugado}
+            onPress={() => setSelected({...isSelected, vermifugado: !isSelected["vermifugado"]})}
         /> 
           <CheckBox
             title="Castrado"
             //checkedIcon="check"
             checkedColor="green"
             //uncheckedIcon="red"
-            checked={isSelected.checkbox19}
-            onPress={() => setSelected({...isSelected, checkbox19: !isSelected["checkbox19"]})}
+            checked={isSelected.castrado}
+            onPress={() => setSelected({...isSelected, castrado: !isSelected["castrado"]})}
         /> 
           <CheckBox
             title="Doente"
             //checkedIcon="check"
             checkedColor="green"
             //uncheckedIcon="red"
-            checked={isSelected.checkbox20}
-            onPress={() => setSelected({...isSelected, checkbox20: !isSelected["checkbox20"]})}
+            checked={isSelected.doente}
+            onPress={() => setSelected({...isSelected, doente: !isSelected["doente"]})}
         /> 
         </View>
         <TextInput
+            value={doenca_animal}
             style={Estilo.input}
             placeholder="Doenças do animal"
+            onChangeText={doenca_animal => setdoenca(doenca_animal)}
         />
 
         <Text style={Estilo.titulo}>Exigências para Adoção</Text>
@@ -309,8 +351,8 @@ export default function Cadastro_animal({navigation , route}) {
             //checkedIcon="check"
             checkedColor="green"
             //uncheckedIcon="red"
-            checked={isSelected.checkbox21}
-            onPress={() => setSelected({...isSelected, checkbox21: !isSelected["checkbox21"]})}
+            checked={isSelected.Termo_de_adocao}
+            onPress={() => setSelected({...isSelected, Termo_de_adocao: !isSelected["Termo_de_adocao"]})}
             
         /> 
           <CheckBox
@@ -318,8 +360,8 @@ export default function Cadastro_animal({navigation , route}) {
             //checkedIcon="check"
             checkedColor="green"
             //uncheckedIcon="red"
-            checked={isSelected.checkbox22}
-            onPress={() => setSelected({...isSelected, checkbox22: !isSelected["checkbox22"]})}
+            checked={isSelected.Fotos_de_casa}
+            onPress={() => setSelected({...isSelected, Fotos_de_casa: !isSelected["Fotos_de_casa"]})}
             
         /> 
           <CheckBox
@@ -327,8 +369,8 @@ export default function Cadastro_animal({navigation , route}) {
             //checkedIcon="check"
             checkedColor="green"
             //uncheckedIcon="red"
-            checked={isSelected.checkbox23}
-            onPress={() => setSelected({...isSelected, checkbox23: !isSelected["checkbox23"]})}
+            checked={isSelected.Visita_previa_ao_animal}
+            onPress={() => setSelected({...isSelected, Visita_previa_ao_animal: !isSelected["Visita_previa_ao_animal"]})}
             
         /> 
           <CheckBox
@@ -336,8 +378,8 @@ export default function Cadastro_animal({navigation , route}) {
             //checkedIcon="check"
             checkedColor="green"
             //uncheckedIcon="red"
-            checked={isSelected.checkbox24}
-            onPress={() => isSelected.checkbox24 == false ? setSelected({...isSelected, checkbox24: !isSelected["checkbox24"]}) : setSelected({...isSelected, checkbox24: !isSelected["checkbox24"] , checkbox25: false, checkbox26: false, checkbox27: false})}
+            checked={isSelected.Acompanhamento_pos_adocao}
+            onPress={() => isSelected.Acompanhamento_pos_adocao == false ? setSelected({...isSelected, Acompanhamento_pos_adocao: !isSelected["Acompanhamento_pos_adocao"]}) : setSelected({...isSelected, Acompanhamento_pos_adocao: !isSelected["Acompanhamento_pos_adocao"] , um_mes: false, tres_meses: false, seis_meses: false})}
             
         /> 
         </View>
@@ -349,8 +391,8 @@ export default function Cadastro_animal({navigation , route}) {
             //checkedIcon="check"
             checkedColor="green"
             //uncheckedIcon="red"
-            checked={isSelected.checkbox25}
-            onPress={() => isSelected.checkbox24 == true ? setSelected({...isSelected, checkbox25: true , checkbox26: false , checkbox27: false}) : setSelected({...isSelected, checkbox25: false})}
+            checked={isSelected.um_mes}
+            onPress={() => isSelected.Acompanhamento_pos_adocao == true ? setSelected({...isSelected, um_mes: true , tres_meses: false , seis_meses: false}) : setSelected({...isSelected, um_mes: false})}
             
         /> 
       </View>
@@ -362,8 +404,8 @@ export default function Cadastro_animal({navigation , route}) {
             //checkedIcon="check"
             checkedColor="green"
             //uncheckedIcon="red"
-            checked={isSelected.checkbox26}
-            onPress={() => isSelected.checkbox24 == true ? setSelected({...isSelected, checkbox25: false , checkbox26: true , checkbox27: false}) : setSelected({...isSelected, checkbox25: false})}
+            checked={isSelected.tres_meses}
+            onPress={() => isSelected.Acompanhamento_pos_adocao == true ? setSelected({...isSelected, um_mes: false , tres_meses: true , seis_meses: false}) : setSelected({...isSelected, tres_meses: false})}
             
         /> 
         </View>
@@ -374,20 +416,22 @@ export default function Cadastro_animal({navigation , route}) {
             //checkedIcon="check"
             checkedColor="green"
             //uncheckedIcon="red"
-            checked={isSelected.checkbox27}
-            onPress={() => isSelected.checkbox24 == true ? setSelected({...isSelected, checkbox25: false , checkbox26: false , checkbox27: true}) : setSelected({...isSelected, checkbox25: false})}
+            checked={isSelected.seis_meses}
+            onPress={() => isSelected.Acompanhamento_pos_adocao == true ? setSelected({...isSelected, um_mes: false , tres_meses: false , seis_meses: true}) : setSelected({...isSelected, seis_meses: false})}
             
         /> 
         </View>
         <Text style={Estilo.titulo}>Sobre o animal</Text>
-        <SafeAreaView style={Estilo.container}>
         <TextInput
+            value={sobre_animal}
             style={Estilo.input}
             placeholder="Compartilhe histórias do animal"
+            onChangeText={sobre_animal => setsobreanimal(sobre_animal)}
         />
 
-      <BotaoPrimario name='Cadastrar Animal'/>
-      </SafeAreaView>
+      <BotaoPrimario name='Cadastrar Animal'
+      onPress={() => Cadastro_animal()}
+      />
 
 
         
