@@ -10,7 +10,6 @@ import { set } from 'react-native-reanimated';
 import storage from '@react-native-firebase/storage';
 
 
-
 export default function CadastroPessoal({navigation , route }) {
 
 
@@ -67,9 +66,13 @@ export default function CadastroPessoal({navigation , route }) {
 
     if(senha === confirmação_de_senha)
     {
+
+      
+      auth().createUserWithEmailAndPassword(email, senha)
+ 
       const reference = storage().ref(estado.image.uri)
       await reference.putFile(estado.image.uri)
-      await firestore().collection('Users').add({
+      await firestore().collection('Users').doc(auth().currentUser.uid).set({
         name: nome_completo,
         idade: idade,
         email: email,
@@ -94,6 +97,10 @@ export default function CadastroPessoal({navigation , route }) {
         setconfirmação_de_senha('')
         setImage('')
       })
+    }
+    else {
+      Alert.alert('Senha', 'Senha e confirmar senha diferem-se')
+
     }
 
   }

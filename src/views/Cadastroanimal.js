@@ -9,6 +9,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import estilo from '../estilo/estilo';
 import firestore from '@react-native-firebase/firestore';
 import storage from '@react-native-firebase/storage';
+import auth from '@react-native-firebase/auth'
 
 
 export default function Cadastro_animal({navigation , route}) {
@@ -97,10 +98,12 @@ export default function Cadastro_animal({navigation , route}) {
   async function Cadastro_animal() {
 
     for(const i in estado.images) {
-      reference = storage().ref(estado.images[i].uri)
+      var reference = storage().ref(estado.images[i].uri)
       await reference.putFile(estado.images[i].uri)
     }
-    await firestore().collection('Animais').add({
+    if(auth().currentUser)
+    {
+    await firestore().collection('Users').doc(auth().currentUser.uid).collection('Animais').add({
       Nome_do_animal: nome_animal,
       Especie: isSelected.cachorro == true ? 'cachorro' : 'gato',
       Sexo: isSelected.macho == true ? 'macho' : 'fêmea',
@@ -138,6 +141,10 @@ export default function Cadastro_animal({navigation , route}) {
       setsobreanimal('')
       setImage('')
     })
+  }
+  else {
+    Alert.alert('Erro', 'Voce precisa estar cadastrado e logado!!')
+  }
   }
 
 
