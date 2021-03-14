@@ -60,13 +60,15 @@ export default function Login({navigation}) {
 
       <Controller
         control={control}
-        render={({ onChange, onBlur, senha }) => (
+        render={({ onChange, onBlur, value }) => (
           <TextInput
           onBlur={onBlur}
             style={Estilo.input}
-            onChangeText={senha => onChange(senha)}
+            onChangeText={value => onChange(value)}
             placeholder="Senha"
-            value={senha}
+            value={value}
+            secureTextEntry={true}
+
             
           />
         )}
