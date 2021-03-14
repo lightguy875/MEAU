@@ -57,12 +57,15 @@ export default function CadastroPessoal({navigation , route }) {
     }
     else if(!estado.image)
     {
-    return  <BotaoImagem  onPress={ () => navigation.push('Camerapessoa')}/>  
+    return  <BotaoImagem  onPress={ () => navigation.push('Camerapessoa', {nave:'Camerapessoa'})}/>  
     }
     
   }
 
-  async function Cadastro() {
+  async function  Cadastro() {
+    if(!auth().currentUser)
+    {
+
 
     if(senha === confirmação_de_senha)
     {
@@ -72,7 +75,7 @@ export default function CadastroPessoal({navigation , route }) {
  
       const reference = storage().ref(estado.image.uri)
       await reference.putFile(estado.image.uri)
-      await firestore().collection('Users').doc(auth().currentUser.uid).set({
+       await firestore().collection('Users').doc(auth().currentUser.uid).set({
         name: nome_completo,
         idade: idade,
         email: email,
@@ -102,6 +105,9 @@ export default function CadastroPessoal({navigation , route }) {
       Alert.alert('Senha', 'Senha e confirmar senha diferem-se')
 
     }
+  } else {
+    Alert.alert('Erro', 'Voce precisa estar deslogado para cadastrar')
+  }
 
   }
 

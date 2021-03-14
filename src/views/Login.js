@@ -21,6 +21,25 @@ export default function Login({navigation}) {
 
     if(!auth().currentUser){
       return(
+        <>
+        <TextInput 
+        value={email}
+        onChangeText={email => setEmail(email)}
+        style={Estilo.input}
+        placeholder="Nome de usuário"
+      />
+
+      <TextInput
+        value={senha}
+        onChangeText={senha => setSenha(senha)}
+        style={Estilo.input}
+        secureTextEntry={true}
+        placeholder="Senha"
+      />
+
+
+
+
         <TouchableOpacity
           onPress={() => Entrar()}
           style={botao.botaoLogin}
@@ -30,6 +49,23 @@ export default function Login({navigation}) {
           <Text style={{color: '#000'}}>login</Text>
 
         </TouchableOpacity>
+
+
+        <TouchableOpacity style={Estilo.botaoFacebook}>
+        <Icon  name="facebook" style={Estilo.txtBotao} resizeMode="contain"/>
+        <Text style={[Estilo.txtBotao]}>ENTRAR COM FACEBOOK</Text>
+      </TouchableOpacity>
+    
+      <TouchableOpacity style={Estilo.botaoGoogle}>
+        <Icon  name="user-plus" style={[Estilo.txtBotao]} resizeMode="contain"/>
+
+        <Text style={[Estilo.txtBotao]}>ENTRAR COM GOOGLE</Text>
+      </TouchableOpacity>
+
+
+
+
+        </>
       )
     }else{
       return(
@@ -106,38 +142,14 @@ export default function Login({navigation}) {
         
         
 
-      <TextInput 
-        value={email}
-        onChangeText={email => setEmail(email)}
-        style={Estilo.input}
-        placeholder="Nome de usuário"
-      />
 
-      <TextInput
-        value={senha}
-        onChangeText={senha => setSenha(senha)}
-        style={Estilo.input}
-        secureTextEntry={true}
-        placeholder="Senha"
-      />
 
       {Render()}
         
-      <TouchableOpacity style={Estilo.botaoFacebook}>
-        <Icon  name="facebook" style={Estilo.txtBotao} resizeMode="contain"/>
-        <Text style={[Estilo.txtBotao]}>ENTRAR COM FACEBOOK</Text>
-      </TouchableOpacity>
-    
-      <TouchableOpacity style={Estilo.botaoGoogle}>
-        <Icon  name="user-plus" style={[Estilo.txtBotao]} resizeMode="contain"/>
 
-        <Text style={[Estilo.txtBotao]}>ENTRAR COM GOOGLE</Text>
-      </TouchableOpacity>
-
-
-
-       
+               
     </KeyboardAvoidingView>
+
   );
 }
 

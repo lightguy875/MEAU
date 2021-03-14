@@ -90,7 +90,7 @@ export default function Cadastro_animal({navigation , route}) {
     }
     else if(!estado.images)
     {
-    return  <BotaoImagem  onPress={ () => navigation.push('Camera')}/>  
+    return  <BotaoImagem  onPress={ () => navigation.push('Camera', {nave:'Cadastroanimal'})}/>  
     }
     
   }
