@@ -8,6 +8,10 @@ import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth'
 import { set } from 'react-native-reanimated';
 import storage from '@react-native-firebase/storage';
+import * as yup from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup';
+import {useForm, Controller} from 'react-hook-form'
+
 
 
 export default function CadastroPessoal({navigation , route }) {
@@ -26,17 +30,6 @@ export default function CadastroPessoal({navigation , route }) {
     image: null,
     images: null
   })
-
-  const[nome_completo, setnome_completo] = useState('')
-  const[idade, setidade] = useState('')
-  const[email,setemail] = useState('')
-  const[estado_moradia, setestado] = useState('')
-  const[cidade, setcidade] = useState('')
-  const[endereço, setendereço] = useState('')
-  const[telefone, settelefone] = useState('')
-  const[nome_de_usuario, setnome_de_usuario] = useState('')
-  const[senha, setsenha] = useState('')
-  const[confirmação_de_senha,setconfirmação_de_senha] = useState('')
 
 
   const renderImage = (imagem) => {
@@ -111,6 +104,23 @@ export default function CadastroPessoal({navigation , route }) {
 
   }
 
+  const validacao = yup.object().shape({
+    nome_completo: yup.string().required(),
+    idade: yup.number().required(),
+    email: yup.string().email().required(),
+    estado_moradia: yup.string().required(),
+    cidade: yup.string().required(),
+    endereco: yup.string().required(),
+    telefone: yup.string().required(),
+    nome_de_usuario: yup.string().required(),
+    senha: yup.string().min(6, 'Senha muito curta. Min: 6').required("A senha é obrigatória"),
+    confirmacao_de_senha: yup.string().oneOf([yup.ref('senha'), null], 'As senhas não sao iguais').required()
+  })
+
+  const {control, errors, handleSubmit} = useForm({
+    resolver: yupResolver(validacao)
+  })
+
 
 
 
@@ -129,83 +139,208 @@ export default function CadastroPessoal({navigation , route }) {
 
             <Text style={Estilo.titulo}>INFORMAÇÕES PESSOAIS</Text>
 
-            <TextInput 
-                value={nome_completo}
-                style={Estilo.input}
-                placeholder="Nome completo"
-                onChangeText={nome_completo => setnome_completo(nome_completo)}
+
+            <Controller
+              control={control}
+              render={({ onChange, onBlur, value }) => (
+                <TextInput
+                  onBlur={onBlur}
+                  style={Estilo.input}
+                  placeholder="Nome completo"
+                  onChangeText={value => onChange(value)}
+                  value={value}
+            
+                />
+              )}
+              name="nome_completo"
+              defaultValue=""
+            />
+      {errors.senha && alert(errors.senha.message)}  
+      {errors.confirmacao_de_senha && alert(errors.confirmacao_de_senha.message)}  
+
+
+
+
+            <Controller
+              control={control}
+              render={({ onChange, onBlur, value }) => (
+                <TextInput
+                  onBlur={onBlur}
+                  style={Estilo.input}
+                  placeholder="Idade"
+                  keyboardType='numeric'
+                  onChangeText={value => onChange(value)}
+                  value={value}
+            
+                />
+              )}
+              name="idade"
+              defaultValue=""
             />
 
-            <TextInput 
-                value={idade}
-                style={Estilo.input}
-                placeholder="Idade"
-                keyboardType='numeric'
-                onChangeText={idade => setidade(idade)}
 
+            <Controller
+              control={control}
+              render={({ onChange, onBlur, value }) => (
+                <TextInput
+                  onBlur={onBlur}
+                  style={Estilo.input}
+                  placeholder="Idade"
+                  keyboardType='numeric'
+                  onChangeText={value => onChange(value)}
+                  value={value}
+            
+                />
+              )}
+              name="idade"
+              defaultValue=""
             />
 
-            <TextInput 
-                value={email}
+            
+
+            <Controller
+              control={control}
+              render={({ onChange, onBlur, value }) => (
+                <TextInput
+                onBlur={onBlur}
                 style={Estilo.input}
+                onChangeText={value => onChange(value)}
                 placeholder="E-mail"
-                keyboardType="email-address"
-                onChangeText={email => setemail(email)}
+                value={value}
+            
+                />
+              )}
+              name="email"
+       
+              defaultValue=""
             />
 
-            <TextInput 
-                value={estado_moradia}
+
+
+            <Controller
+              control={control}
+              render={({ onChange, onBlur, value }) => (
+                <TextInput
+                onBlur={onBlur}
                 style={Estilo.input}
+                onChangeText={value => onChange(value)}
                 placeholder="Estado"
-                onChangeText={estado_moradia => setestado(estado_moradia)}
+                value={value}
+            
+                />
+              )}
+              name="estado"
+       
+              defaultValue=""
             />
 
-            <TextInput 
-                value={cidade}
+            <Controller
+              control={control}
+              render={({ onChange, onBlur, value }) => (
+                <TextInput
+                onBlur={onBlur}
                 style={Estilo.input}
+                onChangeText={value => onChange(value)}
                 placeholder="Cidade"
-                onChangeText={cidade => setcidade(cidade)}
+                value={value}
+            
+                />
+              )}
+              name="cidade"
+       
+              defaultValue=""
             />
 
-            <TextInput 
-                value={endereço}
+            <Controller
+              control={control}
+              render={({ onChange, onBlur, value }) => (
+                <TextInput
+                onBlur={onBlur}
                 style={Estilo.input}
+                onChangeText={value => onChange(value)}
                 placeholder="Endereço"
-                onChangeText={endereço => setendereço(endereço) }
+                value={value}
+            
+                />
+              )}
+              name="endereco"
+       
+              defaultValue=""
             />
 
-            <TextInput 
-                value={telefone}
+
+            <Controller
+              control={control}
+              render={({ onChange, onBlur, value }) => (
+                <TextInput
+                onBlur={onBlur}
                 style={Estilo.input}
+                onChangeText={value => onChange(value)}
                 placeholder="Telefone"
                 keyboardType="phone-pad"
-                onChangeText={telefone => settelefone(telefone)}
+                value={value}
+            
+                />
+              )}
+              name="telefone"
+       
+              defaultValue=""
             />
 
+      
             <Text style={Estilo.titulo}>INFORMAÇÕES DE PERFIL</Text>
 
-            <TextInput 
-                value={nome_de_usuario}
+
+            <Controller
+              control={control}
+              render={({ onChange, onBlur, value }) => (
+                <TextInput
+                onBlur={onBlur}
                 style={Estilo.input}
+                onChangeText={value => onChange(value)}
                 placeholder="Nome de usuário"
-                onChangeText={nome_de_usuario => setnome_de_usuario(nome_de_usuario)}
+                value={value}
+            
+                />
+              )}
+              name="nome_de_usuario"
+       
+              defaultValue=""
             />
 
-            <TextInput
-                value={senha}
+            
+
+            <Controller
+              control={control}
+              render={({ onChange, onBlur, value }) => (
+              <TextInput
+                onBlur={onBlur}
                 style={Estilo.input}
-                secureTextEntry={true}
+                onChangeText={value => onChange(value)}
                 placeholder="Senha"
-                onChangeText={senha => setsenha(senha)}
-            />
-
-            <TextInput
-                value={confirmação_de_senha}
-                style={Estilo.input}
+                value={value}
                 secureTextEntry={true}
-                placeholder="Confirmação de senha"
-                onChangeText={confirmação_de_senha => setconfirmação_de_senha(confirmação_de_senha)}
-            />
+              />
+              )}
+              name="senha"
+              defaultValue=""
+           /> 
+
+            <Controller
+              control={control}
+              render={({ onChange, onBlur, value }) => (
+                <TextInput
+                  onBlur={onBlur}
+                  style={Estilo.input}
+                  onChangeText={value => onChange(value)}
+                  placeholder="Confirmação de senha"
+                  value={value}
+                  secureTextEntry={true}
+                />
+              )}
+              name="confirmacao_de_senha"
+              defaultValue=""
+           /> 
 
             <Text style={Estilo.titulo}>FOTO DE PERFIL</Text>
             
@@ -213,7 +348,7 @@ export default function CadastroPessoal({navigation , route }) {
             {fotopessoa(estado)}
                 
             <BotaoPrimario name='FAZER CADASTRO'
-            onPress={ async () => Cadastro()}
+            onPress={handleSubmit(async () => Cadastro())}
             />
 
             </View>

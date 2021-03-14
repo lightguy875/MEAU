@@ -1,8 +1,9 @@
 
-import React, {useState, useEffect, Component} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Button, StyleSheet, Text, View, TouchableOpacity, Alert, StatusBar, KeyboardAvoidingView} from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import  Estilo from '../estilo/Login.estilo'
+import  botao from '../estilo/botao.style'
 import Cor from '../estilo/cor'
 import { BotaoFacebook, BotaoGoogle, BotaoPrimario} from '../componente/botao'
 import Icon from 'react-native-vector-icons/Feather';
@@ -17,35 +18,63 @@ export default function Login({navigation}) {
     const [initializing, setInitializing] = useState(true)
 
     function Render(){
-    if(initializing) return null
 
     if(!auth().currentUser){
       return(
-        <TouchableOpacity
-          onPress={() => Cadastrar()}
-          style={{
-            width: 232,
-          height: 40,
-          borderRadius: 5,
-          justifyContent: 'center',
-          alignItems: 'center',
-          backgroundColor: '#88c9bf',
-          marginBottom: 60,
-          elevation: 5,
-          marginTop: 50,
+        <>
+        <TextInput 
+        value={email}
+        onChangeText={email => setEmail(email)}
+        style={Estilo.input}
+        placeholder="Nome de usuário"
+      />
 
-          }}
+      <TextInput
+        value={senha}
+        onChangeText={senha => setSenha(senha)}
+        style={Estilo.input}
+        secureTextEntry={true}
+        placeholder="Senha"
+      />
+
+
+
+
+        <TouchableOpacity
+          onPress={() => Entrar()}
+          style={botao.botaoLogin}
+
+          
         >
-          <Text style={{color: '#000'}}>Cadastrar</Text>
+          <Text style={{color: '#000'}}>login</Text>
 
         </TouchableOpacity>
+
+
+        <TouchableOpacity style={Estilo.botaoFacebook}>
+        <Icon  name="facebook" style={Estilo.txtBotao} resizeMode="contain"/>
+        <Text style={[Estilo.txtBotao]}>ENTRAR COM FACEBOOK</Text>
+      </TouchableOpacity>
+    
+      <TouchableOpacity style={Estilo.botaoGoogle}>
+        <Icon  name="user-plus" style={[Estilo.txtBotao]} resizeMode="contain"/>
+
+        <Text style={[Estilo.txtBotao]}>ENTRAR COM GOOGLE</Text>
+      </TouchableOpacity>
+
+
+
+
+        </>
       )
     }else{
       return(
         <TouchableOpacity
+        style={botao.botaoLogin}
+       
           onPress={() => Sair()}
         >
-          <Text>Sair</Text>
+          <Text style={{color: '#000'}}>Sair</Text>
 
         </TouchableOpacity>
       )
@@ -54,21 +83,24 @@ export default function Login({navigation}) {
 
 
 
-  function Cadastrar(){
-    auth().createUserWithEmailAndPassword(email, senha)
+  function Entrar(){
+    auth().signInWithEmailAndPassword(email, senha)
     .then(() => {
-      console.log('User account created & signed in!');
+      Alert.alert('Login' , 'Usuário está logado');
     })
     .catch(error => {
-      if (error.code === 'auth/email-already-in-use') {
-        console.log('That email address is already in use!');
+
+        if (error.code === 'auth/invalid-email') {
+        Alert.alert('Erro', 'email inválido');
       }
-  
-      if (error.code === 'auth/invalid-email') {
-        console.log('That email address is invalid!');
-      }
-  
-      console.error(error);
+       else if(error.code === 'auth/account-exists-with-different-credential')  {
+       Alert.alert('Erro', 'Erro de login ou senha')
+       }
+
+       else{
+         Alert.alert('Erro', 'Erro de login ou senha')
+       }
+
     });
   }
 
@@ -88,11 +120,9 @@ export default function Login({navigation}) {
   function Sair(){
     auth()
     .signOut()
-    .then(() => console.log('User signed out!'));
-  }
-
-  function Entrar(){
-    auth().signInWithEmailAndPassword('teste', 'teste')
+    .then(() => {
+      Alert.alert('Logout', 'Usuário deslogado')
+    })
   }
 
 
@@ -112,45 +142,14 @@ export default function Login({navigation}) {
         
         
 
-      <TextInput 
-        value={email}
-        onChangeText={email => setEmail(email)}
-        style={Estilo.input}
-        placeholder="Nome de usuário"
-      />
 
-      <TextInput
-        value={senha}
-        onChangeText={senha => setSenha(senha)}
-        style={Estilo.input}
-        secureTextEntry={true}
-        placeholder="Senha"
-      />
 
       {Render()}
-
-      {/*<TouchableOpacity style={Estilo.botaoLogin} 
-        onPress={() => Cadastrar()}
-      >
-        <Text style={[Estilo.txtBotao, {color: 'black'}]}>LOGIN</Text>
-  </TouchableOpacity>*/}
         
-        
-      <TouchableOpacity style={Estilo.botaoFacebook}>
-        <Icon  name="facebook" style={Estilo.txtBotao} resizeMode="contain"/>
-        <Text style={[Estilo.txtBotao]}>ENTRAR COM FACEBOOK</Text>
-      </TouchableOpacity>
-    
-      <TouchableOpacity style={Estilo.botaoGoogle}>
-        <Icon  name="user-plus" style={[Estilo.txtBotao]} resizeMode="contain"/>
 
-        <Text style={[Estilo.txtBotao]}>ENTRAR COM GOOGLE</Text>
-      </TouchableOpacity>
-
-
-
-       
+               
     </KeyboardAvoidingView>
+
   );
 }
 
