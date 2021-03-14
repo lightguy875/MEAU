@@ -156,7 +156,6 @@ export default function CadastroPessoal({navigation , route }) {
               defaultValue=""
             />
       {errors.senha && alert(errors.senha.message)}  
-      {errors.confirmacao_de_senha && alert(errors.confirmacao_de_senha.message)}  
 
 
 
