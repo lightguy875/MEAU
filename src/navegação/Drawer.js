@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import Login from '../views/Login'
 import ErroLogin from '../views/ErroLogin'
 import {LoginStack, CadastroPessoalStack, CadastroAnimalStack} from './Stack'
-
+import Perfil from '../views/Perfil'
 import CadastroPessoal from '../views/CadastroPessoal'
 import Cadastroanimal from '../views/Cadastroanimal'
 import Principal from '../views/Principal'
@@ -25,6 +25,7 @@ export default () => {
         <Drawer.Screen name="TelaInicial" component={TelaInicial}/>
         <Drawer.Screen name="Principal" component={Principal}/>
         <Drawer.Screen name="Cadastroanimal" component={CadastroAnimalStack}/>
+        <Drawer.Screen name="Perfil" component={Perfil}/>
       </Drawer.Navigator>
     </NavigationContainer>
   );

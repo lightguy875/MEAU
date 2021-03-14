@@ -68,6 +68,7 @@ export default function CadastroPessoal({navigation , route }) {
  
       const reference = storage().ref(estado.image.uri)
       await reference.putFile(estado.image.uri)
+      reference.getDownloadURL
        await firestore().collection('Users').doc(auth().currentUser.uid).set({
         name: nome_completo,
         idade: idade,
@@ -77,6 +78,7 @@ export default function CadastroPessoal({navigation , route }) {
         endereço: endereço,
         telefone: telefone,
         imagem: estado.image,
+        nome_de_usuario: nome_de_usuario
 
       }).then(() => {
         Alert.alert('Cadastro', 'Novo usuário cadastrado')
