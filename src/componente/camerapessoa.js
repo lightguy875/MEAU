@@ -98,7 +98,7 @@ export default function camera({navigation , route}) {
         </TouchableOpacity>
 
         <TouchableOpacity style={botao.botaoPrimario}
-        onPress={ () => navigation.navigate( "CadastroPessoal" , {
+        onPress={ () => navigation.navigate( route.params.nave , {
           dado: state
         })
 

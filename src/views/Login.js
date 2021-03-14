@@ -3,6 +3,7 @@ import React, {useState, useEffect, Component} from 'react';
 import { Button, StyleSheet, Text, View, TouchableOpacity, Alert, StatusBar, KeyboardAvoidingView} from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import  Estilo from '../estilo/Login.estilo'
+import  botao from '../estilo/botao.style'
 import Cor from '../estilo/cor'
 import Icon from 'react-native-vector-icons/Feather';
 import * as yup from 'yup'
@@ -18,10 +19,11 @@ export default function Login({navigation}) {
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
     const [erro, setErro] = useState('ERRO')
+    
 
     const validacao = yup.object().shape({
-      nome: yup.string().required('O nome é obrigatorio'),
-      senha: yup.string().min(2, 'A senha está curta demais')
+      nome: yup.string().required('O nome é obrigatório'),
+      senha: yup.string().min(6, 'Senha muito curta. Min: 6').required("A senha é obrigatória")
     })
 
     const { control, handleSubmit, errors } = useForm({
@@ -73,8 +75,6 @@ export default function Login({navigation}) {
         defaultValue=""
         
       /> 
-      
-      <Text>{}</Text>
 
       {errors.senha && alert(errors.senha.message)}  
 
@@ -85,6 +85,7 @@ export default function Login({navigation}) {
     </TouchableOpacity>
         
     </KeyboardAvoidingView>
+
   );
 }
 

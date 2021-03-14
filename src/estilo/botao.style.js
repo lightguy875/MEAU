@@ -44,5 +44,15 @@ export default StyleSheet.create({
         backgroundColor: cor.fundoGoogle,
     },
 
-
-});
+    botaoLogin: {
+        width: 232,
+        height: 40,
+        borderRadius: 5,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#88c9bf',
+        marginBottom: 60,
+        elevation: 5,
+        marginTop: 50,
+    },
+})

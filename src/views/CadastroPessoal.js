@@ -7,11 +7,11 @@ import {BotaoPrimario, BotaoImagem} from '../componente/botao'
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth'
 import { set } from 'react-native-reanimated';
+import storage from '@react-native-firebase/storage';
 
 
 export default function CadastroPessoal({navigation , route }) {
 
-  const usersCollection = firestore().collection('Users');
 
 
   React.useEffect(() => {
@@ -57,16 +57,25 @@ export default function CadastroPessoal({navigation , route }) {
     }
     else if(!estado.image)
     {
-    return  <BotaoImagem  onPress={ () => navigation.push('Camerapessoa')}/>  
+    return  <BotaoImagem  onPress={ () => navigation.push('Camerapessoa', {nave:'Camerapessoa'})}/>  
     }
     
   }
 
-  const Cadastro = () => {
+  async function  Cadastro() {
+    if(!auth().currentUser)
+    {
+
 
     if(senha === confirmação_de_senha)
     {
-      firestore().collection('Users').add({
+
+      
+      auth().createUserWithEmailAndPassword(email, senha)
+ 
+      const reference = storage().ref(estado.image.uri)
+      await reference.putFile(estado.image.uri)
+       await firestore().collection('Users').doc(auth().currentUser.uid).set({
         name: nome_completo,
         idade: idade,
         email: email,
@@ -74,7 +83,8 @@ export default function CadastroPessoal({navigation , route }) {
         cidade: cidade,
         endereço: endereço,
         telefone: telefone,
-        imagem: estado.image
+        imagem: estado.image,
+
       }).then(() => {
         Alert.alert('Cadastro', 'Novo usuário cadastrado')
       }).then(() => {
@@ -91,6 +101,13 @@ export default function CadastroPessoal({navigation , route }) {
         setImage('')
       })
     }
+    else {
+      Alert.alert('Senha', 'Senha e confirmar senha diferem-se')
+
+    }
+  } else {
+    Alert.alert('Erro', 'Voce precisa estar deslogado para cadastrar')
+  }
 
   }
 
@@ -196,7 +213,7 @@ export default function CadastroPessoal({navigation , route }) {
             {fotopessoa(estado)}
                 
             <BotaoPrimario name='FAZER CADASTRO'
-            onPress={() => Cadastro()}
+            onPress={ async () => Cadastro()}
             />
 
             </View>
