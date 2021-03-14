@@ -55,59 +55,56 @@ export default function CadastroPessoal({navigation , route }) {
     
   }
 
-  async function  Cadastro() {
+  async function  Cadastro(dados) {
+
     if(!auth().currentUser)
     {
 
 
-    if(senha === confirmação_de_senha)
-    {
-
+    
+        alert(dados.idade)
+        
       
-      auth().createUserWithEmailAndPassword(email, senha)
+      auth().createUserWithEmailAndPassword(dados.email, dados.senha)
  
       const reference = storage().ref(estado.image.uri)
       await reference.putFile(estado.image.uri)
       reference.getDownloadURL
        await firestore().collection('Users').doc(auth().currentUser.uid).set({
-        name: nome_completo,
-        idade: idade,
-        email: email,
-        Estado : estado_moradia,
-        cidade: cidade,
-        endereço: endereço,
-        telefone: telefone,
+        name: dados.nome_completo,
+        idade: dados.idade,
+        email: dados.email,
+        Estado : dados.estado_moradia,
+        cidade: dados.cidade,
+        endereço: dados.endereco,
+        telefone: dados.telefone,
         imagem: estado.image,
-        nome_de_usuario: nome_de_usuario
+        nome_de_usuario: dados.nome_de_usuario
 
       }).then(() => {
         Alert.alert('Cadastro', 'Novo usuário cadastrado')
+        alert("osso")
       }).then(() => {
-        setnome_completo('')
-        setidade('')
-        setemail('')
-        setestado('')
-        setcidade('')
-        setendereço('')
-        settelefone('')
-        setnome_de_usuario('')
-        setsenha('')
-        setconfirmação_de_senha('')
-        setImage('')
+        
       })
-    }
-    else {
-      Alert.alert('Senha', 'Senha e confirmar senha diferem-se')
-
-    }
+   
   } else {
     Alert.alert('Erro', 'Voce precisa estar deslogado para cadastrar')
+    {Sair()}
   }
 
+  }
+
+  function Sair(){
+    auth()
+    .signOut()
+    .then(() => {
+      Alert.alert('Logout', 'Usuário deslogado')
+    })
   }
 
   const validacao = yup.object().shape({
-    nome_completo: yup.string().required(),
+    /*nome_completo: yup.string().required(),
     idade: yup.number().required(),
     email: yup.string().email().required(),
     estado_moradia: yup.string().required(),
@@ -116,12 +113,14 @@ export default function CadastroPessoal({navigation , route }) {
     telefone: yup.string().required(),
     nome_de_usuario: yup.string().required(),
     senha: yup.string().min(6, 'Senha muito curta. Min: 6').required("A senha é obrigatória"),
-    confirmacao_de_senha: yup.string().oneOf([yup.ref('senha'), null], 'As senhas não sao iguais').required()
+    confirmacao_de_senha: yup.string().oneOf([yup.ref('senha'), null], 'As senhas não sao iguais').required()*/
   })
 
   const {control, errors, handleSubmit} = useForm({
     resolver: yupResolver(validacao)
   })
+
+  const enviar = data => alert("hello");
 
 
 
@@ -178,26 +177,6 @@ export default function CadastroPessoal({navigation , route }) {
               name="idade"
               defaultValue=""
             />
-
-
-            <Controller
-              control={control}
-              render={({ onChange, onBlur, value }) => (
-                <TextInput
-                  onBlur={onBlur}
-                  style={Estilo.input}
-                  placeholder="Idade"
-                  keyboardType='numeric'
-                  onChangeText={value => onChange(value)}
-                  value={value}
-            
-                />
-              )}
-              name="idade"
-              defaultValue=""
-            />
-
-            
 
             <Controller
               control={control}
@@ -349,7 +328,7 @@ export default function CadastroPessoal({navigation , route }) {
             {fotopessoa(estado)}
                 
             <BotaoPrimario name='FAZER CADASTRO'
-            onPress={handleSubmit(async () => Cadastro())}
+            onPress={handleSubmit(Cadastro)}
             />
 
             </View>
