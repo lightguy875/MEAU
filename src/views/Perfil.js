@@ -72,13 +72,20 @@ export default function Perfil({navigation, route}) {
     function Renderizar() {
         return (
             <>
-            <Text> Estado: {estado} </Text>
-            <Text> Cidade: {cidade} </Text>
-            <Text> Email: {email} </Text>
-            <Text> Endereço: {endereco} </Text>
-            <Text> Idade: {idade} </Text>
-            <Text>Nome: {name} </Text>
-            <Text>Telefone: {telefone}</Text>
+            <ScrollView>
+                <SafeAreaView style={Estilo.container}>
+                    <Text style={Estilo.textoPerfilUsuario}>Informações do Usuário</Text>
+                    <Text style={Estilo.textoPerfil}>Nome: {name} </Text>
+                    <Text style={Estilo.textoPerfil}>Idade: {idade} </Text>
+                    <Text style={Estilo.textoPerfil}>Email: {email} </Text>
+                    <Text style={Estilo.textoPerfil}>Endereço: {endereco} </Text>
+                    <Text style={Estilo.textoPerfil}>Telefone: {telefone}</Text>
+                    <Text style={Estilo.textoPerfil}>Cidade: {cidade} </Text>
+                    <Text style={Estilo.textoPerfil}>Estado: {estado} </Text>
+                </SafeAreaView>
+            </ScrollView>
+
+            
             <Image
         style={{ width: 300, height: 300, resizeMode: 'contain' }}
         source={{uri: imgurl}}
@@ -91,7 +98,7 @@ export default function Perfil({navigation, route}) {
     return (
         <SafeAreaView>
 
-        <Text> Seus dados serão carregados</Text>
+        <Text style={Estilo.textoPerfil}> Seus dados serão carregados</Text>
 
       <Button
       title="Carregar dados"
