@@ -16,12 +16,32 @@ import auth from '@react-native-firebase/auth';
 
 export default function Login({navigation}) {
 
+  const [ erro , setErro ] = useState ({
+    
+    senha1: '-'
+   
+  });    
+
+  function ver(){
+    if (errors?.senha) {
+      alert('Há erro')
+    } else {
+      alert('Não ha errro')
+
+
+    }
+
+    true ? true : false;
+  }
+
+
+
     const validacao = yup.object().shape({
-      email: yup.string().email("O e-mail está incorreto").required('O e-mail é obrigatório'),
-      senha: yup.string().min(6, 'Senha muito curta. Min: 6').required("A senha é obrigatória")
+      email: yup.number().required('O e-mail é obrigatório'),
+      senha: yup.string().min(6, "Senha curta demais").required()
     })
 
-    const { control, handleSubmit, errors } = useForm({
+    const { control, handleSubmit, errors, reset} = useForm({
       resolver: yupResolver(validacao)
     });
     const onSubmit = data => alert(data.email + ' ' + data.senha)
@@ -35,6 +55,7 @@ export default function Login({navigation}) {
       auth().signInWithEmailAndPassword(email, senha)
       .then(() => {
         Alert.alert('Login' , 'Usuário está logado');
+        {reset}
       })
       .catch(error => {
   
@@ -53,6 +74,44 @@ export default function Login({navigation}) {
     }
 
 
+    function Render(){
+
+      if(!auth().currentUser){
+        return(
+          <>
+            <TouchableOpacity style={Estilo.botaoLogin} 
+            onPress={(handleSubmit(Entrar))}
+            >
+              <Text style={[Estilo.txtBotao, {color: 'black'}]}>LOGIN</Text>
+            </TouchableOpacity>
+          </>
+        )
+      }else{
+        return(
+          <TouchableOpacity
+          style={botao.botaoLogin}
+         
+            onPress={() => Sair()}
+          >
+            <Text style={{color: '#000'}}>Sair</Text>
+  
+          </TouchableOpacity>
+        )
+      }
+    }
+  
+    function Sair(){
+      auth()
+      .signOut()
+      .then(() => {
+        Alert.alert('Logout', 'Usuário deslogado')
+      })
+    }
+
+
+
+
+
   return (
     <KeyboardAvoidingView style={Estilo.container}>
       <StatusBar
@@ -69,6 +128,9 @@ export default function Login({navigation}) {
             placeholder="E-mail de usuário"
             value={value}
             
+
+            
+            
           />
         )}
         name="email"
@@ -76,8 +138,9 @@ export default function Login({navigation}) {
         defaultValue=""
         
       />
-      {errors.email && alert(errors.email.message)}
+      
 
+      
 
       <Controller
         control={control}
@@ -89,6 +152,8 @@ export default function Login({navigation}) {
             placeholder="Senha"
             value={value}
             secureTextEntry={true}
+            onEndEditing={() => errors?.senha?.message ? alert(errors.senha.message) : alert('Nao ha erro')}
+
 
             
           />
@@ -99,13 +164,10 @@ export default function Login({navigation}) {
         
       /> 
 
-      {errors.senha && alert(errors.senha.message)}  
+      <Text>{erro.senha1}</Text>
 
-      <TouchableOpacity style={Estilo.botaoLogin} 
-        onPress={(handleSubmit(Entrar))}
-      >
-        <Text style={[Estilo.txtBotao, {color: 'black'}]}>LOGIN</Text>
-    </TouchableOpacity>
+
+      {Render()}
         
     </KeyboardAvoidingView>
 

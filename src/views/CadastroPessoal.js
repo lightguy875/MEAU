@@ -50,52 +50,43 @@ export default function CadastroPessoal({navigation , route }) {
     }
     else if(!estado.image)
     {
-    return  <BotaoImagem  onPress={ () => navigation.push('Camerapessoa', {nave:'Camerapessoa'})}/>  
+    return  <BotaoImagem  onPress={ () => navigation.push('Camerapessoa', {nave:'CadastroPessoal'})}/>  
     }
     
   }
 
   async function  Cadastro(dados) {
-
+  
     if(!auth().currentUser)
     {
-
-
-    
-        alert(dados.idade)
-        
-      
       auth().createUserWithEmailAndPassword(dados.email, dados.senha)
  
       const reference = storage().ref(estado.image.uri)
       await reference.putFile(estado.image.uri)
-      reference.getDownloadURL
        await firestore().collection('Users').doc(auth().currentUser.uid).set({
         name: dados.nome_completo,
         idade: dados.idade,
         email: dados.email,
         Estado : dados.estado_moradia,
         cidade: dados.cidade,
-        endereço: dados.endereco,
+        endereco: dados.endereço,
         telefone: dados.telefone,
         imagem: estado.image,
         nome_de_usuario: dados.nome_de_usuario
 
+
       }).then(() => {
         Alert.alert('Cadastro', 'Novo usuário cadastrado')
-        alert("osso")
+
       }).then(() => {
-        
+        {reset()}
+        setImage({
+          image: null,
+          images: null
+        })
       })
-   
   } else {
     Alert.alert('Erro', 'Voce precisa estar deslogado para cadastrar')
-    {Sair()}
-  }
-
-  }
-
-  function Sair(){
     auth()
     .signOut()
     .then(() => {
@@ -103,27 +94,27 @@ export default function CadastroPessoal({navigation , route }) {
     })
   }
 
+  }
+
   const validacao = yup.object().shape({
-    /*nome_completo: yup.string().required(),
-    idade: yup.number().required(),
-    email: yup.string().email().required(),
-    estado_moradia: yup.string().required(),
-    cidade: yup.string().required(),
-    endereco: yup.string().required(),
-    telefone: yup.string().required(),
-    nome_de_usuario: yup.string().required(),
-    senha: yup.string().min(6, 'Senha muito curta. Min: 6').required("A senha é obrigatória"),
-    confirmacao_de_senha: yup.string().oneOf([yup.ref('senha'), null], 'As senhas não sao iguais').required()*/
+    nome_completo: yup.string().required("Este campo é obrigatorio"),
+    idade: yup.number().required("Este campo é obrigatorio"),
+    email: yup.string().required("Este campo é obrigatorio"),
+    estado_moradia: yup.string().required("Este campo é obrigatorio"),
+    cidade: yup.string().required("Este campo é obrigatorio"),
+    endereco: yup.string().required("Este campo é obrigatorio"),
+    telefone: yup.number().required("Este campo é obrigatorio"),
+    nome_de_usuario: yup.string().required("Este campo é obrigatorio"),
+    senha: yup.string().min(3, 'Senha muito curta. Min: 1').required("A senha é obrigatória"),
+    confirmacao_de_senha: yup.string().oneOf([yup.ref('senha'), null], 'As senhas não sao iguais')
   })
 
-  const {control, errors, handleSubmit} = useForm({
+  const {control, errors, handleSubmit, reset} = useForm({
     resolver: yupResolver(validacao)
   })
 
-  const enviar = data => alert("hello");
 
-
-
+  const [erro, setErro] = useState('')
 
     return(
         <ScrollView>
@@ -150,16 +141,15 @@ export default function CadastroPessoal({navigation , route }) {
                   placeholder="Nome completo"
                   onChangeText={value => onChange(value)}
                   value={value}
-            
                 />
               )}
+              
               name="nome_completo"
               defaultValue=""
             />
+
       {errors.senha && alert(errors.senha.message)}  
-
-
-
+      {errors.confirmacao_de_senha && alert(errors.confirmacao_de_senha.message)}  
 
             <Controller
               control={control}
@@ -177,6 +167,8 @@ export default function CadastroPessoal({navigation , route }) {
               name="idade"
               defaultValue=""
             />
+
+            
 
             <Controller
               control={control}
@@ -209,7 +201,7 @@ export default function CadastroPessoal({navigation , route }) {
             
                 />
               )}
-              name="estado"
+              name="estado_moradia"
        
               defaultValue=""
             />
@@ -300,11 +292,16 @@ export default function CadastroPessoal({navigation , route }) {
                 placeholder="Senha"
                 value={value}
                 secureTextEntry={true}
+                
               />
               )}
+              
               name="senha"
               defaultValue=""
+              
            /> 
+
+           
 
             <Controller
               control={control}
