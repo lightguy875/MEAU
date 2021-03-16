@@ -99,14 +99,14 @@ export default function CadastroPessoal({navigation , route }) {
   const validacao = yup.object().shape({
     nome_completo: yup.string().required("Este campo é obrigatorio"),
     idade: yup.number().required("Este campo é obrigatorio"),
-    email: yup.string().required("Este campo é obrigatorio"),
+    email: yup.string().email("Formato de e-mail inválido").required("Este campo é obrigatorio"),
     estado_moradia: yup.string().required("Este campo é obrigatorio"),
     cidade: yup.string().required("Este campo é obrigatorio"),
     endereco: yup.string().required("Este campo é obrigatorio"),
     telefone: yup.number().required("Este campo é obrigatorio"),
     nome_de_usuario: yup.string().required("Este campo é obrigatorio"),
-    senha: yup.string().min(3, 'Senha muito curta. Min: 1').required("A senha é obrigatória"),
-    confirmacao_de_senha: yup.string().oneOf([yup.ref('senha'), null], 'As senhas não sao iguais')
+    senha: yup.string().min(3, 'Senha muito curta. Min: 1').required("Este campo é obrigatorio"),
+    confirmacao_de_senha: yup.string().oneOf([yup.ref('senha'), null], 'As senhas não sao iguais').required("Este campo é obrigatorio")
   })
 
   const {control, errors, handleSubmit, reset} = useForm({
@@ -148,8 +148,8 @@ export default function CadastroPessoal({navigation , route }) {
               defaultValue=""
             />
 
-      {errors.senha && alert(errors.senha.message)}  
-      {errors.confirmacao_de_senha && alert(errors.confirmacao_de_senha.message)}  
+            {errors?.nome_completo && <Text style={{color:'red'}}>{errors?.nome_completo.message}</Text>}
+ 
 
             <Controller
               control={control}
@@ -167,6 +167,7 @@ export default function CadastroPessoal({navigation , route }) {
               name="idade"
               defaultValue=""
             />
+            {errors?.idade && <Text style={{color:'red'}}>{errors?.idade.message}</Text>}
 
             
 
@@ -187,6 +188,9 @@ export default function CadastroPessoal({navigation , route }) {
               defaultValue=""
             />
 
+            {errors?.email && <Text style={{color:'red'}}>{errors?.email.message}</Text>}
+
+
 
 
             <Controller
@@ -205,6 +209,8 @@ export default function CadastroPessoal({navigation , route }) {
        
               defaultValue=""
             />
+            {errors?.estado_moradia && <Text style={{color:'red'}}>{errors?.estado_moradia.message}</Text>}
+
 
             <Controller
               control={control}
@@ -222,6 +228,8 @@ export default function CadastroPessoal({navigation , route }) {
        
               defaultValue=""
             />
+            {errors?.cidade && <Text style={{color:'red'}}>{errors?.cidade.message}</Text>}
+
 
             <Controller
               control={control}
@@ -239,6 +247,8 @@ export default function CadastroPessoal({navigation , route }) {
        
               defaultValue=""
             />
+            {errors?.endereco && <Text style={{color:'red'}}>{errors?.endereco.message}</Text>}
+
 
 
             <Controller
@@ -258,6 +268,7 @@ export default function CadastroPessoal({navigation , route }) {
        
               defaultValue=""
             />
+            {errors?.telefone && <Text style={{color:'red'}}>{errors?.telefone.message}</Text>}
 
       
             <Text style={Estilo.titulo}>INFORMAÇÕES DE PERFIL</Text>
@@ -279,6 +290,7 @@ export default function CadastroPessoal({navigation , route }) {
        
               defaultValue=""
             />
+            {errors?.nome_de_usuario && <Text style={{color:'red'}}>{errors?.nome_de_usuario.message}</Text>}
 
             
 
@@ -300,6 +312,8 @@ export default function CadastroPessoal({navigation , route }) {
               defaultValue=""
               
            /> 
+          {errors?.senha && <Text style={{color:'red'}}>{errors?.senha.message}</Text>}
+           
 
            
 
@@ -318,6 +332,8 @@ export default function CadastroPessoal({navigation , route }) {
               name="confirmacao_de_senha"
               defaultValue=""
            /> 
+            {errors?.confirmacao_de_senha && <Text style={{color:'red'}}>{errors?.confirmacao_de_senha.message}</Text>}
+          
 
             <Text style={Estilo.titulo}>FOTO DE PERFIL</Text>
             

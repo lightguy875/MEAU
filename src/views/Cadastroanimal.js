@@ -10,6 +10,10 @@ import estilo from '../estilo/estilo';
 import firestore from '@react-native-firebase/firestore';
 import storage from '@react-native-firebase/storage';
 import auth from '@react-native-firebase/auth'
+import * as yup from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup';
+import {useForm, Controller} from 'react-hook-form'
+
 
 
 export default function Cadastro_animal({navigation , route}) {
@@ -22,7 +26,7 @@ export default function Cadastro_animal({navigation , route}) {
   }, [route.params]);
 
   
-
+  const { control, handleSubmit, errors, reset} = useForm();
 
   const [nome_animal, setnome] = useState('')
   const [doenca_animal, setdoenca] = useState('')
@@ -179,6 +183,32 @@ export default function Cadastro_animal({navigation , route}) {
             checked={isSelected.cachorro}
             onPress={() => setSelected({...isSelected, cachorro: true , gato: false})}
         />
+
+
+          <Controller
+               control={control}
+              render={({ onChange, onBlur, value }) => (
+                <CheckBox 
+
+
+                textStyle={{ fontSize:14}}
+                title="Cachorro"
+                checkedIcon={<Icon name="check-circle" color="green"/>}
+                uncheckedIcon={<Icon name="circle" color="#000"/>}
+                checkedColor="green"
+                checked={isSelected.cachorro}
+                onPress={() => setSelected({...isSelected, cachorro: true , gato: false})}
+            />
+        )}
+        name="senha"
+        
+        defaultValue=""
+        
+      /> 
+
+
+
+
           <CheckBox
             title="Gato"
             checkedIcon={<Icon name="check-circle" color="green"/>}

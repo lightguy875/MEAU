@@ -12,6 +12,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 
 import auth from '@react-native-firebase/auth';
+import { min } from 'react-native-reanimated';
 
 
 export default function Login({navigation}) {
@@ -37,7 +38,7 @@ export default function Login({navigation}) {
 
 
     const validacao = yup.object().shape({
-      email: yup.number().required('O e-mail é obrigatório'),
+      email: yup.string().email().required('O e-mail é obrigatório'),
       senha: yup.string().min(6, "Senha curta demais").required()
     })
 
@@ -138,6 +139,9 @@ export default function Login({navigation}) {
         defaultValue=""
         
       />
+
+      {errors?.email && <Text>{errors?.email.message}</Text>}
+
       
 
       
@@ -152,7 +156,7 @@ export default function Login({navigation}) {
             placeholder="Senha"
             value={value}
             secureTextEntry={true}
-            onEndEditing={() => errors?.senha?.message ? alert(errors.senha.message) : alert('Nao ha erro')}
+            
 
 
             
@@ -163,8 +167,10 @@ export default function Login({navigation}) {
         defaultValue=""
         
       /> 
+      
+      {errors?.senha && <Text>{errors?.senha.message}</Text>}
 
-      <Text>{erro.senha1}</Text>
+      
 
 
       {Render()}
