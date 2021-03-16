@@ -56,7 +56,7 @@ export default function Login({navigation}) {
       auth().signInWithEmailAndPassword(email, senha)
       .then(() => {
         Alert.alert('Login' , 'Usuário está logado');
-        {reset}
+        {reset()}
       })
       .catch(error => {
   
@@ -80,46 +80,10 @@ export default function Login({navigation}) {
       if(!auth().currentUser){
         return(
           <>
-            <TouchableOpacity style={Estilo.botaoLogin} 
-            onPress={(handleSubmit(Entrar))}
-            >
-              <Text style={[Estilo.txtBotao, {color: 'black'}]}>LOGIN</Text>
-            </TouchableOpacity>
-          </>
-        )
-      }else{
-        return(
-          <TouchableOpacity
-          style={botao.botaoLogin}
-         
-            onPress={() => Sair()}
-          >
-            <Text style={{color: '#000'}}>Sair</Text>
-  
-          </TouchableOpacity>
-        )
-      }
-    }
-  
-    function Sair(){
-      auth()
-      .signOut()
-      .then(() => {
-        Alert.alert('Logout', 'Usuário deslogado')
-      })
-    }
 
 
 
-
-
-  return (
-    <KeyboardAvoidingView style={Estilo.container}>
-      <StatusBar
-            backgroundColor={Cor.topo}
-            
-      />
-       <Controller
+<Controller
         control={control}
         render={({ onChange, onBlur, value }) => (
           <TextInput
@@ -170,6 +134,52 @@ export default function Login({navigation}) {
       
       {errors?.senha && <Text>{errors?.senha.message}</Text>}
 
+            <TouchableOpacity style={Estilo.botaoLogin} 
+            onPress={(handleSubmit(Entrar))}
+            >
+              <Text style={[Estilo.txtBotao, {color: 'black'}]}>LOGIN</Text>
+            </TouchableOpacity>
+          </>
+        )
+      }else{
+        return(
+          <TouchableOpacity
+          style={botao.botaoLogin}
+         
+            onPress={() => Sair()}
+          >
+            <Text style={{color: '#000'}}>Sair</Text>
+  
+          </TouchableOpacity>
+        )
+      }
+    }
+  
+    function Sair(){
+      auth()
+      .signOut()
+      .then(() => {
+        Alert.alert('Logout', 'Usuário deslogado')
+        {reset()}
+      })
+    }
+    useEffect(() => {
+
+      const subscriber = auth().onAuthStateChanged();
+      return subscriber; // unsubscribe on unmount
+    }, []);
+  
+
+
+
+
+  return (
+    <KeyboardAvoidingView style={Estilo.container}>
+      <StatusBar
+            backgroundColor={Cor.topo}
+            
+      />
+       
       
 
 
