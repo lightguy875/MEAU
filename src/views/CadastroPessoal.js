@@ -69,7 +69,7 @@ export default function CadastroPessoal({navigation , route }) {
         email: dados.email,
         Estado : dados.estado_moradia,
         cidade: dados.cidade,
-        endereco: dados.endereço,
+        endereço: dados.endereco,
         telefone: dados.telefone,
         imagem: estado.image,
         nome_de_usuario: dados.nome_de_usuario
