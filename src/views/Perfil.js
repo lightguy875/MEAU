@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Button, StyleSheet, Text, View, TouchableOpacity, Alert, StatusBar, ScrollView, Image,SafeAreaView} from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import  Estilo from '../estilo/estilo'
@@ -20,6 +20,10 @@ export default function Perfil({navigation, route}) {
    var imagemv
 
 
+  useEffect(() => {
+    Carregar_dados()
+  }, [])
+
     const [estado,setestado] = useState('')
     const [cidade,setcidade] = useState('')
     const [email,setemail] = useState('')
@@ -27,7 +31,7 @@ export default function Perfil({navigation, route}) {
     const [idade,setidade] = useState('')
     const [imagem,setimagem] = useState('')
     const [telefone,settelefone] = useState('')
-    const [imgurl,setimgurl] = useState('')
+    const [imgurl,setimgurl] = useState('//:0')
     const [name,setname] = useState('')
 
 
@@ -71,7 +75,7 @@ export default function Perfil({navigation, route}) {
 
     function Renderizar() {
         return (
-            <>
+
             <ScrollView>
                 <SafeAreaView style={Estilo.container}>
                     <Text style={Estilo.textoPerfilUsuario}>Informações do Usuário</Text>
@@ -83,14 +87,14 @@ export default function Perfil({navigation, route}) {
                     <Text style={Estilo.textoPerfil}>Cidade: {cidade} </Text>
                     <Text style={Estilo.textoPerfil}>Estado: {estado} </Text>
                 </SafeAreaView>
-            </ScrollView>
-
+      
             
             <Image
         style={{ width: 300, height: 300, resizeMode: 'contain' }}
         source={{uri: imgurl}}
             />
-            </>
+                 </ScrollView>
+
 
         )
     }
@@ -100,12 +104,12 @@ export default function Perfil({navigation, route}) {
 
         <Text style={Estilo.textoPerfil}> Seus dados serão carregados</Text>
 
-      <Button
+      {/* <Button
       title="Carregar dados"
       onPress={async () => {Carregar_dados()}} >
 
 
-   </Button>
+   </Button> */}
         {Renderizar()}
 
         </SafeAreaView>
