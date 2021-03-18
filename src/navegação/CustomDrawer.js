@@ -13,7 +13,7 @@ export default (props) => {
 
     var imagemc
     const [nomeusuario, setnomeusuario] = useState('')
-    const [imagemurl, setimagemurl] = useState('')
+    const [imagemurl, setimagemurl] = useState('//:0')
     
 
   useEffect(() => {
@@ -40,10 +40,10 @@ export default (props) => {
 
     return(
         <View style={{flex:1, backgroundColor: 'white',}}>
+             <View style={Estilo.header}>
                  <Image style={Estilo.photoProfile} source={{uri:imagemurl}}/>
                 <Text style= {Estilo.txtProfile}>{nomeusuario}</Text>  
-                 
-
+            </View>
             <Button title='Teste' onPress={() => props.navigation.navigate('ErroLogin')}/>
 
             <DrawerItemList {...props}/>
@@ -63,8 +63,8 @@ const Estilo = StyleSheet.create({
     },
 
     photoProfile: {
-        width: 90,
-        height: 90,
+        width: 160,
+        height: 120,
         borderRadius: 100,
         resizeMode: 'contain'
     },
