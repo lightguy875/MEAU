@@ -9,6 +9,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Feather';
 import Camerapessoa from '../componente/camerapessoa'
 import Camera from '../componente/camera'
+import Perfil from '../views/Perfil'
 
 
 
@@ -81,3 +82,18 @@ export function CadastroAnimalStack({navigation}) {
      </Stack.Navigator> 
   );
 }  
+
+
+export function PerfilStack({navigation}) {
+  return (
+    <Stack.Navigator initialRouteName="Perfil">
+      
+
+      <Stack.Screen name="Perfil" component={Perfil} options={{
+        title: 'Perfil',
+        headerLeft: () => AbrirMenu({navigation}),
+      }}/>
+
+    </Stack.Navigator>
+  );
+}

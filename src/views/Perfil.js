@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Button, StyleSheet, Text, View, TouchableOpacity, Alert, StatusBar, ScrollView, Image,SafeAreaView} from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import  Estilo from '../estilo/estilo'
@@ -19,6 +19,10 @@ export default function Perfil({navigation, route}) {
     var Image_Http_URL
    var imagemv
 
+
+  useEffect(() => {
+    Carregar_dados()
+  }, [])
 
     const [estado,setestado] = useState('')
     const [cidade,setcidade] = useState('')
@@ -100,12 +104,12 @@ export default function Perfil({navigation, route}) {
 
         <Text style={Estilo.textoPerfil}> Seus dados serão carregados</Text>
 
-      <Button
+      {/* <Button
       title="Carregar dados"
       onPress={async () => {Carregar_dados()}} >
 
 
-   </Button>
+   </Button> */}
         {Renderizar()}
 
         </SafeAreaView>
