@@ -26,7 +26,7 @@ export default function Cadastro_animal({navigation , route}) {
   }, [route.params]);
 
   
-  const { control, handleSubmit, errors, reset, setValue, getValues} = useForm();
+  const { control, handleSubmit, errors, reset} = useForm();
 
   const [nome_animal, setnome] = useState('')
   const [doenca_animal, setdoenca] = useState('')
@@ -172,6 +172,17 @@ export default function Cadastro_animal({navigation , route}) {
        
         <Text style={Estilo.titulo}>Espécie</Text>
         <View style={Estilo.caixaAnimal}>
+        <CheckBox 
+
+
+            textStyle={{ fontSize:14}}
+            title="Cachorro"
+            checkedIcon={<Icon name="check-circle" color="green"/>}
+            uncheckedIcon={<Icon name="circle" color="#000"/>}
+            checkedColor="green"
+            checked={isSelected.cachorro}
+            onPress={() => setSelected({...isSelected, cachorro: true , gato: false})}
+        />
 
 
           <Controller
@@ -185,43 +196,29 @@ export default function Cadastro_animal({navigation , route}) {
                 checkedIcon={<Icon name="check-circle" color="green"/>}
                 uncheckedIcon={<Icon name="circle" color="#000"/>}
                 checkedColor="green"
-                checked={value}
-                onPress={ () => 
-                    setValue('cachorro', true),
-                    setValue('gato', false)
-                    
-                }
+                checked={isSelected.cachorro}
+                onPress={() => setSelected({...isSelected, cachorro: true , gato: false})}
             />
         )}
-        name="cachorro"
+        name="senha"
         
-        defaultValue={false}
+        defaultValue=""
         
       /> 
 
-        <Controller
-            control={control}
-            render={({ onChange, onBlur, value }) => (
-            <CheckBox 
-                textStyle={{ fontSize:14}}
-                title="Gato"
-                checkedIcon={<Icon name="check-circle" color="green"/>}
-                uncheckedIcon={<Icon name="circle" color="#000"/>}
-                checkedColor="green"
-                checked={value}
-                onPress={() => 
-                    
-                    setValue('cachorro', false),
-                    setValue('gato', true)
-                }
-            />
-        )}
-        name="gato"
-        
-        defaultValue={false}
-        
-      /> 
 
+
+
+          <CheckBox
+            title="Gato"
+            checkedIcon={<Icon name="check-circle" color="green"/>}
+            uncheckedIcon={<Icon name="circle" color="#000"/>}
+            //uncheckedIcon="red"
+            checked={isSelected.gato}
+            onPress={() => setSelected({...isSelected, gato: true, cachorro: false})}
+            
+        /> 
+        
         </View>
       
         <Text style={Estilo.titulo}>Sexo</Text>

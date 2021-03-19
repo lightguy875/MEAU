@@ -135,6 +135,7 @@ export default function Login({navigation}) {
       {errors?.senha && <Text>{errors?.senha.message}</Text>}
 
             <TouchableOpacity style={Estilo.botaoLogin} 
+            
             onPress={(handleSubmit(Entrar))}
             >
               <Text style={[Estilo.txtBotao, {color: 'black'}]}>LOGIN</Text>
