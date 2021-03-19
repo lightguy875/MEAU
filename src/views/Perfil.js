@@ -31,6 +31,7 @@ export default function Perfil({ navigation, route }) {
 
     useEffect(() => {
         const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+        const valor = Carregar_dados()
         return subscriber; // unsubscribe on unmount
 
     }, [auth().currentUser]);
@@ -65,6 +66,8 @@ export default function Perfil({ navigation, route }) {
                 settelefone(snapshot.data().telefone)
             }).then(async () => {
                 setimgurl(await storage().ref(imagemv.uri).getDownloadURL())
+            }).then( () => {
+                return 'finalizado'
             })
         }
 
@@ -73,9 +76,6 @@ export default function Perfil({ navigation, route }) {
     function Renderizar() {
 
         if (initializing) return null;
-
-        if(imgurl == '') Carregar_dados()
-
 
         if (user) {
             return (
