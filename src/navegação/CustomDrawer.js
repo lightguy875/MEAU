@@ -1,57 +1,103 @@
-import React , {Component , useState , useEffect} from 'react'
-import { Button, StyleSheet, Text, View, Image, TouchableOpacity, Alert, StatusBar, KeyboardAvoidingView} from 'react-native';
+import React, { Component, useState, useEffect } from 'react'
+import { Button, StyleSheet, Text, View, Image, TouchableOpacity, Alert, StatusBar, KeyboardAvoidingView } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
-import {  DrawerItemList} from '@react-navigation/drawer';
+import { DrawerItemList } from '@react-navigation/drawer';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth'
 import ErroLogin from '../views/ErroLogin'
 import storage from '@react-native-firebase/storage';
 
 
-
+//props
 export default (props) => {
 
     var imagemc
     const [nomeusuario, setnomeusuario] = useState('')
-    const [imagemurl, setimagemurl] = useState('//:0')
-    
+    const [imagemurl, setimagemurl] = useState('')
 
-  useEffect(() => {
-    carregarperfil()
-  }, [])
-
-// var nomeusuario
-// var imagemurl
+    const [initializing, setInitializing] = useState(true)
+    const [user, setUser] = useState()
 
 
- async function carregarperfil(){
-
-    if(auth().currentUser) {
-        await firestore().collection('Users').doc(auth().currentUser.uid).get().then(snapshot => {
-            setnomeusuario(snapshot.data().nome_de_usuario)
-            imagemc = snapshot.data().imagem
- 
-        }).then(async () => {
-            setimagemurl(await storage().ref(imagemc.uri).getDownloadURL())
-         })
-        
+    function onAuthStateChanged(user) {
+        setUser(user);
+        if (initializing) setInitializing(false);
     }
+
+
+
+    useEffect(() => {
+        const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+        return subscriber; // unsubscribe on unmount
+
+    }, [auth().currentUser]);
+
+    async function carregar() {
+
+        if (user) {
+
+            await firestore().collection('Users').doc(auth().currentUser.uid).get().then(snapshot => {
+                setnomeusuario(snapshot.data().nome_de_usuario)
+                imagemc = snapshot.data().imagem
+
+            }).then(async () => {
+                setimagemurl(await storage().ref(imagemc.uri).getDownloadURL())
+            })
+        }
+    }
+    function render() {
+        carregar()
+
+        if (user) {
+
+            return (
+
+                <View style={{ flex: 1, backgroundColor: 'white', }}>
+                    <View style={Estilo.header}>
+                        <Image style={Estilo.photoProfile} source={{ uri: imagemurl }} />
+                        <Text style={Estilo.txtProfile}>{nomeusuario}</Text>
+                    </View>
+                    <Button title='Teste' onPress={() => props.navigation.navigate('ErroLogin')} />
+
+                    <DrawerItemList {...props} />
+
+                </View>
+
+
+            )
+        } else {
+
+            return (
+
+                <View style={{ flex: 1, backgroundColor: 'white', }}>
+                    <View style={Estilo.header}>
+                    </View>
+                    <Button title='Teste' onPress={() => props.navigation.navigate('ErroLogin')} />
+
+                    <DrawerItemList {...props} />
+
+                </View>
+
+            )
+
+
+        }
+
+
+
+    }
+
+
+    return (
+        <>
+            {
+                render()
+
+            }
+        </>
+    )
+
 }
-
-    return(
-        <View style={{flex:1, backgroundColor: 'white',}}>
-             <View style={Estilo.header}>
-                 <Image style={Estilo.photoProfile} source={{uri:imagemurl}}/>
-                <Text style= {Estilo.txtProfile}>{nomeusuario}</Text>  
-            </View>
-            <Button title='Teste' onPress={() => props.navigation.navigate('ErroLogin')}/>
-
-            <DrawerItemList {...props}/>
-
-        </View>
-    );
-
-    }
 const Estilo = StyleSheet.create({
     header: {
         height: 200,
@@ -73,4 +119,4 @@ const Estilo = StyleSheet.create({
         fontSize: 20,
         marginTop: 20,
     },
-});
+})
