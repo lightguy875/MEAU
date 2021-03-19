@@ -65,21 +65,20 @@ export default function Perfil({ navigation, route }) {
                 settelefone(snapshot.data().telefone)
             }).then(async () => {
                 setimgurl(await storage().ref(imagemv.uri).getDownloadURL())
-            }).then(() => {
-
             })
         }
-
-
 
     }
 
     function Renderizar() {
 
-        if (user) {
-            Carregar_dados()
-            return (
+        if (initializing) return null;
 
+        if(imgurl == '') Carregar_dados()
+
+
+        if (user) {
+            return (
                 <ScrollView>
                     <SafeAreaView style={Estilo.container}>
                         <Text style={Estilo.textoPerfilUsuario}>Informações do Usuário</Text>
@@ -95,7 +94,7 @@ export default function Perfil({ navigation, route }) {
 
                     <Image
                         style={{ width: 300, height: 300, resizeMode: 'contain' }}
-                        source={{ uri: imgurl }}
+                        source={imgurl  !== '' ? {uri: imgurl} : undefined}
                     />
                 </ScrollView>
 
@@ -114,13 +113,15 @@ export default function Perfil({ navigation, route }) {
     }
 
     return (
-        <SafeAreaView>
+        <>
 
-            {/* <Text style={Estilo.textoPerfil}> Seus dados serão carregados</Text> */}
+            {
+            
+            Renderizar()
+            
+            }
 
-            {Renderizar()}
-
-        </SafeAreaView>
+        </>
     )
 
 }

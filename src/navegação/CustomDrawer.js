@@ -31,6 +31,7 @@ export default (props) => {
 
     useEffect(() => {
         const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+        carregar()
         return subscriber; // unsubscribe on unmount
 
     }, [auth().currentUser]);
@@ -47,9 +48,12 @@ export default (props) => {
                 setimagemurl(await storage().ref(imagemc.uri).getDownloadURL())
             })
         }
+        else {
+            setnomeusuario('')
+        }
     }
     function render() {
-        carregar()
+
 
         if (user) {
 
@@ -58,7 +62,7 @@ export default (props) => {
                 <View style={{ flex: 1, backgroundColor: 'white', }}>
                     <View style={Estilo.header}>
                         <View style={Estilo.photoProfile}>
-                            <Image style={{flex: 1, borderRadius: 100}} source={{ uri: imagemurl }} />
+                            <Image style={{flex: 1, borderRadius: 100}} source={imagemurl !== '' ? {uri: imagemurl} : undefined} />
                         </View>
                         <Text style={Estilo.txtProfile}>{nomeusuario}</Text>
                     </View>
