@@ -6,6 +6,9 @@ import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth'
 import ErroLogin from '../views/ErroLogin'
 import storage from '@react-native-firebase/storage';
+import { Icon } from 'react-native-elements/dist/icons/Icon';
+import Icone from 'react-native-vector-icons/Feather';
+
 
 
 //props
@@ -54,7 +57,9 @@ export default (props) => {
 
                 <View style={{ flex: 1, backgroundColor: 'white', }}>
                     <View style={Estilo.header}>
-                        <Image style={Estilo.photoProfile} source={{ uri: imagemurl }} />
+                        <View style={Estilo.photoProfile}>
+                            <Image style={{flex: 1, borderRadius: 100}} source={{ uri: imagemurl }} />
+                        </View>
                         <Text style={Estilo.txtProfile}>{nomeusuario}</Text>
                     </View>
                     <Button title='Teste' onPress={() => props.navigation.navigate('ErroLogin')} />
@@ -71,6 +76,11 @@ export default (props) => {
 
                 <View style={{ flex: 1, backgroundColor: 'white', }}>
                     <View style={Estilo.header}>
+                    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', width: 120, height: 120, backgroundColor: 'white', borderRadius: 100}}>
+                        
+                        <Icone name="user" color="#222" style={{fontSize: 100}}/>
+                        </View>
+                        <Text style={Estilo.txtProfile}>{nomeusuario}</Text>
                     </View>
                     <Button title='Teste' onPress={() => props.navigation.navigate('ErroLogin')} />
 
@@ -109,7 +119,7 @@ const Estilo = StyleSheet.create({
     },
 
     photoProfile: {
-        width: 160,
+        width: 120,
         height: 120,
         borderRadius: 100,
         resizeMode: 'contain'
