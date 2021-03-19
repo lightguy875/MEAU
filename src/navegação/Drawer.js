@@ -14,11 +14,11 @@ import CustomDrawer from './CustomDrawer'
 
 
 const Drawer = createDrawerNavigator();
-
+// (props) => <CustomDrawer {...props}/>
 export default () => {
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Login" drawerContent={props => <CustomDrawer {...props}/>}>
+      <Drawer.Navigator initialRouteName="Login" drawerContent={(props) => <CustomDrawer {...props}/>}>
         <Drawer.Screen name="Login" component={LoginStack} />
         <Drawer.Screen name="CadastroPessoal" component={CadastroPessoalStack}/>
         <Drawer.Screen name="TelaInicial" component={TelaInicial}/>
