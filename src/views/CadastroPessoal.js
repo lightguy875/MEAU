@@ -20,49 +20,39 @@ export default function CadastroPessoal({navigation , route }) {
 
   React.useEffect(() => {
     if (route.params) {
-      setImage(route.params.dado)
+       setImage(route.params.elemento)
+      
     }
   }, [route.params]);
 
 
 
-  const [estado, setImage] = useState({
-    image: null,
-    images: null
-  })
+  const [image, setImage] = useState(undefined)
 
 
   const renderImage = (imagem) => {
     return (
       <Image
         style={{ width: 300, height: 300, resizeMode: 'contain' }}
-        source={imagem}
+        source={{uri:imagem}}
       />
     )
   }
 
-  const fotopessoa = (estado) => {
 
-    if(estado.image) {
-      return <ScrollView horizontal={true}>
-          {estado.image ? renderImage(estado.image) : null}
-        </ScrollView>
-    }
-    else if(!estado.image)
-    {
-    return  <BotaoImagem  onPress={ () => navigation.push('Camerapessoa', {nave:'CadastroPessoal'})}/>  
-    }
-    
+  const renderbotao = () => {
+    return  <BotaoImagem  onPress={ () => navigation.push('Camera', {nave:'CadastroPessoal'})}/>
   }
 
   async function  Cadastro(dados) {
-  
     if(!auth().currentUser)
     {
-      auth().createUserWithEmailAndPassword(dados.email, dados.senha)
- 
-      const reference = storage().ref(estado.image.uri)
-      await reference.putFile(estado.image.uri)
+      await auth().createUserWithEmailAndPassword(dados.email, dados.senha).then(async () => {
+
+        const reference = storage().ref(image)
+        await reference.putFile(image)
+        
+      }).then(async () => {
        await firestore().collection('Users').doc(auth().currentUser.uid).set({
         name: dados.nome_completo,
         idade: dados.idade,
@@ -71,27 +61,19 @@ export default function CadastroPessoal({navigation , route }) {
         cidade: dados.cidade,
         endereço: dados.endereco,
         telefone: dados.telefone,
-        imagem: estado.image,
+        imagem: image,
         nome_de_usuario: dados.nome_de_usuario
 
 
-      }).then(() => {
+      })}).then(() => {
         Alert.alert('Cadastro', 'Novo usuário cadastrado')
 
       }).then(() => {
         {reset()}
-        setImage({
-          image: null,
-          images: null
-        })
+        setImage(undefined)
       })
   } else {
     Alert.alert('Erro', 'Voce precisa estar deslogado para cadastrar')
-    auth()
-    .signOut()
-    .then(() => {
-      Alert.alert('Logout', 'Usuário deslogado')
-    })
   }
 
   }
@@ -338,7 +320,7 @@ export default function CadastroPessoal({navigation , route }) {
             <Text style={Estilo.titulo}>FOTO DE PERFIL</Text>
             
             
-            {fotopessoa(estado)}
+            {image ? renderImage(image) : renderbotao()}
                 
             <BotaoPrimario name='FAZER CADASTRO'
             onPress={handleSubmit(Cadastro)}

@@ -32,11 +32,7 @@ export default function Cadastro_animal({navigation , route}) {
   const [doenca_animal, setdoenca] = useState('')
   const [sobre_animal, setsobreanimal] = useState('')
 
-  const [estado, setImage] = useState({
-    image: null,
-    images: null
-  })
-
+  const [image, setImage] = useState(undefined)
   const [isSelected, setSelected] = useState({
 
       cachorro: false,
@@ -75,36 +71,20 @@ export default function Cadastro_animal({navigation , route}) {
     return (
       <Image
         style={{ width: 300, height: 300, resizeMode: 'contain' }}
-        source={imagem}
+        source={{uri:imagem}}
       />
     );
   }
 
-   const fotosanimal = (estado) => {
-
-    if(estado.images) {
-      return <ScrollView horizontal={true}>
-          {estado.image ? renderImage(this.estado.image) : null}
-          {estado.images
-            ? estado.images.map((i) => (
-                <View key={i.uri}>{renderImage(i)}</View>
-              ))
-            : null}
-        </ScrollView>
-    }
-    else if(!estado.images)
-    {
-    return  <BotaoImagem  onPress={ () => navigation.push('Camera', {nave:'Cadastroanimal'})}/>  
-    }
-    
+  const renderbotao = () => {
+    return  <BotaoImagem  onPress={ () => navigation.push('Camera', {nave:'Cadastroanimal'})}/>
   }
 
   async function Cadastro_animal() {
 
-    for(const i in estado.images) {
-      var reference = storage().ref(estado.images[i].uri)
-      await reference.putFile(estado.images[i].uri)
-    }
+      var reference = storage().ref(image)
+      await reference.putFile(image)
+
     if(auth().currentUser)
     {
     await firestore().collection('Animais').add({
@@ -135,7 +115,7 @@ export default function Cadastro_animal({navigation , route}) {
       tres_meses: isSelected.tres_meses,
       seis_meses: isSelected.seis_meses,
       sobre_o_animal: sobre_animal,
-      imagens: estado.images,
+      imagem: image,
       dono: auth().currentUser.uid
     }).then(() => {
       Alert.alert('Cadastro', 'Novo animal cadastrado')
@@ -166,9 +146,9 @@ export default function Cadastro_animal({navigation , route}) {
             placeholder="Nome do animal"
             onChangeText={nome_animal => setnome(nome_animal)}
         />
-        <Text style={Estilo.titulo}>Fotos do animal </Text>
+        <Text style={Estilo.titulo}>Foto do animal </Text>
 
-         {fotosanimal(estado)}
+        {image ? renderImage(image) : renderbotao()}
 
        
         <Text style={Estilo.titulo}>Espécie</Text>
@@ -374,7 +354,7 @@ export default function Cadastro_animal({navigation , route}) {
             
         /> 
           <CheckBox
-            title="Fotos de casa"
+            title="Foto da casa"
             //checkedIcon="check"
             checkedColor="green"
             //uncheckedIcon="red"

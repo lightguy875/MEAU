@@ -12,7 +12,7 @@ import {
     Dimensions,
     SafeAreaView
 } from 'react-native'
-import ImagePicker from 'react-native-image-crop-picker'
+import * as ImagePicker from 'react-native-image-picker';
 import botao from '../estilo/botao.style'
 import estilo from '../estilo/estilo'
 
@@ -20,74 +20,75 @@ export default function camera({navigation , route}) {
 
 
 
-      const [state , setState] = useState({
-        image: null,
-        images: null
-      })
-    
+      const [image , setImage] = useState(undefined)
 
-    const pickMultiple =() => {
-        ImagePicker.openPicker({
-            multiple: true,
-            waitAnimationEnd: false,
-            sortOrder: 'desc',
-            includeExif: true,
-            forceJpg: true,
-          })
-            .then((images) => {
-              setState({
-                image: null,
-                images: images.map((i) => {
-                  console.log('received image', i);
-                  return {
-                    uri: i.path,
-                    width: i.width,
-                    height: i.height,
-                    mime: i.mime,
-                  };
-                }),
-              });
-            })
-            .catch((e) => alert(e));
-        }
+      const options = {
+        title: 'Load Photo',
+        customButtons: [
+          { name: 'button_id_1', title: 'CustomButton 1' },
+          { name: 'button_id_2', title: 'CustomButton 2' }
+        ],
+        storageOptions: {
+          skipBackup: true,
+          path: 'images',
+        },
+      };
+
+      function showCamera() {
+        ImagePicker.launchCamera(options , (response) => {
+          if (response.error) {
+            console.log('LaunchCamera Error: ', response.error);
+          }
+          else {
+            setImage(response.uri);
+          }
+        });
+      };
+
+      function showCameraRoll() {
+        ImagePicker.launchImageLibrary(options, (response) => {
+          if (response.error) {
+            console.log('LaunchImageLibrary Error: ', response.error);
+          }
+          else {
+            setImage(response.uri);
+          }
+        });
+      };
+
+
         const renderImage = (image) => {
             return (
               <Image
                 style={{ width: 300, height: 300, resizeMode: 'contain' }}
-                source={image}
+                source={{uri:image}}
               />
             );
           }
         
-          const renderAsset = (image) => {
-            if (image.mime && image.mime.toLowerCase().indexOf('video/') !== -1) {
-              return renderVideo(image);
-            }
-        
-            return renderImage(image);
-          }
-
+    
         return (
           <SafeAreaView style={estilo.container}>
           <ScrollView>
-          {state.image ? renderAsset(this.state.image) : null}
-          {state.images
-            ? state.images.map((i) => (
-                <View key={i.uri}>{renderAsset(i)}</View>
-              ))
-            : null}
+          {image ? renderImage(image) : null}
         </ScrollView>
-
         <TouchableOpacity style={botao.botaoPrimario}
-          onPress={pickMultiple.bind(this)}
+          onPress={() => showCamera()}
         >
-          <Text>Selecionar Imagens</Text>
+          <Text>Tirar foto com a camera</Text>
           
         </TouchableOpacity>
 
         <TouchableOpacity style={botao.botaoPrimario}
-        onPress={ () => navigation.navigate( route.params.nave , {
-          elemento: state
+          onPress={() => showCameraRoll()}
+        >
+          <Text>Selecionar Imagem</Text>
+          
+        </TouchableOpacity>
+
+        <TouchableOpacity style={botao.botaoPrimario}
+        onPress={() => navigation.navigate(route.params.nave , {
+          elemento: image
         })
 
       }

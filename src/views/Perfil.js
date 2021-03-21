@@ -64,7 +64,7 @@ export default function Perfil({ navigation, route }) {
                 setname(snapshot.data().name)
                 settelefone(snapshot.data().telefone)
             }).then(async () => {
-                setimgurl(await storage().ref(imagemv.uri).getDownloadURL())
+                setimgurl(await storage().ref(imagemv).getDownloadURL())
             }).then( () => {
             })
         }

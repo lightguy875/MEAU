@@ -45,7 +45,7 @@ export default (props) => {
                 imagemc = snapshot.data().imagem
 
             }).then(async () => {
-                setimagemurl(await storage().ref(imagemc.uri).getDownloadURL())
+                setimagemurl(await storage().ref(imagemc).getDownloadURL())
             })
         }
         else {
