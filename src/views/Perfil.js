@@ -31,10 +31,10 @@ export default function Perfil({ navigation, route }) {
 
     useEffect(() => {
         const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-        const valor = Carregar_dados()
+        Carregar_dados()
         return subscriber; // unsubscribe on unmount
 
-    }, [auth().currentUser]);
+    }, [auth().currentUser],[]);
 
 
     const [estado, setestado] = useState('')
@@ -51,8 +51,7 @@ export default function Perfil({ navigation, route }) {
 
     async function Carregar_dados() {
 
-        if (user) {
-
+        if (auth().currentUser) {
 
             await firestore().collection('Users').doc(auth().currentUser.uid).get().then(snapshot => {
                 setestado(snapshot.data().Estado)
@@ -61,23 +60,39 @@ export default function Perfil({ navigation, route }) {
                 setendereco(snapshot.data().endereço)
                 setidade(snapshot.data().idade)
                 imagemv = snapshot.data().imagem
-                setimagem(snapshot.data().imagem)
+                setimagem(imagemv)
                 setname(snapshot.data().name)
                 settelefone(snapshot.data().telefone)
             }).then(async () => {
                 setimgurl(await storage().ref(imagemv.uri).getDownloadURL())
             }).then( () => {
-                return 'finalizado'
             })
+        }
+
+        else {
+
+            setestado('')
+            setcidade('')
+            setemail('')
+            setendereco('')
+            setidade('')
+            setimagem('')
+            settelefone('')
+            setimgurl('')
+            setname('')
+
+
         }
 
     }
 
     function Renderizar() {
 
-        if (initializing) return null;
+        // if (initializing) return null;
 
-        if (user) {
+        if (auth().currentUser) {
+            //Carregar_dados()
+
             return (
                 <ScrollView>
                     <SafeAreaView style={Estilo.container}>

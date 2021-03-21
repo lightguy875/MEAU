@@ -52,8 +52,8 @@ export default function Login({navigation}) {
 
 
 
-    function Entrar({email,senha}){
-      auth().signInWithEmailAndPassword(email, senha)
+    async function Entrar({email,senha}){
+      await auth().signInWithEmailAndPassword(email, senha)
       .then(() => {
         Alert.alert('Login' , 'Usuário está logado');
         {reset()}
@@ -156,20 +156,15 @@ export default function Login({navigation}) {
       }
     }
   
-    function Sair(){
-      auth()
+   async function Sair(){
+      await auth()
       .signOut()
       .then(() => {
         Alert.alert('Logout', 'Usuário deslogado')
         {reset()}
       })
     }
-    useEffect(() => {
 
-      const subscriber = auth().onAuthStateChanged();
-      return subscriber; // unsubscribe on unmount
-    }, []);
-  
 
 
 
