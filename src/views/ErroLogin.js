@@ -10,7 +10,7 @@ export default function ErroLogin(){
     return(
         <View style={Estilo.container}>
 
-            <Text>Opp's</Text>
+            <Text>Op's!</Text>
             <Text>Você não pode realizar esta ação sem possuir um cadastro.</Text>
 
             <BotaoPrimario name='FAZER CADASTRO'/>

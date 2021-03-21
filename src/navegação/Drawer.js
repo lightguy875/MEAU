@@ -9,6 +9,7 @@ import Cadastroanimal from '../views/Cadastroanimal'
 import Principal from '../views/Principal'
 import TelaInicial from '../views/TelaInicial';
 import CustomDrawer from './CustomDrawer'
+import ForgotPassword from '../views/ForgotPassword';
 
 
 
@@ -25,6 +26,7 @@ export default () => {
         <Drawer.Screen name="Principal" component={Principal}/>
         <Drawer.Screen name="Cadastroanimal" component={CadastroAnimalStack}/>
         <Drawer.Screen name="Perfil" component={PerfilStack}/>
+        <Drawer.Screen name="ForgotPassword" component={ForgotPassword}/>
       </Drawer.Navigator>
     </NavigationContainer>
   );
