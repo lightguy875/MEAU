@@ -65,14 +65,17 @@ export default function Cadastro_animal({navigation , route}) {
   })
 
   // Variáveis
+  
 
   //funções
   const renderImage = (imagem) => {
     return (
+      <TouchableOpacity onPress={() => navigation.push('Camera', {nave:'Cadastroanimal', imagem: imagem})}>
       <Image
         style={{ width: 300, height: 300, resizeMode: 'contain' }}
         source={{uri:imagem}}
       />
+      </TouchableOpacity>
     );
   }
 

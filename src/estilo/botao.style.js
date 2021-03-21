@@ -15,6 +15,8 @@ export default StyleSheet.create({
         elevation: 5,
     },
 
+
+
     botaoImagem: {
         borderRadius: 2,
         justifyContent: 'center',

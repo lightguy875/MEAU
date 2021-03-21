@@ -19,6 +19,13 @@ import estilo from '../estilo/estilo'
 export default function camera({navigation , route}) {
 
 
+  React.useEffect(() => {
+    if (route.params) {
+      setImage(route.params.imagem)
+    }
+  }, [route.params.imagem]);
+
+
 
       const [image , setImage] = useState(undefined)
 

@@ -11,6 +11,7 @@ import storage from '@react-native-firebase/storage';
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup';
 import {useForm, Controller} from 'react-hook-form'
+import estilo from '../estilo/estilo';
 
 
 
@@ -32,10 +33,13 @@ export default function CadastroPessoal({navigation , route }) {
 
   const renderImage = (imagem) => {
     return (
+      <TouchableOpacity style={estilo.BotaoImagem} onPress={() => navigation.push('Camera', {nave:'CadastroPessoal', imagem: imagem})}>
       <Image
         style={{ width: 300, height: 300, resizeMode: 'contain' }}
         source={{uri:imagem}}
+       
       />
+       </TouchableOpacity>
     )
   }
 
