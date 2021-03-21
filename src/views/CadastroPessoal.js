@@ -16,7 +16,7 @@ import {useForm, Controller} from 'react-hook-form'
 
 export default function CadastroPessoal({navigation , route }) {
 
-
+  var uid
 
   React.useEffect(() => {
     if (route.params) {
@@ -49,11 +49,14 @@ export default function CadastroPessoal({navigation , route }) {
     {
       await auth().createUserWithEmailAndPassword(dados.email, dados.senha).then(async () => {
 
+        uid = auth().currentUser.uid
+
+        await auth().signOut()
         const reference = storage().ref(image)
         await reference.putFile(image)
-        
+
       }).then(async () => {
-       await firestore().collection('Users').doc(auth().currentUser.uid).set({
+       await firestore().collection('Users').doc(uid).set({
         name: dados.nome_completo,
         idade: dados.idade,
         email: dados.email,
