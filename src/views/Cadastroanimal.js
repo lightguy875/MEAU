@@ -84,13 +84,12 @@ export default function Cadastro_animal({navigation , route}) {
   }
 
   async function Cadastro_animal() {
+    if(auth().currentUser)
+    {
 
       var reference = storage().ref(image)
       await reference.putFile(image)
-
-    if(auth().currentUser)
-    {
-    await firestore().collection('Animais').add({
+      await firestore().collection('Animais').add({
       Nome_do_animal: nome_animal,
       Especie: isSelected.cachorro == true ? 'cachorro' : 'gato',
       Sexo: isSelected.macho == true ? 'macho' : 'fêmea',

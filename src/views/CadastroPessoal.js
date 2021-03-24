@@ -53,14 +53,9 @@ export default function CadastroPessoal({navigation , route }) {
     {
       await auth().createUserWithEmailAndPassword(dados.email, dados.senha).then(async () => {
 
-        uid = auth().currentUser.uid
-
-        await auth().signOut()
         const reference = storage().ref(image)
         await reference.putFile(image)
-
-      }).then(async () => {
-       await firestore().collection('Users').doc(uid).set({
+       await firestore().collection('Users').doc(auth().currentUser.uid).set({
         name: dados.nome_completo,
         idade: dados.idade,
         email: dados.email,
@@ -70,9 +65,8 @@ export default function CadastroPessoal({navigation , route }) {
         telefone: dados.telefone,
         imagem: image,
         nome_de_usuario: dados.nome_de_usuario
-
-
-      })}).then(() => {
+      })
+    }).then(() => {
         Alert.alert('Cadastro', 'Novo usuário cadastrado')
 
       }).then(() => {

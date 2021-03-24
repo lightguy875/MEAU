@@ -40,11 +40,10 @@ export default (props) => {
 
         if (user) {
 
-            await firestore().collection('Users').doc(auth().currentUser.uid).get().then(snapshot => {
-                setnomeusuario(snapshot.data().nome_de_usuario)
-                imagemc = snapshot.data().imagem
-
-            }).then(async () => {
+            // await firestore().collection('Users').doc(auth().currentUser.uid).get().then(snapshot => {
+               await firestore().collection('Users').doc(auth().currentUser.uid).onSnapshot(async snapshot => {
+                setnomeusuario(await snapshot.data().nome_de_usuario)
+                imagemc = await snapshot.data().imagem
                 setimagemurl(await storage().ref(imagemc).getDownloadURL())
             })
         }

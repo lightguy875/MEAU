@@ -53,19 +53,18 @@ export default function Perfil({ navigation, route }) {
 
         if (auth().currentUser) {
 
-            await firestore().collection('Users').doc(auth().currentUser.uid).get().then(snapshot => {
-                setestado(snapshot.data().Estado)
-                setcidade(snapshot.data().cidade)
-                setemail(snapshot.data().email)
-                setendereco(snapshot.data().endereço)
-                setidade(snapshot.data().idade)
-                imagemv = snapshot.data().imagem
-                setimagem(imagemv)
-                setname(snapshot.data().name)
-                settelefone(snapshot.data().telefone)
-            }).then(async () => {
-                setimgurl(await storage().ref(imagemv).getDownloadURL())
-            }).then( () => {
+            // await firestore().collection('Users').doc(auth().currentUser.uid).get().then(snapshot => {
+               await firestore().collection('Users').doc(auth().currentUser.uid).onSnapshot(async snapshot => {       
+                 setestado(await snapshot.data().Estado)
+                 setcidade(await snapshot.data().cidade)
+                 setemail(await snapshot.data().email)
+                 setendereco(await snapshot.data().endereço)
+                 setidade(await snapshot.data().idade)
+                imagemv =  await snapshot.data().imagem
+                 setimagem(imagemv)
+                 setname(await snapshot.data().name)
+                 settelefone(await snapshot.data().telefone)
+                 setimgurl(await storage().ref(imagemv).getDownloadURL())
             })
         }
 
@@ -74,6 +73,7 @@ export default function Perfil({ navigation, route }) {
             setestado('')
             setcidade('')
             setemail('')
+            
             setendereco('')
             setidade('')
             setimagem('')
