@@ -3,7 +3,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import Login from '../views/Login'
 import ErroLogin from '../views/ErroLogin'
-import {LoginStack, CadastroPessoalStack, CadastroAnimalStack, PerfilStack} from './Stack'
+import {LoginStack, CadastroPessoalStack, CadastroAnimalStack, PerfilStack, CachorroStack,PetsStack} from './Stack'
 import CadastroPessoal from '../views/CadastroPessoal'
 import Cadastroanimal from '../views/Cadastroanimal'
 import Principal from '../views/Principal'
@@ -21,6 +21,8 @@ export default () => {
     <NavigationContainer>
       <Drawer.Navigator initialRouteName="Login" drawerContent={(props) => <CustomDrawer {...props}/>}>
         <Drawer.Screen name="Login" component={LoginStack} />
+        <Drawer.Screen name="Meus Pets" component={CachorroStack}/>
+        <Drawer.Screen name="Todos os Pets" component={PetsStack}/>
         <Drawer.Screen name="CadastroPessoal" component={CadastroPessoalStack}/>
         <Drawer.Screen name="TelaInicial" component={TelaInicial}/>
         <Drawer.Screen name="Principal" component={Principal}/>

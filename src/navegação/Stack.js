@@ -9,7 +9,8 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Feather';
 import Camera from '../componente/camera'
 import Perfil from '../views/Perfil'
-
+import Meus_Pets from '../views/Meus_Pets'
+import Todos_Pets from '../views/Todos_Pets'
 
 
 const Stack = createStackNavigator(); // Criar uma constante para cada Stack
@@ -96,3 +97,30 @@ export function PerfilStack({navigation}) {
     </Stack.Navigator>
   );
 }
+
+export function CachorroStack({navigation}) {
+  return (
+    <Stack.Navigator initialRouteName="Meus_Pets">
+
+    <Stack.Screen name="Meus Pets" component={Meus_Pets} options ={{
+      title: 'Meus Pets',
+      headerLeft:() => AbrirMenu({navigation}),
+    }}/>
+
+    </Stack.Navigator>
+  )
+}
+
+export function PetsStack({navigation}) {
+  return (
+    <Stack.Navigator initialRouteName="Todos_Pets">
+
+    <Stack.Screen name="Todos os Pets" component={Todos_Pets} options ={{
+      title: 'Todos os Pets',
+      headerLeft:() => AbrirMenu({navigation}),
+    }}/>
+
+    </Stack.Navigator>
+  )
+}
+
