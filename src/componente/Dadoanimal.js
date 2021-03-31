@@ -30,7 +30,7 @@ export default function Dadoanimal(props) {
 
     return (
         <SafeAreaView>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={props.onPress}>
                 <Card>
                     <Card.Title>{props.Nome_do_animal}</Card.Title>
                     <Card.Divider/>

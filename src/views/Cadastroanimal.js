@@ -31,7 +31,6 @@ export default function Cadastro_animal({navigation , route}) {
   const [nome_animal, setnome] = useState('')
   const [doenca_animal, setdoenca] = useState('')
   const [sobre_animal, setsobreanimal] = useState('')
-
   const [image, setImage] = useState(undefined)
   const [isSelected, setSelected] = useState({
 
@@ -89,6 +88,7 @@ export default function Cadastro_animal({navigation , route}) {
 
       var reference = storage().ref(image)
       await reference.putFile(image)
+      
       await firestore().collection('Animais').add({
       Nome_do_animal: nome_animal,
       Especie: isSelected.cachorro == true ? 'cachorro' : 'gato',
@@ -113,6 +113,7 @@ export default function Cadastro_animal({navigation , route}) {
       Termo_de_adoção: isSelected.Termo_de_adocao,
       Fotos_de_casa: isSelected.Fotos_de_casa,
       Acompanhamento_pos_adocao: isSelected.Acompanhamento_pos_adocao,
+      Visita_previa_ao_animal:isSelected.Visita_previa_ao_animal,
       um_mes: isSelected.um_mes,
       tres_meses: isSelected.tres_meses,
       seis_meses: isSelected.seis_meses,

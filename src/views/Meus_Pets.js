@@ -8,11 +8,11 @@ import auth from '@react-native-firebase/auth'
 import storage from '@react-native-firebase/storage';
 import { FlatList } from 'react-native';
 import Dadoanimal from '../componente/Dadoanimal'
+import botaoPrimario, { BotaoPrimario } from '../componente/botao'
 
 
 
-
-export default function Animal({ navigation, route }) {
+export default function Meus_Pets({ navigation, route }) {
 
 
 
@@ -43,32 +43,37 @@ export default function Animal({ navigation, route }) {
 
         if (user) {
 
-
+            
             await firestore().collection('Animais').where('dono', '==', auth().currentUser.uid).onSnapshot((querySnapshot) => {
                 var animaisaux = [];
-                querySnapshot.forEach(async (doc) => {
+                querySnapshot.forEach((doc) => {
 
-
+                   
                     animaisaux.push(Object.assign(doc.data(), { id: doc.id }))
                     
-                })         
+                    
+                })
                 setanimais(animaisaux)
                 
             })
+           
         } else {
             setanimais(null)
         }
     }
 
-    function renderizar() {
+    const renderizar = () => {
         if (user) {
             return (
-                
+            <>
             <FlatList
                 keyExtractor={item => item.id}
                 data={animais}
-                renderItem={({item}) => <Dadoanimal {...item} />}
+                renderItem={({item}) =>
+                    <Dadoanimal {...item}  onPress={() => navigation.navigate('Perfil Pet', {item: item})}/>
+            }
             />
+            </>
             )
         }
         else {
@@ -87,8 +92,3 @@ export default function Animal({ navigation, route }) {
         </SafeAreaView>
     )
 }
-
-
-
-
-

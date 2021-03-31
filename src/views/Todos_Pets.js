@@ -67,7 +67,7 @@ export default function Todos_Pets({ navigation, route }) {
             <FlatList
                 keyExtractor={item => item.id}
                 data={animais}
-                renderItem={({item}) => <Dadoanimal {...item} />}
+                renderItem={({item}) => <Dadoanimal {...item} onPress={() => navigation.navigate('Perfil Pet', {item: item})} />}
             />
             )
         }

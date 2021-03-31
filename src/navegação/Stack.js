@@ -11,7 +11,7 @@ import Camera from '../componente/camera'
 import Perfil from '../views/Perfil'
 import Meus_Pets from '../views/Meus_Pets'
 import Todos_Pets from '../views/Todos_Pets'
-
+import Perfilmeupet from '../views/Perfilmeupet'
 
 const Stack = createStackNavigator(); // Criar uma constante para cada Stack
 
@@ -98,17 +98,22 @@ export function PerfilStack({navigation}) {
   );
 }
 
+
 export function CachorroStack({navigation}) {
   return (
-    <Stack.Navigator initialRouteName="Meus_Pets">
+    <Stack.Navigator initialRouteName="Meus Pets">
 
     <Stack.Screen name="Meus Pets" component={Meus_Pets} options ={{
       title: 'Meus Pets',
       headerLeft:() => AbrirMenu({navigation}),
     }}/>
 
+    <Stack.Screen name="Perfil Pet" component={Perfilmeupet} options = {{
+      title: 'Perfil pet',
+    }}/>
+
     </Stack.Navigator>
-  )
+  );
 }
 
 export function PetsStack({navigation}) {
@@ -118,6 +123,10 @@ export function PetsStack({navigation}) {
     <Stack.Screen name="Todos os Pets" component={Todos_Pets} options ={{
       title: 'Todos os Pets',
       headerLeft:() => AbrirMenu({navigation}),
+    }}/>
+
+  <Stack.Screen name="Perfil Pet" component={Perfilmeupet} options = {{
+      title: 'Perfil pet',
     }}/>
 
     </Stack.Navigator>
