@@ -78,7 +78,7 @@ export default function Perfilmeupet({navigation,route}) {
             <Text style={styles.textotitulo}> Exigências do Doador </Text>
             </View>
             <View style={styles.viewitem}>
-            <Text style={styles.textoPrincipal}> {(route.params.item.Termo_de_adoção ? 'Termo de adoçao ' : '') + (route.params.item.Fotos_de_casa ? 'Fotos de casa, ' : '') + (route.params.item.Visita_previa_ao_animal ? 'Visita Prévia ao animal , ' : '') + (route.params.item.Acompanhamento_pos_adocao ? 'Acompanhamento de ' + (route.params.item.um_mes ? 'um mês' : route.params.item.tres_meses ? 'três meses' : route.params.item.seis_meses ? 'seis meses' : '') : '')} </Text>
+            <Text style={styles.textoPrincipal}> {(route.params.item.Termo_de_adoção ? 'Termo de adoçao ' : '') + (route.params.item.Fotos_de_casa ? 'Fotos de casa, ' : '') + (route.params.item.Visita_previa_ao_animal ? 'Visita Prévia ao animal , ' : '') + (route.params.item.Acompanhamento_pos_adocao ? 'Acompanhamento de ' + `${route.params.item.Tempo_de_acompanhamento}` : '')} </Text>
             </View>
             <View style={{alignItems:'center'}}>
             <BotaoPrimario name="Remover Pet" />

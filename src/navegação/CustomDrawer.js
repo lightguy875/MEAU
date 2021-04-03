@@ -34,7 +34,7 @@ export default (props) => {
         carregar()
         return subscriber; // unsubscribe on unmount
 
-    }, [auth().currentUser]);
+    }, [auth().currentUser],[]);
 
     async function carregar() {
 

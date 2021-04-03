@@ -22,10 +22,9 @@ export default function Dadoanimal(props) {
     }, [auth().currentUser],[]);
     
     async function carregar_imagem() {
-        
         setimagemurl(await storage().ref(props.imagem ).getDownloadURL())
-
-    }
+        }
+    
     
 
     return (
