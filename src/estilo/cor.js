@@ -13,6 +13,7 @@ const cores = {
     primaryDark: '351f63',
     accentSecundary: '#8b5d47',
     grey: '#ccc',
+    checkbox: '#88c9bf',
 };
 
 export default cores;

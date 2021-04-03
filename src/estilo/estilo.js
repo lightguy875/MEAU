@@ -9,8 +9,25 @@ export default StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',
+       justifyContent: 'center',
+        padding: 16,
+    },
+    containeranimal: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'baseline',
+       justifyContent: 'center',
+        padding: 16,
+    },
+
+    containerbotao: {
+        flex: 1,
+        flexDirection:'row',
+        backgroundColor: '#fff',
+        alignItems: 'center',
         justifyContent: 'center',
         padding: 16,
+        width:350,
     },
 
     
@@ -99,7 +116,10 @@ export default StyleSheet.create({
         flexDirection:'row',
         flexWrap: 'wrap',
         justifyContent: 'flex-start',
-        width: 380,
+        alignItems:'center',
+        width: 310,
+        marginBottom: 3,
+        flex:3
     },
 
      tituloAnimal: {

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import { Image, SafeAreaView, Text , StyleSheet,ScrollView, View, FlatList} from 'react-native'
 import auth from '@react-native-firebase/auth'
 import storage from '@react-native-firebase/storage'
+import firestore from '@react-native-firebase/firestore'
 import Estilo from '../estilo/estilo'
 import estilo from '../estilo/estilo'
 import cor from '../estilo/cor'
@@ -80,7 +81,7 @@ export default function Perfilmeupet({navigation,route}) {
             <Text style={styles.textoPrincipal}> {(route.params.item.Termo_de_adoção ? 'Termo de adoçao ' : '') + (route.params.item.Fotos_de_casa ? 'Fotos de casa, ' : '') + (route.params.item.Visita_previa_ao_animal ? 'Visita Prévia ao animal , ' : '') + (route.params.item.Acompanhamento_pos_adocao ? 'Acompanhamento de ' + (route.params.item.um_mes ? 'um mês' : route.params.item.tres_meses ? 'três meses' : route.params.item.seis_meses ? 'seis meses' : '') : '')} </Text>
             </View>
             <View style={{alignItems:'center'}}>
-            <BotaoPrimario name="Remover Pet"/>
+            <BotaoPrimario name="Remover Pet" />
             </View>
             </ScrollView>
 

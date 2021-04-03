@@ -51,6 +51,9 @@ export default function CadastroPessoal({navigation , route }) {
   async function  Cadastro(dados) {
     if(!auth().currentUser)
     {
+      if(image)
+      {
+
       await auth().createUserWithEmailAndPassword(dados.email, dados.senha).then(async () => {
 
         const reference = storage().ref(image)
@@ -73,6 +76,9 @@ export default function CadastroPessoal({navigation , route }) {
         {reset()}
         setImage(undefined)
       })
+    } else {
+      Alert.alert('Erro', 'Voce precisa cadastrar uma imagem de perfil')
+    }
   } else {
     Alert.alert('Erro', 'Voce precisa estar deslogado para cadastrar')
   }
@@ -322,10 +328,12 @@ export default function CadastroPessoal({navigation , route }) {
             
             
             {image ? renderImage(image) : renderbotao()}
-                
+            <View style={estilo.containerbotao}> 
             <BotaoPrimario name='FAZER CADASTRO'
             onPress={handleSubmit(Cadastro)}
+            
             />
+            </View>
 
             </View>
             

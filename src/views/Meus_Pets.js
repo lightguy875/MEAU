@@ -14,7 +14,8 @@ import botaoPrimario, { BotaoPrimario } from '../componente/botao'
 
 export default function Meus_Pets({ navigation, route }) {
 
-
+    var animaisaux = [];
+    var imagemurl 
 
     var size
     var Image_Http_URL
@@ -22,7 +23,7 @@ export default function Meus_Pets({ navigation, route }) {
     const [initializing, setInitializing] = useState(true)
     const [user, setUser] = useState()
     const [animais, setanimais] = useState()
-    const [imagemurl,setimagemurl] = useState(undefined)
+    // const [imagemurl,setimagemurl] = useState(undefined)
     function onAuthStateChanged(user) {
         setUser(user);
         if (initializing) setInitializing(false);
@@ -36,6 +37,10 @@ export default function Meus_Pets({ navigation, route }) {
 
     }, [auth().currentUser, []]);
 
+    // useEffect(() => {
+       
+    //     //console.log(animaisaux)
+    // }, [imagemurl , animaisaux])
 
 
 
@@ -45,17 +50,15 @@ export default function Meus_Pets({ navigation, route }) {
 
             
             await firestore().collection('Animais').where('dono', '==', auth().currentUser.uid).onSnapshot((querySnapshot) => {
-                var animaisaux = [];
+
                 querySnapshot.forEach((doc) => {
 
-                   
-                    animaisaux.push(Object.assign(doc.data(), { id: doc.id }))
                     
-                    
+                    animaisaux.push(Object.assign(doc.data(), { id: doc.id } ))
+
+                   })
+                   setanimais(animaisaux)
                 })
-                setanimais(animaisaux)
-                
-            })
            
         } else {
             setanimais(null)
