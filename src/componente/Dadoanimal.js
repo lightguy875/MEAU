@@ -19,7 +19,7 @@ export default function Dadoanimal(props) {
         carregar_imagem()
         return subscriber; // unsubscribe on unmount
 
-    }, [auth().currentUser],[]);
+    },[]);
     
     async function carregar_imagem() {
         setimagemurl(await storage().ref(props.imagem ).getDownloadURL())
