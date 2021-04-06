@@ -67,45 +67,47 @@ export default function Cadastro_animal({ navigation, route }) {
     if (auth().currentUser) {
 
       if (image) {
+        const ref =  await storage().ref(image)
+       await ref.putFile(image).then(async () => {
+          await ref.getDownloadURL().then(async (url) => {
+            await firestore().collection('Animais').doc().set({
+              Nome_do_animal: dados.Nome_do_animal,
+              Especie: dados.Espécie,
+              Sexo: dados.Sexo,
+              Porte: dados.Porte,
+              Idade: dados.Idade,
+              Temperamento: {
+                Brincalhao: dados.Brincalhão,
+                Timido: dados.Tímido,
+                Calmo: dados.Calmo,
+                Guarda: dados.Guarda,
+                Amoroso: dados.Amoroso,
+                Preguiçoso: dados.Preguiçoso,
+              },
+              Saúde: {
+                Vacinado: dados.Vacinado,
+                Vermifugado: dados.Vermifugado,
+                Castrado: dados.Castrado,
+                Doente: dados.Doente,
+              },
+              Doenças: dados.Doenças,
+              Termo_de_adoção: dados.Termo_de_adoção,
+              Fotos_de_casa: dados.Foto_da_casa,
+              Acompanhamento_pos_adocao: dados.Acompanhamento_pós_adoção,
+              Visita_previa_ao_animal: dados.Visita_prévia_ao_animal,
+              Tempo_de_acompanhamento: dados.Tempo_de_acompanhamento,
+              sobre_o_animal: dados.sobre_animal,
+              imagem: image,
+              imagemurl: url,
+              dono: auth().currentUser.uid
 
+          })
+         
 
-        var reference = storage().ref(image)
-        await reference.putFile(image)
-
-        await firestore().collection('Animais').add({
-          Nome_do_animal: dados.Nome_do_animal,
-          Especie: dados.Espécie,
-          Sexo: dados.Sexo,
-          Porte: dados.Porte,
-          Idade: dados.Idade,
-          Temperamento: {
-            Brincalhao: dados.Brincalhão,
-            Timido: dados.Tímido,
-            Calmo: dados.Calmo,
-            Guarda: dados.Guarda,
-            Amoroso: dados.Amoroso,
-            Preguiçoso: dados.Preguiçoso,
-          },
-          Saúde: {
-            Vacinado: dados.Vacinado,
-            Vermifugado: dados.Vermifugado,
-            Castrado: dados.Castrado,
-            Doente: dados.Doente,
-          },
-          Doenças: dados.Doenças,
-          Termo_de_adoção: dados.Termo_de_adoção,
-          Fotos_de_casa: dados.Foto_da_casa,
-          Acompanhamento_pos_adocao: dados.Acompanhamento_pós_adoção,
-          Visita_previa_ao_animal: dados.Visita_prévia_ao_animal,
-          Tempo_de_acompanhamento: dados.Tempo_de_acompanhamento,
-          sobre_o_animal: dados.sobre_animal,
-          imagem: image,
-          dono: auth().currentUser.uid
-        }).then(() => {
+        })}).then(() => {
           Alert.alert('Cadastro', 'Novo animal cadastrado')
-        }).then(() => {
           reset()
-          setImage('')
+          setImage(undefined)
         })
       } else {
         Alert.alert('Erro', 'Voce precisa adicionar a imagem do animal!')

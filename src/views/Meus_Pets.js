@@ -35,23 +35,19 @@ export default function Meus_Pets({ navigation, route }) {
         carregar_animais()
         return subscriber; // unsubscribe on unmount
 
-    }, [auth().currentUser, []]);
+    }, [auth().currentUser,[]]);
 
-    // useEffect(() => {
-       
-    //     //console.log(animaisaux)
-    // }, [imagemurl , animaisaux])
+// 
 
 
-
-    async function carregar_animais() {
+    const carregar_animais = async () => {
 
         if (user) {
 
             
-            await firestore().collection('Animais').where('dono', '==', auth().currentUser.uid).onSnapshot((querySnapshot) => {
+            await firestore().collection('Animais').where('dono', '==', auth().currentUser.uid).get().then((querySnapshot) => {
 
-                querySnapshot.forEach((doc) => {
+            querySnapshot.forEach((doc) => {
 
                     
                     animaisaux.push(Object.assign(doc.data(), { id: doc.id } ))
@@ -70,7 +66,7 @@ export default function Meus_Pets({ navigation, route }) {
             return (
             <>
             <FlatList
-                keyExtractor={item => item.id}
+                keyExtractor={(item, index) => item.id + 'key'+index }
                 data={animais}
                 renderItem={({item}) =>
                     <Dadoanimal {...item}  onPress={() => navigation.navigate('Perfil Pet', {item: item})}/>
