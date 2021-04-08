@@ -34,25 +34,26 @@ export default function Todos_Pets({ navigation, route }) {
         carregar_animais()
         return subscriber; // unsubscribe on unmount
 
-    }, [auth().currentUser, []]);
+    }, [auth().currentUser],[]);
 
 
 
 
     async function carregar_animais() {
 
-        if (user) {
+        if (auth().currentUser) {
 
 
             await firestore().collection('Animais').where('dono', '!=', auth().currentUser.uid).onSnapshot((querySnapshot) => {
                 var animaisaux = [];
-                querySnapshot.forEach(async (doc) => {
+                querySnapshot.forEach((doc) => {
 
 
                     animaisaux.push(Object.assign(doc.data(), { id: doc.id }))
                     
                 })         
                 setanimais(animaisaux)
+                animaisaux = [];
                 
             })
         } else {

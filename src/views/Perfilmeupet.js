@@ -9,20 +9,43 @@ import cor from '../estilo/cor'
 import { BotaoPrimario } from '../componente/botao'
 export default function Perfilmeupet({ navigation, route }) {
 
-    const [imagemurl, setimagemurl] = useState(undefined)
 
     useEffect(() => {
         navigation.setOptions({
             title: route.params.item.Nome_do_animal,
         });
-    }, [route.params.item, navigation]);
+    }, [route.params.item]);
 
 
+    const adotar_animal = async() => {
 
+        if (route.params.item.dono != auth().currentUser.uid) {
+
+        Alert.alert('Adotar', 'Deseja adotar o pet', [
+            {
+                text: 'Sim',
+               async onPress(){
+
+                    await firestore().collection('Animais').doc(route.params.item.id).update({
+                        dono: auth().currentUser.uid
+                    })
+                .then(() => {
+                        Alert.alert('Sucesso', 'Você adotou o animal')
+                        
+                    })
+                }
+            },
+            {
+                text: 'Não'
+            }
+        ])
+
+    } else {
+        Alert.alert('Você já é o dono do animal')
+    }
+}
 
      const delete_animal = async () => {
-
-
 
         if (route.params.item.dono == auth().currentUser.uid) {
 
@@ -34,8 +57,7 @@ export default function Perfilmeupet({ navigation, route }) {
 
                         await firestore().collection('Animais').doc(route.params.item.id).delete()
                     }).then(() => {
-                            Alert.alert('Sucesso', 'O pet foi excluído')
-                            navigation.navigate('Meus Pets')
+                            Alert.alert('Sucesso', 'O pet foi excluído')                            
                         })
                     }
                 },
@@ -100,11 +122,12 @@ export default function Perfilmeupet({ navigation, route }) {
                 <Text style={styles.textoPrincipal}> {(route.params.item.Termo_de_adoção ? 'Termo de adoçao ' : '') + (route.params.item.Fotos_de_casa ? 'Fotos de casa, ' : '') + (route.params.item.Visita_previa_ao_animal ? 'Visita Prévia ao animal , ' : '') + (route.params.item.Acompanhamento_pos_adocao ? 'Acompanhamento de ' + `${route.params.item.Tempo_de_acompanhamento}` : '')} </Text>
             </View>
             <View style={{ alignItems: 'center' }}>
+                <BotaoPrimario name="Adotar" onPress={() => adotar_animal()}/> 
                 <BotaoPrimario name="Remover Pet" onPress={() => delete_animal()}/>
             </View>
         </ScrollView>
 
-
+//
     )
 }
 

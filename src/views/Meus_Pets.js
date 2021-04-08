@@ -20,14 +20,16 @@ export default function Meus_Pets({ navigation, route }) {
     var size
     var Image_Http_URL
     var imagemv
+    const [meusanimais, setanimaismeus] = useState()
     const [initializing, setInitializing] = useState(true)
     const [user, setUser] = useState()
-    const [animais, setanimais] = useState()
-    // const [imagemurl,setimagemurl] = useState(undefined)
+
+
     function onAuthStateChanged(user) {
         setUser(user);
         if (initializing) setInitializing(false);
     }
+
 
 
     useEffect(() => {
@@ -35,29 +37,33 @@ export default function Meus_Pets({ navigation, route }) {
         carregar_animais()
         return subscriber; // unsubscribe on unmount
 
-    }, [auth().currentUser,[]]);
+    }, [auth().currentUser],[]);
 
-// 
+
+
+
+
 
 
     const carregar_animais = async () => {
 
-        if (user) {
+        if (auth().currentUser) {
 
             
-            await firestore().collection('Animais').where('dono', '==', auth().currentUser.uid).get().then((querySnapshot) => {
+            await firestore().collection('Animais').where('dono', '==', auth().currentUser.uid).onSnapshot((querySnapshot) => {
 
             querySnapshot.forEach((doc) => {
 
                     
-                    animaisaux.push(Object.assign(doc.data(), { id: doc.id } ))
+                    animaisaux.push(Object.assign( doc.data(), { id: doc.id } ))
 
                    })
-                   setanimais(animaisaux)
+                   setanimaismeus(animaisaux)
+                   animaisaux = [];
                 })
            
         } else {
-            setanimais(null)
+            setanimaismeus(null)
         }
     }
 
@@ -67,7 +73,7 @@ export default function Meus_Pets({ navigation, route }) {
             <>
             <FlatList
                 keyExtractor={(item, index) => item.id + 'key'+index }
-                data={animais}
+                data={meusanimais}
                 renderItem={({item}) =>
                     <Dadoanimal {...item}  onPress={() => navigation.navigate('Perfil Pet', {item: item})}/>
             }
