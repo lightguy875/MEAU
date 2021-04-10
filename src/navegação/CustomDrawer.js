@@ -48,7 +48,7 @@ export default (props) => {
             })
         }
         else {
-            await firestore().terminate
+            await firestore().terminate()
             setnomeusuario('')
         }
     }
