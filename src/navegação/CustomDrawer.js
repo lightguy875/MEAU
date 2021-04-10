@@ -41,7 +41,7 @@ export default (props) => {
         if (user) {
 
             // await firestore().collection('Users').doc(auth().currentUser.uid).get().then(snapshot => {
-               await firestore().collection('Users').doc(auth().currentUser.uid).get().then(async snapshot => {
+               await firestore().collection('Users').doc(auth().currentUser.uid).onSnapshot(async snapshot => {
                 setnomeusuario(await snapshot.data().nome_de_usuario)
                 setimagemurl(await snapshot.data().imagemurl)
                 

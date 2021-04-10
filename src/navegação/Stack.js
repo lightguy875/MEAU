@@ -12,6 +12,7 @@ import Perfil from '../views/Perfil'
 import Meus_Pets from '../views/Meus_Pets'
 import Todos_Pets from '../views/Todos_Pets'
 import Perfilmeupet from '../views/Perfilmeupet'
+import Interessados from '../views/Interessados'
 
 const Stack = createStackNavigator(); // Criar uma constante para cada Stack
 
@@ -111,7 +112,12 @@ export function CachorroStack({navigation}) {
     <Stack.Screen name="Perfil Pet" component={Perfilmeupet} options = {{
       title: 'Perfil pet',
     }}/>
-
+    
+    <Stack.Screen name="Interessados" component={Interessados} options = {{
+      title: 'Interessados',
+      headerLeft:() => AbrirMenu({navigation}),
+    }}/>
+    
     </Stack.Navigator>
   );
 }

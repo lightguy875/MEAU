@@ -154,7 +154,7 @@ export default function Perfilmeupet({ navigation, route }) {
             </View>
             <View style={{ alignItems: 'center', justifyContent: 'space-between'}}>
                 {route.params.item.dono != auth().currentUser.uid ? route.params.item.interessados.includes(auth().currentUser.uid) ?  <BotaoPrimario name="Remover pretensão" onPress={() => desmarcar_interesse()}/> : <BotaoPrimario name="Pretendo Adotar" onPress={() => marcar_interesse()}/> : (<>
-                <BotaoPrimario name='Ver interessados'/>
+                <BotaoPrimario name='Ver interessados' onPress={() => navigation.navigate('Interessados', {item: route.params.item})}/>
                 <BotaoPrimario name="Remover Pet" onPress={() => delete_animal()}/>
                 </>)
                 }

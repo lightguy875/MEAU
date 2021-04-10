@@ -7,6 +7,7 @@ import {
 
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth'
+import Interessado from '../componente/Interessado'
 
 export default function Interessados({navigation , route}) {
 
@@ -36,7 +37,15 @@ export default function Interessados({navigation , route}) {
 
         if(auth().currentUser) {
 
-            await firestore().collection('Users').id.match
+            await firestore().collection('Users').onSnapshot((querySnapshot) => {
+                var pessoas = [];
+                querySnapshot.forEach((doc) => {
+                    if(route.params.item.interessados.includes(doc.id)){
+                        pessoas.push(Object.assign(doc.data(), {id: doc.id}))
+                    }
+                })
+                setUsers(pessoas)
+            })
 
         }
         else {
@@ -47,4 +56,28 @@ export default function Interessados({navigation , route}) {
 
 
     }
+    function renderizar() {
+        if(auth().currentUser) {
+            return (
+            <FlatList
+            keyExtractor={item => item.id}
+            data={users}
+            renderItem={({ item }) => <Interessado {...item} />}
+            />
+            )
+
+        }else {
+            return(
+                <Text>Você precisa estar logado</Text>
+            )
+        }
+    }
+
+
+    return(
+        <SafeAreaView>
+            {renderizar()}
+        </SafeAreaView>
+    )
+    
 }
