@@ -1,22 +1,24 @@
-import React , {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     FlatList,
     SafeAreaView,
     View,
     TouchableOpacity,
     StyleSheet,
+    Alert,
+    Text,
 } from 'react-native'
 
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth'
 import Interessado from '../componente/Interessado'
 
-export default function Interessados({navigation , route}) {
+export default function Interessados({ navigation, route }) {
 
 
     const [initializing, setInitializing] = useState(true)
     const [user, setUser] = useState()
-    const [users,setUsers] = useState()
+    const [users, setUsers] = useState()
 
 
     function onAuthStateChanged(user) {
@@ -31,20 +33,20 @@ export default function Interessados({navigation , route}) {
         Carregar_users()
         return subscriber; // unsubscribe on unmount
 
-    }, [auth().currentUser],[]);
+    }, [auth().currentUser], []);
 
 
 
 
     async function Carregar_users() {
 
-        if(auth().currentUser) {
+        if (auth().currentUser) {
 
             await firestore().collection('Users').onSnapshot((querySnapshot) => {
                 var pessoas = [];
                 querySnapshot.forEach((doc) => {
-                    if(route.params.item.interessados.includes(doc.id)){
-                        pessoas.push(Object.assign(doc.data(), {id: doc.id}))
+                    if (route.params.item.interessados.includes(doc.id)) {
+                        pessoas.push(Object.assign(doc.data(), { id: doc.id }))
                     }
                 })
                 setUsers(pessoas)
@@ -54,45 +56,66 @@ export default function Interessados({navigation , route}) {
         else {
             await firestore().terminate()
             setUsers(null)
-            
+
         }
     }
 
-    async function mudar_dono_pet() {
+    async function mudar_dono_pet(item) {
 
+        if (auth().currentUser) {
+            Alert.alert('Adoção', 'Deseja confirmar a adoção', [
+                {
+                    text: 'Sim',
+                    async onPress() {
+
+                        var array = [];
+                        await firestore().collection('Animais').doc(route.params.item.id).update({
+                            dono: item.id,
+                            interessados: array
+                        }).then(() => {
+                            Alert.alert(`Adoção`, `O dono do animal foi modificado com sucesso`)
+                        })
+
+                    }
+                }, {
+                    text: 'Não'
+                }
+            ])
+
+        }
     }
 
     function renderizar() {
-        if(auth().currentUser) {
+        if (auth().currentUser) {
             return (
-            <FlatList
-            contentContainerStyle={styles.container}
-            keyExtractor={item => item.id}
-            data={users}
-            renderItem={({ item }) => <Interessado {...item} onPress={() => {}}/>}
-            />
+                <FlatList
+                    contentContainerStyle={styles.container}
+                    keyExtractor={item => item.id}
+                    data={users}
+                    renderItem={({ item }) => <Interessado {...item} onPress={() => mudar_dono_pet(item)} />}
+                />
             )
 
-        }else {
-            return(
+        } else {
+            return (
                 <Text>Você precisa estar logado</Text>
             )
         }
     }
 
 
-    return(
-            <>
+    return (
+        <>
             {renderizar()}
-            </>
-       
+        </>
+
     )
-    
+
 }
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection:'row',
+        flexDirection: 'row',
         flexWrap: 'wrap',
     }
 })
