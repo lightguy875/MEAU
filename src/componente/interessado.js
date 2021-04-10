@@ -10,7 +10,7 @@ export default function interessado(props) {
 
     return (
         <SafeAreaView>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={props.onPress}>
             <Image source={{uri: props.imagemurl}} />
             <Text>{props.name}</Text>
             <Text>{props.idade}</Text>

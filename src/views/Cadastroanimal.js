@@ -100,8 +100,8 @@ export default function Cadastro_animal({ navigation, route }) {
               imagem: image,
               imagemurl: url,
               dono: auth().currentUser.uid,
-              interessados: '',
-              favorito: '',
+              interessados: [],
+              favorito: [],
 
           })
          

@@ -16,23 +16,56 @@ export default function Perfilmeupet({ navigation, route }) {
     }, [route.params]);
 
 
-    const adotar_animal = async() => {
+    const desmarcar_interesse = async() => {
+
+        if(route.params.item.dono != auth().currentUser.uid) {
+
+            Alert.alert('Desmarcar interesse', 'Deseja tirar seu interesse pelo pet?', [
+                {
+                    text: 'Sim',
+                   async onPress(){
+                    var array = route.params.item.interessados
+                    var index = array.indexOf(auth().currentUser.uid);
+                    if( index > -1) {
+                        array.splice(index, 1)
+                        await firestore().collection('Animais').doc(route.params.item.id).update({
+                            interessados: array
+                        }).then(() => {
+                            Alert.alert('Sucesso', 'Você desmarcou o seu interesse')
+                        })
+                    }
+                }
+                },
+                {
+                    text: 'Não',
+                }
+            ])
+
+        } else {
+            Alert.alert('Você já é o dono do animal')
+        }
+
+    }
+    
+
+
+    const marcar_interesse = async() => {
 
         if (route.params.item.dono != auth().currentUser.uid) {
 
-        Alert.alert('Adotar', 'Deseja adotar o pet', [
+        Alert.alert('Interesse', 'Se interessa em adotar o pet?', [
             {
                 text: 'Sim',
                async onPress(){
-
+                    route.params.item.interessados.push(auth().currentUser.uid)
                     await firestore().collection('Animais').doc(route.params.item.id).update({
-                        dono: auth().currentUser.uid
-                    })
-                .then(() => {
-                        Alert.alert('Sucesso', 'Você adotou o animal')
-                    })
-                }
-            },
+                        interessados: route.params.item.interessados
+                    }).then(() => {
+                         Alert.alert('Sucesso', 'Você marcou o seu interesse')
+                 })
+
+            }
+        },
             {
                 text: 'Não'
             }
@@ -120,7 +153,7 @@ export default function Perfilmeupet({ navigation, route }) {
                 <Text style={styles.textoPrincipal}> {(route.params.item.Termo_de_adoção ? 'Termo de adoçao ' : '') + (route.params.item.Fotos_de_casa ? 'Fotos de casa, ' : '') + (route.params.item.Visita_previa_ao_animal ? 'Visita Prévia ao animal , ' : '') + (route.params.item.Acompanhamento_pos_adocao ? 'Acompanhamento de ' + `${route.params.item.Tempo_de_acompanhamento}` : '')} </Text>
             </View>
             <View style={{ alignItems: 'center', justifyContent: 'space-between'}}>
-                {route.params.item.dono != auth().currentUser.uid ? <BotaoPrimario name="Pretendo Adotar" onPress={() => adotar_animal()}/> : (<>
+                {route.params.item.dono != auth().currentUser.uid ? route.params.item.interessados.includes(auth().currentUser.uid) ?  <BotaoPrimario name="Remover pretensão" onPress={() => desmarcar_interesse()}/> : <BotaoPrimario name="Pretendo Adotar" onPress={() => marcar_interesse()}/> : (<>
                 <BotaoPrimario name='Ver interessados'/>
                 <BotaoPrimario name="Remover Pet" onPress={() => delete_animal()}/>
                 </>)

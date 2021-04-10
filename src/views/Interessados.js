@@ -1,7 +1,12 @@
-import React from 'react'
+import React , {useEffect, useState} from 'react'
+import {
+    FlatList,
+    SafeAreaView,
+    TouchableOpacity,
+} from 'react-native'
 
-
-
+import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth'
 
 export default function Interessados({navigation , route}) {
 
@@ -31,8 +36,12 @@ export default function Interessados({navigation , route}) {
 
         if(auth().currentUser) {
 
+            await firestore().collection('Users').id.match
+
         }
         else {
+            await firestore().terminate()
+            setUsers(null)
             
         }
 
