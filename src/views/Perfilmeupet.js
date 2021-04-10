@@ -9,12 +9,11 @@ import cor from '../estilo/cor'
 import { BotaoPrimario } from '../componente/botao'
 export default function Perfilmeupet({ navigation, route }) {
 
-
     useEffect(() => {
         navigation.setOptions({
             title: route.params.item.Nome_do_animal,
         });
-    }, [route.params.item]);
+    }, [route.params]);
 
 
     const adotar_animal = async() => {
@@ -31,7 +30,6 @@ export default function Perfilmeupet({ navigation, route }) {
                     })
                 .then(() => {
                         Alert.alert('Sucesso', 'Você adotou o animal')
-                        
                     })
                 }
             },
@@ -57,7 +55,7 @@ export default function Perfilmeupet({ navigation, route }) {
 
                         await firestore().collection('Animais').doc(route.params.item.id).delete()
                     }).then(() => {
-                            Alert.alert('Sucesso', 'O pet foi excluído')                            
+                            Alert.alert('Sucesso', 'O pet foi excluído')
                         })
                     }
                 },
@@ -121,9 +119,13 @@ export default function Perfilmeupet({ navigation, route }) {
             <View style={styles.viewitem}>
                 <Text style={styles.textoPrincipal}> {(route.params.item.Termo_de_adoção ? 'Termo de adoçao ' : '') + (route.params.item.Fotos_de_casa ? 'Fotos de casa, ' : '') + (route.params.item.Visita_previa_ao_animal ? 'Visita Prévia ao animal , ' : '') + (route.params.item.Acompanhamento_pos_adocao ? 'Acompanhamento de ' + `${route.params.item.Tempo_de_acompanhamento}` : '')} </Text>
             </View>
-            <View style={{ alignItems: 'center' }}>
-                <BotaoPrimario name="Adotar" onPress={() => adotar_animal()}/> 
+            <View style={{ alignItems: 'center', justifyContent: 'space-between'}}>
+                {route.params.item.dono != auth().currentUser.uid ? <BotaoPrimario name="Pretendo Adotar" onPress={() => adotar_animal()}/> : (<>
+                <BotaoPrimario name='Ver interessados'/>
                 <BotaoPrimario name="Remover Pet" onPress={() => delete_animal()}/>
+                </>)
+                }
+
             </View>
         </ScrollView>
 

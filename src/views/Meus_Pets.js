@@ -1,28 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import { Button, StyleSheet, Text, View, TouchableOpacity, Alert, StatusBar, ScrollView, Image, SafeAreaView } from 'react-native';
+import { Button, StyleSheet, Text, View, TouchableOpacity, Alert, StatusBar, ScrollView, Image, SafeAreaView, SectionList } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import Estilo from '../estilo/estilo'
 import Cor from '../estilo/cor'
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth'
-import storage from '@react-native-firebase/storage';
+import storage, { firebase } from '@react-native-firebase/storage';
 import { FlatList } from 'react-native';
 import Dadoanimal from '../componente/Dadoanimal'
-import botaoPrimario, { BotaoPrimario } from '../componente/botao'
 
 
 
-export default function Meus_Pets({ navigation, route }) {
 
-    var animaisaux = [];
-    var imagemurl 
+export default function Todos_Pets({ navigation, route }) {
 
+    var animaisaux = []
+    var mudança
     var size
     var Image_Http_URL
     var imagemv
-    const [meusanimais, setanimaismeus] = useState()
+    const [animais, setanimais] = useState()
+    const [imagemurl, setimagemurl] = useState(undefined)
     const [initializing, setInitializing] = useState(true)
     const [user, setUser] = useState()
+
+
 
 
     function onAuthStateChanged(user) {
@@ -32,58 +34,56 @@ export default function Meus_Pets({ navigation, route }) {
 
 
 
+
+
     useEffect(() => {
         const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-        carregar_animais()
+        setanimais(carregar_animais())
         return subscriber; // unsubscribe on unmount
 
-    }, [auth().currentUser],[]);
+    }, [auth().currentUser], []);
 
 
-
-
-
-
-
-    const carregar_animais = async () => {
+    async function carregar_animais() {
 
         if (auth().currentUser) {
 
-            
             await firestore().collection('Animais').where('dono', '==', auth().currentUser.uid).onSnapshot((querySnapshot) => {
+                var animaisaux = [];
+                querySnapshot.forEach((doc) => {
 
-            querySnapshot.forEach((doc) => {
 
-                    
-                    animaisaux.push(Object.assign( doc.data(), { id: doc.id } ))
+                    animaisaux.push(Object.assign(doc.data(), { id: doc.id }))
 
-                   })
-                   setanimaismeus(animaisaux)
-                   animaisaux = [];
                 })
-           
+                setanimais(animaisaux)
+            })
         } else {
-            setanimaismeus(null)
+            await firestore().terminate()
+            setanimais(null)
+            
         }
     }
 
-    const renderizar = () => {
-        if (user) {
+    function renderizar() {
+        if (auth().currentUser && animais) {
             return (
-            <>
-            <FlatList
-                keyExtractor={(item, index) => item.id + 'key'+index }
-                data={meusanimais}
-                renderItem={({item}) =>
-                    <Dadoanimal {...item}  onPress={() => navigation.navigate('Perfil Pet', {item: item})}/>
-            }
-            />
-            </>
+
+                <FlatList
+
+                    keyExtractor={item => item.id}
+                    extraData={animais}
+                    data={animais}
+                    renderItem={({ item }) => <Dadoanimal {...item} onPress={() => navigation.navigate('Perfil Pet', {
+                        item: item,
+                    })} />
+                    }
+                />
             )
         }
         else {
             return (
-            <Text style={Estilo.textoPerfil}>Voce não está logado no sistema</Text>
+                <Text style={Estilo.textoPerfil}>Voce não está logado no sistema</Text>
             )
         }
 
@@ -93,7 +93,13 @@ export default function Meus_Pets({ navigation, route }) {
 
     return (
         <SafeAreaView>
+
             {renderizar()}
         </SafeAreaView>
     )
 }
+
+
+
+
+
