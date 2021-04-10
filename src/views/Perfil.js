@@ -7,7 +7,7 @@ import { BotaoPrimario, BotaoImagem } from '../componente/botao'
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth'
 import { set } from 'react-native-reanimated';
-import storage from '@react-native-firebase/storage';
+import storage, { firebase } from '@react-native-firebase/storage';
 
 
 
@@ -60,15 +60,16 @@ export default function Perfil({ navigation, route }) {
                  setemail(await snapshot.data().email)
                  setendereco(await snapshot.data().endereço)
                  setidade(await snapshot.data().idade)
-                imagemv =  await snapshot.data().imagem
-                 setimagem(imagemv)
+                 setimagem(await snapshot.data().imagem)
                  setname(await snapshot.data().name)
                  settelefone(await snapshot.data().telefone)
-                 setimgurl(await storage().ref(imagemv).getDownloadURL())
+                 setimgurl(await snapshot.data().imagemurl)
             })
         }
 
         else {
+
+            await firestore().terminate()
 
             setestado('')
             setcidade('')
