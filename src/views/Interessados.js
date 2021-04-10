@@ -2,7 +2,9 @@ import React , {useEffect, useState} from 'react'
 import {
     FlatList,
     SafeAreaView,
+    View,
     TouchableOpacity,
+    StyleSheet,
 } from 'react-native'
 
 import firestore from '@react-native-firebase/firestore';
@@ -33,6 +35,7 @@ export default function Interessados({navigation , route}) {
 
 
 
+
     async function Carregar_users() {
 
         if(auth().currentUser) {
@@ -53,16 +56,20 @@ export default function Interessados({navigation , route}) {
             setUsers(null)
             
         }
+    }
 
+    async function mudar_dono_pet() {
 
     }
+
     function renderizar() {
         if(auth().currentUser) {
             return (
             <FlatList
+            contentContainerStyle={styles.container}
             keyExtractor={item => item.id}
             data={users}
-            renderItem={({ item }) => <Interessado {...item} />}
+            renderItem={({ item }) => <Interessado {...item} onPress={() => {}}/>}
             />
             )
 
@@ -75,9 +82,17 @@ export default function Interessados({navigation , route}) {
 
 
     return(
-        <SafeAreaView>
+            <>
             {renderizar()}
-        </SafeAreaView>
+            </>
+       
     )
     
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flexDirection:'row',
+        flexWrap: 'wrap',
+    }
+})
