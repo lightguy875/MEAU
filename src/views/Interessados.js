@@ -7,11 +7,13 @@ import {
     StyleSheet,
     Alert,
     Text,
+    LogBox
 } from 'react-native'
 
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth'
 import Interessado from '../componente/Interessado'
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default function Interessados({ navigation, route }) {
 
@@ -43,6 +45,7 @@ export default function Interessados({ navigation, route }) {
         if (auth().currentUser) {
 
             await firestore().collection('Users').onSnapshot((querySnapshot) => {
+                console.log('passou por aqui pessoas interessadas')
                 var pessoas = [];
                 querySnapshot.forEach((doc) => {
                     if (route.params.item.interessados.includes(doc.id)) {
@@ -50,6 +53,7 @@ export default function Interessados({ navigation, route }) {
                     }
                 })
                 setUsers(pessoas)
+                pessoas = [];
             })
 
         }
@@ -67,8 +71,10 @@ export default function Interessados({ navigation, route }) {
                 {
                     text: 'Sim',
                     async onPress() {
-
-                        var array = [];
+                            
+                        var array = route.params.item.interessados
+                        var index = array.indexOf(item.id);
+                        array.splice(index, 1)
                         await firestore().collection('Animais').doc(route.params.item.id).update({
                             dono: item.id,
                             interessados: array
@@ -86,9 +92,10 @@ export default function Interessados({ navigation, route }) {
     }
 
     function renderizar() {
+        LogBox.ignoreAllLogs();
         if (auth().currentUser) {
             return (
-                <FlatList
+                <FlatList 
                     contentContainerStyle={styles.container}
                     keyExtractor={item => item.id}
                     data={users}
@@ -105,9 +112,9 @@ export default function Interessados({ navigation, route }) {
 
 
     return (
-        <>
+        <SafeAreaView>
             {renderizar()}
-        </>
+        </SafeAreaView>
 
     )
 
@@ -116,6 +123,6 @@ export default function Interessados({ navigation, route }) {
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        flexWrap: 'wrap',
+        flexWrap: 'wrap'
     }
 })

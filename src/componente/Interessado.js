@@ -17,7 +17,7 @@ export default props => {
     
                 // </ListItem.Content>
                 // </ListItem>
-                <View style={styles.containermax}>
+                <SafeAreaView style={styles.containermax}>
                 <TouchableOpacity onPress={props.onPress}>
                 <View style={styles.container}>
                 <View style={styles.imagemview}>
@@ -27,7 +27,7 @@ export default props => {
                 <Text style={styles.Texto}>{props.idade} anos</Text>
                 </View>
                 </TouchableOpacity>
-                </View>
+                </SafeAreaView>
             )
         }
 
