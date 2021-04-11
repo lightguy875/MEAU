@@ -38,7 +38,7 @@ export default function Todos_Pets({ navigation, route }) {
 
     useEffect(() => {
         const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-        setanimais(carregar_animais())
+        carregar_animais()
         return subscriber; // unsubscribe on unmount
 
     }, [auth().currentUser], []);

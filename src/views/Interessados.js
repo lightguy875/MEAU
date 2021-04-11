@@ -45,7 +45,6 @@ export default function Interessados({ navigation, route }) {
         if (auth().currentUser) {
 
             await firestore().collection('Users').onSnapshot((querySnapshot) => {
-                console.log('passou por aqui pessoas interessadas')
                 var pessoas = [];
                 querySnapshot.forEach((doc) => {
                     if (route.params.item.interessados.includes(doc.id)) {
@@ -53,7 +52,6 @@ export default function Interessados({ navigation, route }) {
                     }
                 })
                 setUsers(pessoas)
-                pessoas = [];
             })
 
         }
