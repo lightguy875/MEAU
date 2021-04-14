@@ -48,7 +48,6 @@ export default function Perfil({ navigation, route }) {
     const [name, setname] = useState('')
 
 
-
     async function Carregar_dados() {
 
         if (auth().currentUser) {

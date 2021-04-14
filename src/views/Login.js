@@ -8,14 +8,19 @@ import Cor from '../estilo/cor'
 import Icon from 'react-native-vector-icons/Feather';
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup';
-
+import {user_login, user_logout } from '../store/actions/user'
+import {useDispatch , useStore} from 'react-redux'
+import {USER_LOGGED_IN} from '../store/actions/actionTypes'
 
 
 import auth from '@react-native-firebase/auth';
 import { min } from 'react-native-reanimated';
 
+export default function Login({navigation, route , props}) {
 
-export default function Login({navigation}) {
+  const user_dados = useStore().getState().user
+
+  const [user , setUser] = useState(false)
 
   const [ erro , setErro ] = useState ({
     
@@ -23,6 +28,7 @@ export default function Login({navigation}) {
    
   });    
 
+  const dispatch = useDispatch()
   function ver(){
     if (errors?.senha) {
       alert('Há erro')
@@ -37,6 +43,7 @@ export default function Login({navigation}) {
 
 
 
+
     const validacao = yup.object().shape({
       email: yup.string().email().required('O e-mail é obrigatório'),
       senha: yup.string().min(6, "Senha curta demais").required()
@@ -45,39 +52,17 @@ export default function Login({navigation}) {
     const { control, handleSubmit, errors, reset} = useForm({
       resolver: yupResolver(validacao)
     });
-    const onSubmit = data => alert(data.email + ' ' + data.senha)
+    // const onSubmit = data => alert(data.email + ' ' + data.senha)
 
 
-
-
-
-
-    async function Entrar({email,senha}){
-      await auth().signInWithEmailAndPassword(email, senha)
-      .then(() => {
-        Alert.alert('Login' , 'Usuário está logado');
-        {reset()}
-      })
-      .catch(error => {
-  
-          if (error.code === 'auth/invalid-email') {
-          Alert.alert('Erro', 'email inválido');
-        }
-         else if(error.code === 'auth/account-exists-with-different-credential')  {
-         Alert.alert('Erro', 'Erro de login ou senha')
-         }
-  
-         else{
-           Alert.alert('Erro', 'Erro de login ou senha')
-         }
-  
-      });
-    }
+     const Entrar = ({email, senha}) => {
+      dispatch(user_login({email, senha}))
+     }
 
 
     function Render(){
 
-      if(!auth().currentUser){
+      if(!user_dados.loaded){
         return(
           <>
 
@@ -156,13 +141,9 @@ export default function Login({navigation}) {
       }
     }
   
-   async function Sair(){
-      await auth()
-      .signOut()
-      .then(() => {
-        Alert.alert('Logout', 'Usuário deslogado')
-        {reset()}
-      })
+   const Sair = () => {
+      dispatch(user_logout())
+      reset()
     }
 
 
@@ -184,7 +165,6 @@ export default function Login({navigation}) {
     </KeyboardAvoidingView>
 
   );
+
 }
-
-
 
