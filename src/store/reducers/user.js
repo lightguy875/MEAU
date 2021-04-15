@@ -59,7 +59,6 @@ function reducer (state = initialState, action) {
                 ...state,
             }
         case USER_CADASTRO_SUCCESS:
-            console.log(action.payload)
             return {
                 ...state,
                 user: action.payload,
