@@ -5,12 +5,10 @@ import { TextInput } from 'react-native-gesture-handler';
 import  Estilo from '../estilo/Login.estilo'
 import  botao from '../estilo/botao.style'
 import Cor from '../estilo/cor'
-import Icon from 'react-native-vector-icons/Feather';
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup';
 import {user_login, user_logout } from '../store/actions/user'
 import {useDispatch , useStore} from 'react-redux'
-import {USER_LOGGED_IN} from '../store/actions/actionTypes'
 
 
 import auth from '@react-native-firebase/auth';

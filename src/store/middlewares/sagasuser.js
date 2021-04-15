@@ -1,10 +1,18 @@
 import { put, takeLatest, call, all } from 'redux-saga/effects'
-import { USER_LOGGED_IN, USER_LOGGED_OUT, USER_CADASTRO, USER_LOAD_DATA } from '../actions/actionTypes'
+import { USER_LOGGED_IN, USER_LOGGED_OUT, USER_CADASTRO, USER_LOAD_DATA} from '../actions/actionTypes'
 import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
 import storage from '@react-native-firebase/storage'
 import { Alert } from 'react-native'
-import { user_login_success, user_login_failure, user_logout_success, user_logout_failure } from '../actions/user'
+import {
+    user_login_success,
+    user_login_failure,
+    user_logout_success,
+    user_logout_failure,
+    user_load_data_sucess,
+    user_load_data_failure,
+}
+    from '../actions/user'
 
 
 function* sagasuser() {
@@ -61,11 +69,24 @@ function* logoutuser() {
 
 function* loaddatauser(action) {
 
-    const user = yield firestore().collection('Users').doc(action.payload.id).get()
-    yield put({
-        type: action.payload.type,
-        user: user,
-    })
+     try {
+
+ 
+        
+
+        let user = yield call(action =>
+            firestore().collection('Users')
+            .doc(action.payload.id)
+            .get()
+            , action
+        );
+
+
+        yield put(user_load_data_sucess(user.data()))
+    } catch (error) {
+        Alert.alert('Error',`Não foi possível carregar os dados do usuário ${error}`)
+        yield put(user_load_data_failure())
+ }
 
 }
 

@@ -1,4 +1,14 @@
-import { USER_LOGGED_IN, USER_LOGGED_OUT, USER_CADASTRO, USER_LOAD_DATA, USER_LOGGED_IN_SUCCESS, USER_LOGGED_IN_FAILURE, USER_LOGGED_OUT_FAILURE, USER_LOGGED_OUT_SUCCESS } from '../actions/actionTypes'
+import { USER_LOGGED_IN,
+     USER_LOGGED_OUT,
+      USER_CADASTRO, 
+      USER_LOAD_DATA, 
+      USER_LOGGED_IN_SUCCESS,
+       USER_LOGGED_IN_FAILURE, 
+       USER_LOGGED_OUT_FAILURE, 
+       USER_LOGGED_OUT_SUCCESS,
+        USER_LOAD_DATA_SUCCESS,
+        USER_LOAD_DATA_FAILURE
+    } from '../actions/actionTypes'
 
 const initialState = {
     user: [],
@@ -39,12 +49,20 @@ function reducer (state = initialState, action) {
         case USER_CADASTRO:
             return {
                 ...state,
-                user: action.payload.user
+                user: action.user
             }
         case USER_LOAD_DATA:
             return {
                 ...state,
-                user: action.payload.user
+            }
+        case USER_LOAD_DATA_SUCCESS:
+            return {
+                ...state,
+                user: action.payload
+            }
+        case USER_LOAD_DATA_FAILURE:
+            return {
+                ...state,
             }
         default:
             return state

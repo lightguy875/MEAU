@@ -8,7 +8,8 @@ import ErroLogin from '../views/ErroLogin'
 import storage from '@react-native-firebase/storage';
 import { Icon } from 'react-native-elements/dist/icons/Icon';
 import Icone from 'react-native-vector-icons/Feather';
-
+import { user_load_data } from '../store/actions/user'
+import { useDispatch, useStore } from 'react-redux'
 
 
 //props
@@ -21,6 +22,9 @@ export default (props) => {
     const [initializing, setInitializing] = useState(true)
     const [user, setUser] = useState()
 
+    const dispatch = useDispatch()
+
+    const usuario = useStore().getState().user
 
     function onAuthStateChanged(user) {
         setUser(user);
@@ -34,37 +38,43 @@ export default (props) => {
         carregar()
         return subscriber; // unsubscribe on unmount
 
-    }, [auth().currentUser],[]);
+    }, [auth().currentUser], []);
 
-    async function carregar() {
 
-        if (user) {
-
-            // await firestore().collection('Users').doc(auth().currentUser.uid).get().then(snapshot => {
-               await firestore().collection('Users').doc(auth().currentUser.uid).onSnapshot(async snapshot => {
-                setnomeusuario(await snapshot.data().nome_de_usuario)
-                setimagemurl(await snapshot.data().imagemurl)
-                
-            })
-        }
-        else {
-            await firestore().terminate()
-            setnomeusuario('')
+    function carregar() {
+        if(usuario.loaded) {
+            dispatch(user_load_data({id: auth().currentUser.uid}))
         }
     }
+
+    // async function carregar() {
+
+    //     if (user) {
+
+    //         // await firestore().collection('Users').doc(auth().currentUser.uid).get().then(snapshot => {
+    //            await firestore().collection('Users').doc(auth().currentUser.uid).onSnapshot(async snapshot => {
+    //             setnomeusuario(await snapshot.data().nome_de_usuario)
+    //             setimagemurl(await snapshot.data().imagemurl)
+
+    //         })
+    //     }
+    //     else {
+    //         await firestore().terminate()
+    //         setnomeusuario('')
+    //     }
+    // }
     function render() {
 
-
-        if (user) {
+        if (usuario.loaded) {
 
             return (
 
                 <View style={{ flex: 1, backgroundColor: 'white', }}>
                     <View style={Estilo.header}>
                         <View style={Estilo.photoProfile}>
-                            <Image style={{flex: 1, borderRadius: 100}} source={imagemurl !== '' ? {uri: imagemurl} : undefined} />
+                            <Image style={{ flex: 1, borderRadius: 100 }} source={usuario.imagemurl !== '' ? { uri: usuario.user.imagemurl } : undefined} />
                         </View>
-                        <Text style={Estilo.txtProfile}>{nomeusuario}</Text>
+                        <Text style={Estilo.txtProfile}>{usuario.user.nome_de_usuario}</Text>
                     </View>
                     <Button title='Teste' onPress={() => props.navigation.navigate('ErroLogin')} />
 
@@ -80,9 +90,9 @@ export default (props) => {
 
                 <View style={{ flex: 1, backgroundColor: 'white', }}>
                     <View style={Estilo.header}>
-                    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', width: 120, height: 120, backgroundColor: 'white', borderRadius: 100}}>
-                        
-                        <Icone name="user" color="#222" style={{fontSize: 100}}/>
+                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', width: 120, height: 120, backgroundColor: 'white', borderRadius: 100 }}>
+
+                            <Icone name="user" color="#222" style={{ fontSize: 100 }} />
                         </View>
                         <Text style={Estilo.txtProfile}>{nomeusuario}</Text>
                     </View>
