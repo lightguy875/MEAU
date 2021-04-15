@@ -8,7 +8,7 @@ import Cor from '../estilo/cor'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup';
 import {user_login, user_logout } from '../store/actions/user'
-import {useDispatch , useStore} from 'react-redux'
+import {useDispatch , useStore, useSelector} from 'react-redux'
 
 
 import auth from '@react-native-firebase/auth';
@@ -16,7 +16,7 @@ import { min } from 'react-native-reanimated';
 
 export default function Login({navigation, route , props}) {
 
-  const user_dados = useStore().getState().user
+  let user_dados = useSelector(state => state.user)
 
   const [user , setUser] = useState(false)
 

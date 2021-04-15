@@ -17,9 +17,6 @@ export default (props) => {
 
     var imagemc
     const [nomeusuario, setnomeusuario] = useState('')
-    const [imagemurl, setimagemurl] = useState('')
-    // const [usuario, setusuario] = useState('')
-    const[elemento,setelemento] = useState(null)
     const [initializing, setInitializing] = useState(true)
     const [user, setUser] = useState()
 
@@ -45,8 +42,9 @@ export default (props) => {
      carregar = () => {
         if(auth().currentUser) {
             dispatch(user_load_data({id: auth().currentUser.uid}))
-            
-        } 
+        } else {
+            firestore().terminate()
+        }
 
     }
 

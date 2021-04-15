@@ -7,7 +7,9 @@ import { USER_LOGGED_IN,
        USER_LOGGED_OUT_FAILURE, 
        USER_LOGGED_OUT_SUCCESS,
         USER_LOAD_DATA_SUCCESS,
-        USER_LOAD_DATA_FAILURE
+        USER_LOAD_DATA_FAILURE,
+        USER_CADASTRO_SUCCESS,
+        USER_CADASTRO_FAILURE
     } from '../actions/actionTypes'
     import auth from '@react-native-firebase/auth'
 
@@ -51,7 +53,17 @@ function reducer (state = initialState, action) {
         case USER_CADASTRO:
             return {
                 ...state,
-                user: action.user
+            }
+        case USER_CADASTRO_FAILURE:
+            return {
+                ...state,
+            }
+        case USER_CADASTRO_SUCCESS:
+            console.log(action.payload)
+            return {
+                ...state,
+                user: action.payload,
+                loaded: true
             }
         case USER_LOAD_DATA:
             return {
@@ -60,7 +72,8 @@ function reducer (state = initialState, action) {
         case USER_LOAD_DATA_SUCCESS:
             return {
                 ...state,
-                user: action.payload
+                user: action.payload,
+                loaded: true,
             }
         case USER_LOAD_DATA_FAILURE:
             return {

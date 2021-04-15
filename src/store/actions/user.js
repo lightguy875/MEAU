@@ -1,4 +1,4 @@
-import {USER_LOGGED_IN,  USER_LOGGED_OUT, USER_CADASTRO,USER_LOAD_DATA, USER_LOGGED_IN_SUCCESS, USER_LOGGED_IN_FAILURE, USER_LOGGED_OUT_SUCCESS, USER_LOAD_DATA_FAILURE, USER_LOAD_DATA_SUCCESS} from './actionTypes'
+import {USER_LOGGED_IN,  USER_LOGGED_OUT, USER_CADASTRO,USER_LOAD_DATA, USER_LOGGED_IN_SUCCESS, USER_LOGGED_IN_FAILURE, USER_LOGGED_OUT_SUCCESS, USER_LOAD_DATA_FAILURE, USER_LOAD_DATA_SUCCESS, USER_CADASTRO_SUCCESS, USER_CADASTRO_FAILURE} from './actionTypes'
 
 export const user_login = payload => ({ 
     type: USER_LOGGED_IN,
@@ -41,4 +41,13 @@ export const user_load_data_failure = () => ({
 export const user_cadastro = user => ({
         type: USER_CADASTRO,
         payload: user,
+})
+
+export const user_cadastro_success = user => ({
+    type: USER_CADASTRO_SUCCESS,
+    payload: user,
+})
+
+export const user_cadastro_failure = () => ({
+    type: USER_CADASTRO_FAILURE,
 })

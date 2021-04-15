@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, StyleSheet, Text, View, TouchableOpacity, Alert, StatusBar, ScrollView, Image } from 'react-native';
+import { Button, StyleSheet, Text, View, TouchableOpacity, Alert, StatusBar, ScrollView, Image ,LogBox} from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import Estilo from '../estilo/estilo'
 import Cor from '../estilo/cor'
@@ -12,12 +12,15 @@ import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, Controller } from 'react-hook-form'
 import estilo from '../estilo/estilo';
+import { useDispatch } from 'react-redux';
+import { user_cadastro } from '../store/actions/user';
 
 
 
 export default function CadastroPessoal({ navigation, route }) {
 
   var uid
+  const dispatch = useDispatch()
 
   React.useEffect(() => {
     if (route.params) {
@@ -48,33 +51,14 @@ export default function CadastroPessoal({ navigation, route }) {
     return <BotaoImagem onPress={() => navigation.push('Camera', { nave: 'CadastroPessoal' })} />
   }
 
-  async function Cadastro(dados) {
+  const Cadastro = (dados) => {
     if (!auth().currentUser) {
       if (image) {
-
-        await auth().createUserWithEmailAndPassword(dados.email, dados.senha).then(async () => {
-
-          const ref = await storage().ref(image)
-          await ref.putFile(image).then(async () => {
-            await ref.getDownloadURL().then(async (url) => {
-              await firestore().collection('Users').doc(auth().currentUser.uid).set({
-                name: dados.nome_completo,
-                idade: dados.idade,
-                email: dados.email,
-                Estado: dados.estado_moradia,
-                cidade: dados.cidade,
-                endereço: dados.endereco,
-                telefone: dados.telefone,
-                imagem: image,
-                imagemurl: url,
-                nome_de_usuario: dados.nome_de_usuario,
-              })
-            })
-          }).then(() => {
-            Alert.alert('Cadastro', 'Novo usuário cadastrado')
+        var valor = Object.assign(dados, {imagem: image}, {imagemurl: ''})
+            dispatch(user_cadastro(valor))
             reset()
-            setImage(undefined)
-          })})
+            setImage('')
+            
         } else {
           Alert.alert('Erro', 'Voce precisa cadastrar uma imagem de perfil')
         }
@@ -83,15 +67,14 @@ export default function CadastroPessoal({ navigation, route }) {
         Alert.alert('Erro', 'Voce precisa estar deslogado para cadastrar')
       }
     }
-    
 
   const validacao = yup.object().shape({
-    nome_completo: yup.string().required("Este campo é obrigatorio"),
+    name: yup.string().required("Este campo é obrigatorio"),
     idade: yup.number().required("Este campo é obrigatorio"),
     email: yup.string().email("Formato de e-mail inválido").required("Este campo é obrigatorio"),
-    estado_moradia: yup.string().required("Este campo é obrigatorio"),
+    Estado: yup.string().required("Este campo é obrigatorio"),
     cidade: yup.string().required("Este campo é obrigatorio"),
-    endereco: yup.string().required("Este campo é obrigatorio"),
+    endereço: yup.string().required("Este campo é obrigatorio"),
     telefone: yup.number().required("Este campo é obrigatorio"),
     nome_de_usuario: yup.string().required("Este campo é obrigatorio"),
     senha: yup.string().min(3, 'Senha muito curta. Min: 1').required("Este campo é obrigatorio"),
@@ -102,7 +85,7 @@ export default function CadastroPessoal({ navigation, route }) {
     resolver: yupResolver(validacao)
   })
 
-
+  LogBox.ignoreAllLogs()
   const [erro, setErro] = useState('')
 
   return (
@@ -133,11 +116,11 @@ export default function CadastroPessoal({ navigation, route }) {
             />
           )}
 
-          name="nome_completo"
+          name="name"
           defaultValue=""
         />
 
-        {errors?.nome_completo && <Text style={{ color: 'red' }}>{errors?.nome_completo.message}</Text>}
+        {errors?.name && <Text style={{ color: 'red' }}>{errors?.name.message}</Text>}
 
 
         <Controller
@@ -194,11 +177,11 @@ export default function CadastroPessoal({ navigation, route }) {
 
             />
           )}
-          name="estado_moradia"
+          name="Estado"
 
           defaultValue=""
         />
-        {errors?.estado_moradia && <Text style={{ color: 'red' }}>{errors?.estado_moradia.message}</Text>}
+        {errors?.Estado && <Text style={{ color: 'red' }}>{errors?.Estado.message}</Text>}
 
 
         <Controller
@@ -232,11 +215,11 @@ export default function CadastroPessoal({ navigation, route }) {
 
             />
           )}
-          name="endereco"
+          name="endereço"
 
           defaultValue=""
         />
-        {errors?.endereco && <Text style={{ color: 'red' }}>{errors?.endereco.message}</Text>}
+        {errors?.endereço && <Text style={{ color: 'red' }}>{errors?.endereço.message}</Text>}
 
 
 

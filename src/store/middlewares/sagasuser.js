@@ -1,5 +1,5 @@
 import { put, takeLatest, call, all } from 'redux-saga/effects'
-import { USER_LOGGED_IN, USER_LOGGED_OUT, USER_CADASTRO, USER_LOAD_DATA} from '../actions/actionTypes'
+import { USER_LOGGED_IN, USER_LOGGED_OUT, USER_CADASTRO, USER_LOAD_DATA } from '../actions/actionTypes'
 import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
 import storage from '@react-native-firebase/storage'
@@ -11,8 +11,11 @@ import {
     user_logout_failure,
     user_load_data_sucess,
     user_load_data_failure,
+    user_cadastro_success,
+    user_cadastro_failure,
 }
     from '../actions/user'
+import { object } from 'yup/lib/locale'
 
 
 function* sagasuser() {
@@ -69,47 +72,45 @@ function* logoutuser() {
 
 function* loaddatauser(action) {
 
-     try {
+    try {
 
         let user = yield call(action =>
             firestore().collection('Users')
-            .doc(action.payload.id)
-            .get()
+                .doc(action.payload.id)
+                .get()
             , action
         );
 
 
         yield put(user_load_data_sucess(user.data()))
     } catch (error) {
-        Alert.alert('Error',`Não foi possível carregar os dados do usuário ${error}`)
+        // Alert.alert('Error', `Não foi possível carregar os dados do usuário ${error}`)
         yield put(user_load_data_failure())
- }
+    }
 
 }
 
 function* cadastrouser(action) {
 
-    let newuser = action.user
+    try {
+        let newUser = action.payload
+        const ref = storage().ref(action.payload.imagem)
+        yield  ref.putFile(action.payload.imagem)
+        yield  ref.getDownloadURL().then((url) => {
+            newUser.imagemurl = url
+        })
+        const login = yield auth().createUserWithEmailAndPassword(action.payload.email,action.payload.senha)
 
-    const login = yield auth().createUserWithEmailAndPassword(action.user.email, action.user.password)
+       yield firestore().collection('Users').doc(login.user.uid).set(newUser)
 
-    yield storage().ref(newuser.imagem).put(action.user.imagem)
-    yield storage().ref(newuser.imagem).getDownloadURL().then(url => {
-        newuser.imagemurl = url;
-    })
+        yield put(user_cadastro_success(newUser))
 
-    yield firestore().collection('Users').doc(login.user.uid).set({
-        name: newuser.nome_completo,
-        idade: newuser.idade,
-        email: newuser.email,
-        Estado: newuser.estado_moradia,
-        cidade: newuser.cidade,
-        endereço: newuser.endereco,
-        telefone: newuser.telefone,
-        imagem: newuser.image,
-        imagemurl: newuser.imagemurl,
-        nome_de_usuario: newuser.nome_de_usuario,
-    })
+        Alert.alert('Cadastro', 'Usuário Cadastrado com sucesso')
+
+    } catch (error) {
+        Alert.alert('Error', 'Usuário não cadastrado')
+        yield put(user_cadastro_failure())
+    }
 }
 
 export default sagasuser

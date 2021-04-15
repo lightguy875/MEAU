@@ -17,8 +17,10 @@ export default function Perfil({ navigation, route }) {
 
     function Renderizar() {
 
-
+        console.log(usuario)
         if (usuario.user) {
+
+            
 
             return (
                 <ScrollView>
@@ -36,7 +38,7 @@ export default function Perfil({ navigation, route }) {
 
                     <Image
                         style={{ width: 300, height: 300, resizeMode: 'contain' }}
-                        source={usuario.user.imagemurl  !== '' ? {uri: usuario.user.imagemurl} : undefined}
+                        source={{uri: usuario.user.imagemurl}}
                     />
                 </ScrollView>
 
