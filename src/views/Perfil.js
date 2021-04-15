@@ -7,109 +7,36 @@ import { BotaoPrimario, BotaoImagem } from '../componente/botao'
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth'
 import { set } from 'react-native-reanimated';
-import storage, { firebase } from '@react-native-firebase/storage';
-
+import {useSelector} from 'react-redux'
 
 
 
 export default function Perfil({ navigation, route }) {
 
-
-    // Variaveis
-    var Image_Http_URL
-    var imagemv
-    const [initializing, setInitializing] = useState(true)
-    const [user, setUser] = useState()
-
-
-    function onAuthStateChanged(user) {
-        setUser(user);
-        if (initializing) setInitializing(false);
-    }
-
-
-
-    useEffect(() => {
-        const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-        Carregar_dados()
-        return subscriber; // unsubscribe on unmount
-
-    }, [auth().currentUser],[]);
-
-
-    const [estado, setestado] = useState('')
-    const [cidade, setcidade] = useState('')
-    const [email, setemail] = useState('')
-    const [endereco, setendereco] = useState('')
-    const [idade, setidade] = useState('')
-    const [imagem, setimagem] = useState('')
-    const [telefone, settelefone] = useState('')
-    const [imgurl, setimgurl] = useState('')
-    const [name, setname] = useState('')
-
-
-    async function Carregar_dados() {
-
-        if (auth().currentUser) {
-
-            // await firestore().collection('Users').doc(auth().currentUser.uid).get().then(snapshot => {
-               await firestore().collection('Users').doc(auth().currentUser.uid).onSnapshot(async snapshot => {       
-                 setestado(await snapshot.data().Estado)
-                 setcidade(await snapshot.data().cidade)
-                 setemail(await snapshot.data().email)
-                 setendereco(await snapshot.data().endereço)
-                 setidade(await snapshot.data().idade)
-                 setimagem(await snapshot.data().imagem)
-                 setname(await snapshot.data().name)
-                 settelefone(await snapshot.data().telefone)
-                 setimgurl(await snapshot.data().imagemurl)
-            })
-        }
-
-        else {
-
-            await firestore().terminate()
-
-            setestado('')
-            setcidade('')
-            setemail('')
-            
-            setendereco('')
-            setidade('')
-            setimagem('')
-            settelefone('')
-            setimgurl('')
-            setname('')
-
-
-        }
-
-    }
+    let usuario = useSelector(state => state.user)
 
     function Renderizar() {
 
-        // if (initializing) return null;
 
-        if (auth().currentUser) {
-            //Carregar_dados()
+        if (usuario.user) {
 
             return (
                 <ScrollView>
                     <SafeAreaView style={Estilo.container}>
                         <Text style={Estilo.textoPerfilUsuario}>Informações do Usuário</Text>
-                        <Text style={Estilo.textoPerfil}>Nome: {name} </Text>
-                        <Text style={Estilo.textoPerfil}>Idade: {idade} </Text>
-                        <Text style={Estilo.textoPerfil}>Email: {email} </Text>
-                        <Text style={Estilo.textoPerfil}>Endereço: {endereco} </Text>
-                        <Text style={Estilo.textoPerfil}>Telefone: {telefone}</Text>
-                        <Text style={Estilo.textoPerfil}>Cidade: {cidade} </Text>
-                        <Text style={Estilo.textoPerfil}>Estado: {estado} </Text>
+                        <Text style={Estilo.textoPerfil}>Nome: {usuario.user.name} </Text>
+                        <Text style={Estilo.textoPerfil}>Idade: {usuario.user.idade} </Text>
+                        <Text style={Estilo.textoPerfil}>Email: {usuario.user.email} </Text>
+                        <Text style={Estilo.textoPerfil}>Endereço: {usuario.user.endereço} </Text>
+                        <Text style={Estilo.textoPerfil}>Telefone: {usuario.user.telefone}</Text>
+                        <Text style={Estilo.textoPerfil}>Cidade: {usuario.user.cidade} </Text>
+                        <Text style={Estilo.textoPerfil}>Estado: {usuario.user.Estado} </Text>
                     </SafeAreaView>
 
 
                     <Image
                         style={{ width: 300, height: 300, resizeMode: 'contain' }}
-                        source={imgurl  !== '' ? {uri: imgurl} : undefined}
+                        source={usuario.user.imagemurl  !== '' ? {uri: usuario.user.imagemurl} : undefined}
                     />
                 </ScrollView>
 
