@@ -16,8 +16,6 @@ export default function Perfil({ navigation, route }) {
     let usuario = useSelector(state => state.user)
 
     function Renderizar() {
-
-        console.log(usuario)
         if (usuario.user) {
 
             
