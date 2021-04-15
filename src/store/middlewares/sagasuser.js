@@ -71,9 +71,6 @@ function* loaddatauser(action) {
 
      try {
 
- 
-        
-
         let user = yield call(action =>
             firestore().collection('Users')
             .doc(action.payload.id)

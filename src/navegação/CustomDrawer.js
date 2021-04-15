@@ -9,7 +9,7 @@ import storage from '@react-native-firebase/storage';
 import { Icon } from 'react-native-elements/dist/icons/Icon';
 import Icone from 'react-native-vector-icons/Feather';
 import { user_load_data } from '../store/actions/user'
-import { useDispatch, useStore } from 'react-redux'
+import { useDispatch, useStore, useSelector } from 'react-redux'
 
 
 //props
@@ -18,13 +18,14 @@ export default (props) => {
     var imagemc
     const [nomeusuario, setnomeusuario] = useState('')
     const [imagemurl, setimagemurl] = useState('')
-
+    // const [usuario, setusuario] = useState('')
+    const[elemento,setelemento] = useState(null)
     const [initializing, setInitializing] = useState(true)
     const [user, setUser] = useState()
 
     const dispatch = useDispatch()
-
-    const usuario = useStore().getState().user
+    // let usuario = useStore().getState().user
+    let usuario = useSelector(state => state.user)
 
     function onAuthStateChanged(user) {
         setUser(user);
@@ -41,50 +42,40 @@ export default (props) => {
     }, [auth().currentUser], []);
 
 
-    function carregar() {
-        if(usuario.loaded) {
+     carregar = () => {
+        if(auth().currentUser) {
             dispatch(user_load_data({id: auth().currentUser.uid}))
-        }
+            
+        } 
+
     }
 
-    // async function carregar() {
-
-    //     if (user) {
-
-    //         // await firestore().collection('Users').doc(auth().currentUser.uid).get().then(snapshot => {
-    //            await firestore().collection('Users').doc(auth().currentUser.uid).onSnapshot(async snapshot => {
-    //             setnomeusuario(await snapshot.data().nome_de_usuario)
-    //             setimagemurl(await snapshot.data().imagemurl)
-
-    //         })
-    //     }
-    //     else {
-    //         await firestore().terminate()
-    //         setnomeusuario('')
-    //     }
-    // }
     function render() {
+        if(usuario.user) {
 
-        if (usuario.loaded) {
-
-            return (
-
-                <View style={{ flex: 1, backgroundColor: 'white', }}>
-                    <View style={Estilo.header}>
-                        <View style={Estilo.photoProfile}>
-                            <Image style={{ flex: 1, borderRadius: 100 }} source={usuario.imagemurl !== '' ? { uri: usuario.user.imagemurl } : undefined} />
+                return (
+                    <View style={{ flex: 1, backgroundColor: 'white', }}>
+                        <View style={Estilo.header}>
+                            <View style={Estilo.photoProfile}>
+                                <Image style={{ flex: 1, borderRadius: 100 }} source={usuario.user ? { uri: usuario.user.imagemurl } : undefined} /> 
+                            </View>
+                            <Text style={Estilo.txtProfile}>{usuario.user ? usuario.user.nome_de_usuario : 'carregando'}</Text>
+                            {/*  */}
                         </View>
-                        <Text style={Estilo.txtProfile}>{usuario.user.nome_de_usuario}</Text>
+                        <Button title='Teste' onPress={() => props.navigation.navigate('ErroLogin')} />
+    
+                        <DrawerItemList {...props} />
+    
                     </View>
-                    <Button title='Teste' onPress={() => props.navigation.navigate('ErroLogin')} />
+    
+    
+                )
 
-                    <DrawerItemList {...props} />
+            }else {
 
-                </View>
+            
 
-
-            )
-        } else {
+           
 
             return (
 

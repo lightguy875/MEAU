@@ -9,9 +9,10 @@ import { USER_LOGGED_IN,
         USER_LOAD_DATA_SUCCESS,
         USER_LOAD_DATA_FAILURE
     } from '../actions/actionTypes'
+    import auth from '@react-native-firebase/auth'
 
 const initialState = {
-    user: [],
+    user: null,
     loaded: false,
 }
 
@@ -44,6 +45,7 @@ function reducer (state = initialState, action) {
             return {
                 ...state,
                 loaded: false,
+                user: null,
             }
 
         case USER_CADASTRO:
@@ -65,7 +67,10 @@ function reducer (state = initialState, action) {
                 ...state,
             }
         default:
-            return state
+            return {
+                ...state,
+                loaded: auth().currentUser ? true : false
+            }
     }
 }
 
