@@ -25,7 +25,6 @@ export default (props) => {
     const dispatch = useDispatch()
     // let usuario = useStore().getState().user
     let usuario = useSelector(state => state.user)
-    let notifications = useSelector(state => state.notificacoes)
 
     function onAuthStateChanged(user) {
         setUser(user);

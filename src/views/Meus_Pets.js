@@ -9,7 +9,6 @@ import storage, { firebase } from '@react-native-firebase/storage';
 import { FlatList } from 'react-native';
 import Dadoanimal from '../componente/Dadoanimal'
 import {useDispatch, useSelector} from 'react-redux'
-import { pet_load, pet_load_success } from '../store/actions/pet';
 
 
 

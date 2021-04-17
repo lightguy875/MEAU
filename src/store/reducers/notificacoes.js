@@ -1,8 +1,8 @@
 import {USER_LOGGED_OUT_SUCCESS, NOTFICIATIONS_LOAD_RESPOSTAS_SUCCESS, NOTIFICATIONS_LOAD_INTERESSES_SUCCESS } from '../actions/actionTypes'
 
 const initialState = {
-    interesse: null,
-    resposta: null,
+    interesse: false,
+    resposta: false,
 }
 
 

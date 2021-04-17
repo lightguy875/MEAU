@@ -13,6 +13,7 @@ import Meus_Pets from '../views/Meus_Pets'
 import Todos_Pets from '../views/Todos_Pets'
 import Perfilmeupet from '../views/Perfilmeupet'
 import Interessados from '../views/Interessados'
+import Notificacoes from '../views/Notificacoes'
 
 const Stack = createStackNavigator(); // Criar uma constante para cada Stack
 
@@ -39,6 +40,13 @@ export function LoginStack({navigation}) {
         },
 
         headerLeft: () => AbrirMenu({navigation}),
+      }}/>
+
+      <Stack.Screen name="Notificacoes" component={Notificacoes} options = {{
+        title: 'Notificações',
+        headerStyle: {
+          backgroundColor: '#cfe9e5'
+        },
       }}/>
 
       <Stack.Screen name="ErroLogin" component={ErroLogin} options={{

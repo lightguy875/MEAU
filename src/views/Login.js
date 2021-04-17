@@ -17,6 +17,7 @@ import { min } from 'react-native-reanimated';
 export default function Login({navigation, route , props}) {
 
   let user_dados = useSelector(state => state.user)
+  let notifications = useSelector(state => state.notificacoes)
 
   const [user , setUser] = useState(false)
 
@@ -129,13 +130,13 @@ export default function Login({navigation, route , props}) {
         return(
         <View>
             <View style={{ alignItems: 'center', justifyContent: 'center'}}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Notificacoes')}>
           <Image
               style={Estilo.imageIcon}
               source={require('../img/icon_notification1.png')}
               accessibilityLabel='Imagem para notificação.'
             />
-            <Text style={{ alignSelf:'center'}}>10</Text> 
+            <Text style={{ alignSelf:'center'}}>{notifications.interesse ? notifications.resposta ?  notifications.resposta.length + notifications.interesse.length : notifications.interesse.length : '0'}</Text> 
             </TouchableOpacity>
             </View>
 
