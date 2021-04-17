@@ -9,6 +9,7 @@ import storage from '@react-native-firebase/storage';
 import { Icon } from 'react-native-elements/dist/icons/Icon';
 import Icone from 'react-native-vector-icons/Feather';
 import { user_load_data } from '../store/actions/user'
+import {pet_load_success,pet_load_todos_success} from '../store/actions/pet'
 import { useDispatch, useStore, useSelector } from 'react-redux'
 
 
@@ -34,19 +35,80 @@ export default (props) => {
     useEffect(() => {
         const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
         carregar()
+        carregar_animais()
+        carregar_animais_todos()
         return subscriber; // unsubscribe on unmount
 
-    }, [auth().currentUser], []);
+    }, [auth().currentUser]);
 
 
-     carregar = () => {
+     carregar = async() => {
         if(auth().currentUser) {
             dispatch(user_load_data({id: auth().currentUser.uid}))
-        } else {
-            firestore().terminate()
         }
-
     }
+
+    async function carregar_animais() {
+
+        if (auth().currentUser) {
+            await firestore().collection('Animais').where('dono', '==', auth().currentUser.uid).onSnapshot((querySnapshot) => {
+                var animaisaux = [];
+                querySnapshot.forEach((doc) => {
+
+
+                    animaisaux.push(Object.assign(doc.data(), { id: doc.id }))
+
+                })
+                dispatch(pet_load_success(animaisaux))
+            })
+        } else {
+            await firestore().terminate()
+            
+        }
+    }
+
+
+    async function carregar_animais_todos() {
+
+        if (auth().currentUser) {
+            await firestore().collection('Animais').where('dono', '!=', auth().currentUser.uid).onSnapshot((querySnapshot) => {
+                var animaistodosaux = [];
+                querySnapshot.forEach((doc) => {
+
+
+                    animaistodosaux.push(Object.assign(doc.data(), { id: doc.id }))
+
+                })
+                dispatch(pet_load_todos_success(animaistodosaux))
+            })
+        } else {
+            await firestore().terminate()
+            
+        }
+    }
+
+
+
+    async function carregar_animais_todos() {
+
+        if (auth().currentUser) {
+            await firestore().collection('Animais').where('dono', '!=', auth().currentUser.uid).onSnapshot((querySnapshot) => {
+                var animaisaux = [];
+                querySnapshot.forEach((doc) => {
+
+
+                    animaisaux.push(Object.assign(doc.data(), { id: doc.id }))
+
+                })
+                dispatch(pet_load_todos_success(animaisaux))
+            })
+        } else {
+            await firestore().terminate()
+            
+        }
+    }
+
+
 
     function render() {
         if(usuario.user) {
@@ -55,7 +117,7 @@ export default (props) => {
                     <View style={{ flex: 1, backgroundColor: 'white', }}>
                         <View style={Estilo.header}>
                             <View style={Estilo.photoProfile}>
-                                <Image style={{ flex: 1, borderRadius: 100 }} source={usuario.user ? { uri: usuario.user.imagemurl } : undefined} /> 
+                                <Image style={{ flex: 1, borderRadius: 100 }} source={{ uri: usuario.user.imagemurl }} /> 
                             </View>
                             <Text style={Estilo.txtProfile}>{usuario.user ? usuario.user.nome_de_usuario : 'carregando'}</Text>
                             {/*  */}

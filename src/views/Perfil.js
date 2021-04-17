@@ -7,11 +7,12 @@ import { BotaoPrimario, BotaoImagem } from '../componente/botao'
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth'
 import { set } from 'react-native-reanimated';
-import {useSelector} from 'react-redux'
+import {useSelector ,useStore} from 'react-redux'
 
 
 
 export default function Perfil({ navigation, route }) {
+
 
     let usuario = useSelector(state => state.user)
 

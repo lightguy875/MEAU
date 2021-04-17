@@ -95,13 +95,13 @@ function* cadastrouser(action) {
     try {
         let newUser = action.payload
         const ref = storage().ref(action.payload.imagem)
-        yield  ref.putFile(action.payload.imagem)
-        yield  ref.getDownloadURL().then((url) => {
+        yield ref.putFile(action.payload.imagem)
+        yield ref.getDownloadURL().then((url) => {
             newUser.imagemurl = url
         })
         const login = yield auth().createUserWithEmailAndPassword(action.payload.email,action.payload.senha)
 
-       yield firestore().collection('Users').doc(login.user.uid).set(newUser)
+        yield firestore().collection('Users').doc(login.user.uid).set(newUser)
 
         yield put(user_cadastro_success(newUser))
 

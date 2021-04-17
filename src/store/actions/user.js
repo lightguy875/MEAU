@@ -15,12 +15,12 @@ export const user_logout = () => ({
         type: USER_LOGGED_OUT,
 
 })
-export const user_logout_failure = () => ({
-    type: USER_LOGGED_OUT_FAILURE
-})
-
 export const user_logout_success = () => ({
     type: USER_LOGGED_OUT_SUCCESS
+})
+
+export const user_logout_failure = () => ({
+    type: USER_LOGGED_OUT_FAILURE
 })
 
 export const user_load_data = (payload) => ({

@@ -1,4 +1,4 @@
-import { PET_CADASTRO, PET_DELETE, PET_UPDATE } from '../actions/actionTypes'
+import { PET_CADASTRO, PET_DELETE, PET_UPDATE , PET_LOAD, PET_LOAD_FAILURE, PET_LOAD_SUCCESS} from '../actions/actionTypes'
 
 const initialState = {
     pets: null,
@@ -6,6 +6,22 @@ const initialState = {
 
 function reducer(state = initialState, action) {
     switch (action.type) {
+
+        case PET_LOAD:
+            return {
+                ...state
+            }
+
+        case PET_LOAD_SUCCESS:
+            return {
+                ...state,
+                pets: action.payload
+            }
+
+        case PET_LOAD_FAILURE:
+            return {
+                ...state
+            }
         case PET_CADASTRO:
             return {
                 ...state,

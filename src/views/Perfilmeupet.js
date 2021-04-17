@@ -9,10 +9,13 @@ import cor from '../estilo/cor'
 import { BotaoPrimario } from '../componente/botao'
 export default function Perfilmeupet({ navigation, route }) {
 
+    const [avaliador,setavaliador] = useState()
+
     useEffect(() => {
         navigation.setOptions({
             title: route.params.item.Nome_do_animal,
         });
+        setavaliador(route.params.item.interessados.includes(auth().currentUser.uid))
     }, [route.params]);
 
 
@@ -22,6 +25,7 @@ export default function Perfilmeupet({ navigation, route }) {
 
             Alert.alert('Desmarcar interesse', 'Deseja tirar seu interesse pelo pet?', [
                 {
+
                     text: 'Sim',
                    async onPress(){
                     var array = route.params.item.interessados
@@ -32,6 +36,7 @@ export default function Perfilmeupet({ navigation, route }) {
                             interessados: array
                         }).then(() => {
                             Alert.alert('Sucesso', 'Você desmarcou o seu interesse')
+                            setavaliador(false)
                         })
                     }
                 }
@@ -62,6 +67,7 @@ export default function Perfilmeupet({ navigation, route }) {
                         interessados: route.params.item.interessados
                     }).then(() => {
                          Alert.alert('Sucesso', 'Você marcou o seu interesse')
+                         setavaliador(true)
                  })
 
             }
@@ -153,7 +159,7 @@ export default function Perfilmeupet({ navigation, route }) {
                 <Text style={styles.textoPrincipal}> {(route.params.item.Termo_de_adoção ? 'Termo de adoçao ' : '') + (route.params.item.Fotos_de_casa ? 'Fotos de casa, ' : '') + (route.params.item.Visita_previa_ao_animal ? 'Visita Prévia ao animal , ' : '') + (route.params.item.Acompanhamento_pos_adocao ? 'Acompanhamento de ' + `${route.params.item.Tempo_de_acompanhamento}` : '')} </Text>
             </View>
             <View style={{ alignItems: 'center', justifyContent: 'space-between'}}>
-                {route.params.item.dono != auth().currentUser.uid ? route.params.item.interessados.includes(auth().currentUser.uid) ?  <BotaoPrimario name="Remover pretensão" onPress={() => desmarcar_interesse()}/> : <BotaoPrimario name="Pretendo Adotar" onPress={() => marcar_interesse()}/> : (<>
+                {route.params.item.dono != auth().currentUser.uid ? avaliador ?  <BotaoPrimario name="Remover pretensão" onPress={() => desmarcar_interesse()}/> : <BotaoPrimario name="Pretendo Adotar" onPress={() => marcar_interesse()}/> : (<>
                 <BotaoPrimario name='Ver interessados' onPress={() => navigation.navigate('Interessados', {item: route.params.item})}/>
                 <BotaoPrimario name="Remover Pet" onPress={() => delete_animal()}/>
                 </>)
