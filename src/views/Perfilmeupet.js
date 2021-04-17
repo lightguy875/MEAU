@@ -7,7 +7,13 @@ import Estilo from '../estilo/estilo'
 import estilo from '../estilo/estilo'
 import cor from '../estilo/cor'
 import { BotaoPrimario } from '../componente/botao'
+import {useDispatch, useSelector} from 'react-redux'
+
+
+
 export default function Perfilmeupet({ navigation, route }) {
+
+    let usuario = useSelector(state => state.user)
 
     const [avaliador,setavaliador] = useState()
 
@@ -38,7 +44,17 @@ export default function Perfilmeupet({ navigation, route }) {
                             Alert.alert('Sucesso', 'Você desmarcou o seu interesse')
                             setavaliador(false)
                         })
+                       
                     }
+                    let docid = [];
+                    await firestore().collection('Notifications').where('pet','==',route.params.item.id).where('interessado','==',auth().currentUser.uid).get().then(collection => {
+                        collection.forEach(doc => {
+                            docid = doc.id
+                        })
+                    }).then(async() => {
+                        await firestore().collection('Notifications').doc(docid).delete()
+                    })
+
                 }
                 },
                 {
@@ -68,6 +84,17 @@ export default function Perfilmeupet({ navigation, route }) {
                     }).then(() => {
                          Alert.alert('Sucesso', 'Você marcou o seu interesse')
                          setavaliador(true)
+                 })
+
+                 await firestore().collection('Notifications').add({
+                    interessado: auth().currentUser.uid,
+                    pet: route.params.item.id,
+                    dono: route.params.item.dono,
+                    nome: usuario.user.nome_de_usuario,
+                    nome_pet : route.params.item.Nome_do_animal,
+                    visto: false,
+                    tipo: 'interesse',
+                    createdAt: new Date().getTime()
                  })
 
             }
