@@ -1,4 +1,4 @@
-import { PET_CADASTRO, PET_DELETE, PET_LOAD_TODOS_FAILURE, PET_LOAD_TODOS_SUCCESS, PET_UPDATE , PET_LOAD_TODOS} from '../actions/actionTypes'
+import { PET_CADASTRO, PET_DELETE, PET_LOAD_TODOS_FAILURE, PET_LOAD_TODOS_SUCCESS, PET_UPDATE , PET_LOAD_TODOS, USER_LOGGED_OUT_SUCCESS} from '../actions/actionTypes'
 
 const initialState = {
     pets: null,
@@ -20,7 +20,11 @@ function reducer (state = initialState, action) {
             return {
                 ...state,
             }
-
+        case USER_LOGGED_OUT_SUCCESS:
+            return {
+                ...state,
+                pets: null,
+                }
         case PET_UPDATE:
             return {
                 ...state,
