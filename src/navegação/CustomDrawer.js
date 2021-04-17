@@ -34,23 +34,24 @@ export default (props) => {
 
     useEffect(() => {
         const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+        if (auth().currentUser) {
         carregar()
         carregar_animais()
         carregar_animais_todos()
+        } else {
+            firestore().terminate()
+        }
         return subscriber; // unsubscribe on unmount
 
     }, [auth().currentUser]);
 
 
      carregar = async() => {
-        if(auth().currentUser) {
             dispatch(user_load_data({id: auth().currentUser.uid}))
-        }
     }
 
     async function carregar_animais() {
 
-        if (auth().currentUser) {
             await firestore().collection('Animais').where('dono', '==', auth().currentUser.uid).onSnapshot((querySnapshot) => {
                 var animaisaux = [];
                 querySnapshot.forEach((doc) => {
@@ -61,16 +62,11 @@ export default (props) => {
                 })
                 dispatch(pet_load_success(animaisaux))
             })
-        } else {
-            await firestore().terminate()
-            
-        }
     }
 
 
     async function carregar_animais_todos() {
 
-        if (auth().currentUser) {
             await firestore().collection('Animais').where('dono', '!=', auth().currentUser.uid).onSnapshot((querySnapshot) => {
                 var animaistodosaux = [];
                 querySnapshot.forEach((doc) => {
@@ -81,17 +77,12 @@ export default (props) => {
                 })
                 dispatch(pet_load_todos_success(animaistodosaux))
             })
-        } else {
-            await firestore().terminate()
-            
-        }
     }
 
 
 
     async function carregar_animais_todos() {
 
-        if (auth().currentUser) {
             await firestore().collection('Animais').where('dono', '!=', auth().currentUser.uid).onSnapshot((querySnapshot) => {
                 var animaisaux = [];
                 querySnapshot.forEach((doc) => {
@@ -102,10 +93,6 @@ export default (props) => {
                 })
                 dispatch(pet_load_todos_success(animaisaux))
             })
-        } else {
-            await firestore().terminate()
-            
-        }
     }
 
 
