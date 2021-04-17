@@ -1,6 +1,6 @@
 import {useForm, Controller} from 'react-hook-form'
 import React, {useState, useEffect, Component} from 'react';
-import { Button, StyleSheet, Text, View, TouchableOpacity, Alert, StatusBar, KeyboardAvoidingView} from 'react-native';
+import { Button, StyleSheet, Text, View, TouchableOpacity, Alert, StatusBar, KeyboardAvoidingView, Image} from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import  Estilo from '../estilo/Login.estilo'
 import  botao from '../estilo/botao.style'
@@ -127,6 +127,19 @@ export default function Login({navigation, route , props}) {
         )
       }else{
         return(
+        <View>
+            <View style={{ alignItems: 'center', justifyContent: 'center'}}>
+            <TouchableOpacity>
+          <Image
+              style={Estilo.imageIcon}
+              source={require('../img/icon_notification1.png')}
+              accessibilityLabel='Imagem para notificação.'
+            />
+            <Text style={{ alignSelf:'center'}}>10</Text> 
+            </TouchableOpacity>
+            </View>
+
+          
           <TouchableOpacity
           style={botao.botaoLogin}
          
@@ -135,6 +148,9 @@ export default function Login({navigation, route , props}) {
             <Text style={{color: '#000'}}>Sair</Text>
   
           </TouchableOpacity>
+
+
+          </View>
         )
       }
     }

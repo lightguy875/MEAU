@@ -47,6 +47,7 @@ export default function Perfilmeupet({ navigation, route }) {
                        
                     }
                     let docid = [];
+            
                     await firestore().collection('Notifications').where('pet','==',route.params.item.id).where('interessado','==',auth().currentUser.uid).get().then(collection => {
                         collection.forEach(doc => {
                             docid = doc.id

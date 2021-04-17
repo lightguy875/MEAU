@@ -71,5 +71,13 @@ export default StyleSheet.create({
 
     },
 
+    imageIcon: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 30,
+        height: 30,
+        margin: 5,
+    },
     
 })

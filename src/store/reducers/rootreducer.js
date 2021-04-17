@@ -1,4 +1,5 @@
 import interessados from './interessados'
+import notificacoes from './notificacoes'
 import petsuser from './petsuser'
 import pettodos from './pettodos'
 import user from './user'
@@ -8,7 +9,9 @@ const reducer = combineReducers({
     user,
     pettodos,
     petsuser,
-    interessados
+    interessados,
+    notificacoes,
+
 });
 
 export{reducer};

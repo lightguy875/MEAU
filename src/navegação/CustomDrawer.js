@@ -10,6 +10,7 @@ import { Icon } from 'react-native-elements/dist/icons/Icon';
 import Icone from 'react-native-vector-icons/Feather';
 import { user_load_data } from '../store/actions/user'
 import {pet_load_success,pet_load_todos_success} from '../store/actions/pet'
+import {notifications_load_interesses_success,notifications_load_respostas_success} from '../store/actions/notificacoes'
 import { useDispatch, useStore, useSelector } from 'react-redux'
 
 
@@ -24,6 +25,7 @@ export default (props) => {
     const dispatch = useDispatch()
     // let usuario = useStore().getState().user
     let usuario = useSelector(state => state.user)
+    let notifications = useSelector(state => state.notificacoes)
 
     function onAuthStateChanged(user) {
         setUser(user);
@@ -38,6 +40,8 @@ export default (props) => {
         carregar()
         carregar_animais()
         carregar_animais_todos()
+        carregar_notificacao_interesse()
+        carregar_notificacao_resposta()
         } else {
             firestore().terminate()
         }
@@ -49,6 +53,30 @@ export default (props) => {
      carregar = async() => {
             dispatch(user_load_data({id: auth().currentUser.uid}))
     }
+
+
+    async function carregar_notificacao_interesse() {
+        
+        await firestore().collection('Notifications').where('tipo', '==' , 'interesse').where('dono', '==',auth().currentUser.uid).onSnapshot((querySnapshot) => {
+            var nofications = [];
+            querySnapshot.forEach((doc) => {
+                nofications.push(Object.assign(doc.data(), {id : doc.id}))
+            })
+            dispatch(notifications_load_interesses_success(nofications))
+        })
+    }
+
+    async function carregar_notificacao_resposta() {
+        await firestore().collection('Notifications').where('tipo', '==' , 'resposta').where('interessado', '==',auth().currentUser.uid).onSnapshot((querySnapshot) => {
+            var nofications_resposta = [];
+            querySnapshot.forEach((doc) => {
+                nofications_resposta.push(Object.assign(doc.data(), {id : doc.id}))
+            })
+            dispatch(notifications_load_respostas_success(nofications_resposta))
+        })
+    }
+
+
 
     async function carregar_animais() {
 
@@ -99,7 +127,6 @@ export default (props) => {
 
     function render() {
         if(usuario.user) {
-
                 return (
                     <View style={{ flex: 1, backgroundColor: 'white', }}>
                         <View style={Estilo.header}>
