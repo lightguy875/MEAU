@@ -67,25 +67,25 @@ export default function Interesse(props) {
                      return elemento != undefined
                      })
                      console.log(array)
-                    // await firestore().collection('Notifications').add({
-                    //     interessado: props.interessado,
-                    //     pet: props.pet,
-                    //     dono: auth().currentUser.uid,
-                    //     nome: usuario.user.nome_de_usuario,
-                    //     nome_pet: props.nome_pet,
-                    //     visto: false,
-                    //     tipo: 'resposta',
-                    //     resposta: 'recusar',
-                    //     createdAt: new Date().getTime()
-                    // }).then(async () => {
-                    //     await firestore().collection('Animais').doc(props.pet).update({
-                    //         interessados: array
-                    //     })
-                    // }).then(async () => {
-                    //     await firestore().collection('Notifications').doc(props.id).delete()
-                    // }).then(() => {
-                    //     Alert.alert('Sucesso', 'Você recusou o pedido de adoção')
-                    // })
+                    await firestore().collection('Notifications').add({
+                        interessado: props.interessado,
+                        pet: props.pet,
+                        dono: auth().currentUser.uid,
+                        nome: usuario.user.nome_de_usuario,
+                        nome_pet: props.nome_pet,
+                        visto: false,
+                        tipo: 'resposta',
+                        resposta: 'recusar',
+                        createdAt: new Date().getTime()
+                    }).then(async () => {
+                        await firestore().collection('Animais').doc(props.pet).update({
+                            interessados: array
+                        })
+                    }).then(async () => {
+                        await firestore().collection('Notifications').doc(props.id).delete()
+                    }).then(() => {
+                        Alert.alert('Sucesso', 'Você recusou o pedido de adoção')
+                    })
 
                 }
             }, {
