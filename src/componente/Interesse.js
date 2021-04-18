@@ -66,7 +66,6 @@ export default function Interesse(props) {
                     array = array.filter((elemento) =>{
                      return elemento != undefined
                      })
-                     console.log(array)
                     await firestore().collection('Notifications').add({
                         interessado: props.interessado,
                         pet: props.pet,
