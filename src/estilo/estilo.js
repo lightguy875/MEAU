@@ -36,7 +36,6 @@ export default StyleSheet.create({
         textAlign: 'center',
         height: 80,
         padding: 5,
-        textAlign: 'center',
         backgroundColor: cor.fundoPadrao,
         borderRadius: 4,
     },

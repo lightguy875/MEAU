@@ -33,7 +33,7 @@ export default function Notificacoes({navigation, route}) {
                 <FlatList
                     keyExtractor={item => item.id}
                     data={notifications.resposta}
-                    renderItem={({ item }) => <Text style={{fontSize: 30}}>{item.tipo}</Text>}
+                    renderItem={({ item }) => <Resposta {...item} />}
                 />
 
             </>
@@ -51,9 +51,19 @@ export default function Notificacoes({navigation, route}) {
     }
 
     return (
-        <SafeAreaView style={{alignItems:'center' , justifyContent: 'center'}}>
+        <SafeAreaView style={styles.container}>
             {renderizar()}
         </SafeAreaView>
     )
 
 }
+const styles = StyleSheet.create({
+    container: {
+        //flex: 1,
+        //backgroundColor: '#fff',
+       // alignItems: 'center',
+        justifyContent: 'center',
+        padding: 16,
+    },
+
+})
