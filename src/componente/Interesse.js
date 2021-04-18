@@ -27,6 +27,8 @@ export default function Interesse(props) {
                     array = array.filter((elemento) =>{
                      return elemento != undefined
                      })
+                     if(array.length == 0)
+                     {
                     await firestore().collection('Notifications').add({
                         interessado: props.interessado,
                         pet: props.pet,
@@ -47,8 +49,11 @@ export default function Interesse(props) {
                             Alert.alert('Sucesso', 'Você doou o seu animal')
                         })
                      })
+                }else {
+                    Alert.alert('Error', 'Você tem que recusar as outras propostas antes de aceitar uma')
                 }
-            }, {
+            }
+            },{
                 text: 'Não'
             }
         ])
@@ -66,6 +71,7 @@ export default function Interesse(props) {
                     array = array.filter((elemento) =>{
                      return elemento != undefined
                      })
+
                     await firestore().collection('Notifications').add({
                         interessado: props.interessado,
                         pet: props.pet,
@@ -85,7 +91,7 @@ export default function Interesse(props) {
                     }).then(() => {
                         Alert.alert('Sucesso', 'Você recusou o pedido de adoção')
                     })
-
+ 
                 }
             }, {
                 text: 'Não'
