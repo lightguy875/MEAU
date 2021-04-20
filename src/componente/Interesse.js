@@ -106,6 +106,7 @@ export default function Interesse(props) {
         <View style={styles.container}>
             <Text style={styles.text}>{props.nome} quer adotar o animal {props.nome_pet}</Text>
             <View style={{
+                flex: 3,
                 flexDirection: 'row',
                 alignItems: 'center',
                 justifyContent: 'space-between',
@@ -143,6 +144,7 @@ const styles = StyleSheet.create({
     },
 
     text: {
+        flex: 13,
         fontSize: 13,
 
     }

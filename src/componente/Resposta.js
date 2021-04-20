@@ -33,6 +33,7 @@ export default function Resposta(props) {
             <View style={styles.containerrecusou}>
                 <Text style={styles.text}>{props.nome} recusou seu pedido para o pet {props.nome_pet}</Text>
                 <View style={{
+                flex: 3,
                 flexDirection:'row',
                 alignItems:'center',
                 justifyContent:'flex-end',
@@ -52,6 +53,7 @@ export default function Resposta(props) {
             <View style={styles.containeraceitou}>
                 <Text style={styles.text}>{props.nome} aceitou seu pedido para o pet {props.nome_pet}</Text>
                 <View style={{
+                flex: 3,
                 flexDirection:'row',
                 alignItems:'center',
                 justifyContent:'flex-end',
@@ -104,6 +106,7 @@ const styles = StyleSheet.create({
     },
 
     text: {
+        flex: 13,
         fontSize:13,
 
     }
