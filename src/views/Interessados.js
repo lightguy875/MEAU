@@ -62,32 +62,32 @@ export default function Interessados({ navigation, route }) {
         }
     }
 
-    async function mudar_dono_pet(item) {
+    // async function mudar_dono_pet(item) {
 
-        if (auth().currentUser) {
-            Alert.alert('Adoção', 'Deseja confirmar a adoção', [
-                {
-                    text: 'Sim',
-                    async onPress() {
+    //     if (auth().currentUser) {
+    //         Alert.alert('Adoção', 'Deseja confirmar a adoção', [
+    //             {
+    //                 text: 'Sim',
+    //                 async onPress() {
                             
-                        var array = route.params.item.interessados
-                        var index = array.indexOf(item.id);
-                        array.splice(index, 1)
-                        await firestore().collection('Animais').doc(route.params.item.id).update({
-                            dono: item.id,
-                            interessados: array
-                        }).then(() => {
-                            Alert.alert(`Adoção`, `O dono do animal foi modificado com sucesso`)
-                        })
+    //                     var array = route.params.item.interessados
+    //                     var index = array.indexOf(item.id);
+    //                     array.splice(index, 1)
+    //                     await firestore().collection('Animais').doc(route.params.item.id).update({
+    //                         dono: item.id,
+    //                         interessados: array
+    //                     }).then(() => {
+    //                         Alert.alert(`Adoção`, `O dono do animal foi modificado com sucesso`)
+    //                     })
 
-                    }
-                }, {
-                    text: 'Não'
-                }
-            ])
+    //                 }
+    //             }, {
+    //                 text: 'Não'
+    //             }
+    //         ])
 
-        }
-    }
+    //     }
+    // }
 
     function renderizar() {
         LogBox.ignoreAllLogs();
@@ -97,7 +97,7 @@ export default function Interessados({ navigation, route }) {
                     contentContainerStyle={styles.container}
                     keyExtractor={item => item.id}
                     data={users}
-                    renderItem={({ item }) => <Interessado {...item} onPress={() => mudar_dono_pet(item)} />}
+                    renderItem={({ item }) => <Interessado {...item}/>}
                 />
             )
 
