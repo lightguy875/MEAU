@@ -91,7 +91,6 @@ export default function Interessados({ navigation, route }) {
     // }
 
     function renderizar() {
-        LogBox.ignoreAllLogs();
         if (auth().currentUser) {
             return (
                 <FlatList 
