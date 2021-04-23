@@ -34,17 +34,18 @@ export default props => {
 const styles = StyleSheet.create({
 
     containermax: {
-        flex: 1,
+        // flex: 1,
         alignItems: 'flex-start',
         justifyContent: 'center',
         paddingLeft:60,
+        paddingRight: 12,
         marginTop: 24,
     },
     Texto: {
         fontSize: 14,
     },
     imagem: {
-        flex: 1, 
+        // flex: 1, 
         borderRadius: 100
     },
     imagemview: {
@@ -54,7 +55,7 @@ const styles = StyleSheet.create({
         resizeMode: 'contain'
     },
    container: {
-        flex:1,
+        // flex:1,
         alignItems: 'center',
         justifyContent: 'center',
     }

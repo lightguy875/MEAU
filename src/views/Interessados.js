@@ -4,6 +4,7 @@ import {
     SafeAreaView,
     View,
     TouchableOpacity,
+    Dimensions,
     StyleSheet,
     Alert,
     Text,
@@ -94,6 +95,7 @@ export default function Interessados({ navigation, route }) {
         if (auth().currentUser) {
             return (
                 <FlatList 
+                    numColumns={2}
                     contentContainerStyle={styles.container}
                     keyExtractor={item => item.id}
                     data={users}
@@ -120,7 +122,7 @@ export default function Interessados({ navigation, route }) {
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: 'row',
-        flexWrap: 'wrap'
+        flexDirection: 'column',
+        // width: Dimensions.get('window').width
     }
 })
