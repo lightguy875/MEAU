@@ -1,10 +1,11 @@
 import React from 'react'
+import { TouchableOpacity } from 'react-native'
 import {
 Image,
 Text,
 View,
-StyleSheet
-
+StyleSheet,
+Dimensions,
 } from 'react-native'
 import {useSelector} from 'react-redux'
 import cor from '../estilo/cor'
@@ -23,17 +24,29 @@ if(usuario.user)
         return elemento.name != usuario.user.name && elemento.nome_de_usuario != usuario.user.nome_de_usuario
     })
     dado = dado[0]
-
+    var d = new Date(0)
+    d.setUTCMilliseconds(props.momento)
+    d = d.toLocaleTimeString('pt-br', {hour: '2-digit', minute:'2-digit'})
     return (
-    
+    <TouchableOpacity>
     <View style={styles.container}>
 
+
         <Image source={{uri: dado.imagemurl}} style={styles.imagem} />
+        <View style={styles.containerTempo}>
         <View style={styles.textcontainer}>
         <Text style={styles.textoPrincipal}>{`${dado.name.split(' ').slice(0,2).join(' ')}` + ` | ` + `${dado.Nome_do_animal}`}</Text>
-        <Text>Segundo Texto</Text>
+        <Text>{`${props.ultima_mensagem}`}</Text>
+        </View> 
+        
+        <Text style={styles.textoTempo}>{`${d.split(':').slice(0,2).join(' ')}`}</Text>
+        <View style={styles.linha}></View>
         </View>
     </View>
+    <View style={styles.linha}>
+            
+    </View>
+    </TouchableOpacity>
     );
 } else {
     return (
@@ -53,6 +66,7 @@ const styles = StyleSheet.create({
     textcontainer:  {
         flexDirection:'column',
         textAlign: 'center',
+        flex:13,
     },
     imagem: {
         borderRadius: 200,
@@ -66,7 +80,26 @@ const styles = StyleSheet.create({
     textoPrincipal:{
         fontSize: 14,
         marginTop:20,
-        color: cor.titulo
+        color: cor.titulo,
+        
+    },
+
+    textoTempo:{
+        marginTop:20,
+        marginRight:16,
+        flex:3,
+    },
+
+    containerTempo: {
+        flexDirection:'row',
+        justifyContent:'space-between',
+        flex: 1,
+    },
+
+    linha: {
+        marginTop:16,
+        backgroundColor:'#e6e7e8',
+        height:1,
     },
 
     
