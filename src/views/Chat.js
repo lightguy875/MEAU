@@ -7,14 +7,16 @@ import Chatitem from '../componente/Chatitem'
 export default function Chat({navigation, route}) {
 
     let chat = useSelector(state => state.chat.chat)
-    
+        
 
     return  (
     
     <FlatList
     keyExtractor={item => item.id}
     data={chat}
-    renderItem={({ item }) => <Chatitem {...item} />}
+    renderItem={({ item }) => <Chatitem {...item} onPress={() => navigation.navigate('Conversa', {
+        item: item
+    })}/>}
     />
     // <Text>Página carregada com Sucesso</Text>
     )

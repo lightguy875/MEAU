@@ -15,7 +15,7 @@ import Perfilmeupet from '../views/Perfilmeupet'
 import Interessados from '../views/Interessados'
 import Notificacoes from '../views/Notificacoes'
 import Chat from '../views/Chat'
-
+import Conversa from '../views/Conversa'
 const Stack = createStackNavigator(); // Criar uma constante para cada Stack
 
 function AbrirMenu({ navigation }) { // Implementar essa funcao para economizar linhas de codigo em headerLeft
@@ -155,6 +155,10 @@ export function ChatStack({ navigation }) {
       <Stack.Screen name="Chat" component={Chat} options={{
         title: 'Chat',
         headerLeft: () => AbrirMenu({ navigation })
+      }} />
+
+      <Stack.Screen name="Conversa" component={Conversa} options={{
+        title: 'Conversa',
       }} />
 
 

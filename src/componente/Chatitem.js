@@ -28,7 +28,7 @@ if(usuario.user)
     d.setUTCMilliseconds(props.momento)
     d = d.toLocaleTimeString('pt-br', {hour: '2-digit', minute:'2-digit'})
     return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={props.onPress}>
     <View style={styles.container}>
 
         <View style={styles.imagemview}>
@@ -38,9 +38,8 @@ if(usuario.user)
         <View style={styles.containerTempo}>
         <View style={styles.textcontainer}>
         <Text style={styles.textoPrincipal}>{`${dado.name.split(' ').slice(0,2).join(' ')}` + ` | ` + `${dado.Nome_do_animal}`}</Text>
-        <Text>{`${props.ultima_mensagem}`}</Text>
+        <Text>{ `${props.ultima_mensagem.substring(0,30)}` + ((props.ultima_mensagem.length > 30) ? ('...') : ('')) }</Text>
         </View> 
-        
         <Text style={styles.textoTempo}>{`${d.split(':').slice(0,2).join(' ')}`}</Text>
         <View style={styles.linha}></View>
         </View>
@@ -75,8 +74,8 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     imagemview: {
-        height: 84,
-        width: 84,
+        height: 68,
+        width: 68,
         borderRadius: 100,
         resizeMode: 'contain',
         marginLeft: 16,
@@ -106,7 +105,7 @@ const styles = StyleSheet.create({
     linha: {
         marginTop:16,
         backgroundColor:'#e6e7e8',
-        height:1,
+        height:2,
     },
 
     
