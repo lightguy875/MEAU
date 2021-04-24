@@ -11,6 +11,7 @@ import Icone from 'react-native-vector-icons/Feather';
 import { user_load_data } from '../store/actions/user'
 import { pet_load_success, pet_load_todos_success } from '../store/actions/pet'
 import { notifications_load_interesses_success, notifications_load_respostas_success } from '../store/actions/notificacoes'
+import {chat_get_success} from '../store/actions/chat'
 import { useDispatch, useStore, useSelector } from 'react-redux'
 
 
@@ -43,6 +44,7 @@ export default (props) => {
             carregar_animais_todos()
             carregar_notificacao_interesse()
             carregar_notificacao_resposta()
+            carregar_chat()
         } else {
             firestore().terminate()
         }
@@ -121,6 +123,16 @@ export default (props) => {
 
             })
             dispatch(pet_load_todos_success(animaisaux))
+        })
+    }
+
+    async function carregar_chat() {
+        await firestore().collection('Chat').where('usersid', 'array-contains', auth().currentUser.uid).onSnapshot((querySnapshot) => {
+            var chataux = [];
+            querySnapshot.forEach((doc) => {
+                chataux.push(Object.assign(doc.data(), {id: doc.id}))
+            })
+            dispatch(chat_get_success(chataux))
         })
     }
 

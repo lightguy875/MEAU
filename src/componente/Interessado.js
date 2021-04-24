@@ -7,16 +7,11 @@ import { ListItem , Avatar} from 'react-native-elements'
 export default props => {
 
 
+   
+
+
             return (
 
-                // <ListItem bottomDivider >
-                // <Avatar rounded source={{uri: props.imagemurl}}/>
-                // <ListItem.Content>
-                // <ListItem.Title>{props.name}</ListItem.Title>
-                // <ListItem.Subtitle>Idade:{props.idade}</ListItem.Subtitle>
-    
-                // </ListItem.Content>
-                // </ListItem>
                 <SafeAreaView style={styles.containermax}>
                 <TouchableOpacity onPress={props.onPress}>
                 <View style={styles.container}>
