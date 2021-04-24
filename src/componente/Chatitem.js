@@ -31,8 +31,10 @@ if(usuario.user)
     <TouchableOpacity>
     <View style={styles.container}>
 
+        <View style={styles.imagemview}>
 
         <Image source={{uri: dado.imagemurl}} style={styles.imagem} />
+        </View>
         <View style={styles.containerTempo}>
         <View style={styles.textcontainer}>
         <Text style={styles.textoPrincipal}>{`${dado.name.split(' ').slice(0,2).join(' ')}` + ` | ` + `${dado.Nome_do_animal}`}</Text>
@@ -69,13 +71,18 @@ const styles = StyleSheet.create({
         flex:13,
     },
     imagem: {
-        borderRadius: 200,
+        borderRadius: 100,
+        flex: 1,
+    },
+    imagemview: {
         height: 84,
         width: 84,
+        borderRadius: 100,
         resizeMode: 'contain',
         marginLeft: 16,
         marginRight: 8,
         marginVertical: 16,
+
     },
     textoPrincipal:{
         fontSize: 14,
