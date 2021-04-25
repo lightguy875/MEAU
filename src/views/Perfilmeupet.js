@@ -138,9 +138,10 @@ export default function Perfilmeupet({ navigation, route }) {
 
     }
 
-
+    if(usuario.user) {
 
     return (
+        
         <ScrollView>
             <View style={styles.viewcontainer}>
                 <Image source={{ uri: route.params.item.imagemurl }} style={{ width: 360, height: 300, resizeMode: 'contain' }} />
@@ -198,6 +199,13 @@ export default function Perfilmeupet({ navigation, route }) {
 
 //
     )
+            }
+            else{
+                return (
+                    <>
+                    </>
+                )
+            }
 }
 
 const styles = StyleSheet.create({
