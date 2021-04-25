@@ -24,7 +24,7 @@ dado = dado[0]
 dado = Object.assign(dado, {id: id})
 
 let user = {
-    id: auth().currentUser.uid,
+    _id: auth().currentUser.uid,
     name: usuario.user.name,
     avatar: '',
 }
@@ -36,8 +36,12 @@ useEffect( () => {
     navigation.setOptions({
         title: dado.name.split(' ').slice(0,2).join(' ')
     });
+    // updateMessages2()
+    carregar_mensagens()
+
 
 },[route.params])
+
 
 async function carregar_mensagens() {
     await firestore().collection('Chat').doc(route.params.item.id).collection('messages').orderBy('createdAt', 'desc').onSnapshot((querySnapshot) => {
@@ -46,38 +50,42 @@ async function carregar_mensagens() {
             mensagens.push(Object.assign(doc.data(), {id: doc.id}))
         })
         setMessages(mensagens)
-
     })
 }
 
 
+// updateMessages2((msg) => {
+      
+//     //console.log
+//     ('teste mensagem atual2:', messages);
+//           setMessages((prevMsgs) => GiftedChat.append(prevMsgs, msg));
+//         });
+//         return function cleanup() {
+//           updateMessages2();
+
 const sendChatMessage = async(chat) => {
 
-console.log(chat)
-// await firestore().collection('Chat').doc(route.params.item.id).update({
-//     momento: chat.createdAt
-//     ultima_mensagem: chat.text
-// })
-//     return firestore()
-//       .collection('Chat')
-//       .doc(route.params.item.id)
-//       .collection('messages')
-//       .add(chat);
+await firestore().collection('Chat').doc(route.params.item.id).update({
+    momento: chat.createdAt,
+    ultima_mensagem: chat.text,
+})
+
+    await firestore()
+      .collection('Chat')
+      .doc(route.params.item.id)
+      .collection('messages')
+      .add(chat);
   };
 
   const onSend = async (msgs) => {
     msgs.forEach((msg) => {
-      const { text, user } = msg;
-      const message = { text, user, createdAt: new Date().getTime()};
-      //createMessage(chatID, message);
-    //   const ids = chatID();
-      
-//console.log
-// ('Teste1: ', ids);
+
+      const { text, user, _id } = msg;
+      const message = { _id, text, user, createdAt: new Date().getTime(),};
+
       sendChatMessage(message);
     });
   };
-
 
 
 

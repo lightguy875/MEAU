@@ -71,14 +71,14 @@ export default function Interessados({ navigation, route }) {
             Alert.alert('Chat', `Deseja fazer um chat com ${item.name.split(' ').slice(0,2).join(' ')} ?` , [{
                 text: 'Sim',
                 async onPress(){
+                    
                     let element = chats.map(chat => {
-                        if(chat.usersid.includes(item.id))
+                        if(chat.usersid.includes(item.id) && chat.users[0].Nome_do_animal == route.params.item.Nome_do_animal)
                         return chat
                     })
                     element = element.filter((elemento) =>{
                         return elemento != undefined
-                        })
-        
+                        })        
                     if(element.length) {
                         Alert.alert('Erro', 'O chat já existe')
                     }else {

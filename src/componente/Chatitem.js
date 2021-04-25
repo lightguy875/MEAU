@@ -28,7 +28,7 @@ if(usuario.user)
     d.setUTCMilliseconds(props.momento)
     d = d.toLocaleTimeString('pt-br', {hour: '2-digit', minute:'2-digit'})
     return (
-    <TouchableOpacity onPress={props.onPress}>
+    <TouchableOpacity onPress={props.onPress} onLongPress={props.onLongPress}>
     <View style={styles.container}>
 
         <View style={styles.imagemview}>
