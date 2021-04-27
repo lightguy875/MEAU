@@ -129,11 +129,12 @@ export default function Perfilmeupet({ navigation, route }) {
                 {
                     text: 'Não'
                 }
+                
             ])
-        }
-        else {
+        }else {
             Alert.alert('Erro','Você não é o dono do animal')
         }
+
 
 
     }

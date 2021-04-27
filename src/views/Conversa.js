@@ -37,20 +37,28 @@ useEffect( () => {
         title: dado.name.split(' ').slice(0,2).join(' ')
     });
     // updateMessages2()
-    carregar_mensagens()
-
+   const unsubscribe = carregar_mensagens()
+    
+   return () => {
+       unsubscribe();
+   }
+        
+    
 
 },[route.params])
 
 
-async function carregar_mensagens() {
-    await firestore().collection('Chat').doc(route.params.item.id).collection('messages').orderBy('createdAt', 'desc').onSnapshot((querySnapshot) => {
+ function carregar_mensagens() {
+   const unsubscribe = firestore().collection('Chat').doc(route.params.item.id).collection('messages').orderBy('createdAt', 'desc').onSnapshot((querySnapshot) => {
         var mensagens = [];
         querySnapshot.forEach((doc) => {
             mensagens.push(Object.assign(doc.data(), {id: doc.id}))
         })
         setMessages(mensagens)
     })
+    return unsubscribe
+   
+   
 }
 
 
@@ -93,20 +101,16 @@ await firestore().collection('Chat').doc(route.params.item.id).update({
 
 
     return(
-        // <SafeAreaView style={styles.container}>
-        //     <Text style={styles.texto}>Chegamos até a página de conversa</Text>
-        // </SafeAreaView>
+        <SafeAreaView style={styles.container}>
         <GiftedChat messages={messages} user={user} onSend={onSend} />
+        </SafeAreaView>
     )
 
 }
 
 const styles = StyleSheet.create({
     container: {
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    texto:{
-        fontSize:30,
+        backgroundColor:'#FFF',
+        flex: 1,
     }
 })

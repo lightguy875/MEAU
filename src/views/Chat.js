@@ -33,14 +33,11 @@ export default function Chat({navigation, route}) {
                 }
             ])
         
-        } else {
-            Alert.alert('Erro', 'Você não é o dono do chat')
         }
     } 
         
 
     return  (
-    
     <FlatList
     keyExtractor={item => item.id}
     data={chat}
@@ -48,7 +45,6 @@ export default function Chat({navigation, route}) {
         item: item
     })}/>}
     />
-    // <Text>Página carregada com Sucesso</Text>
     )
 
         
