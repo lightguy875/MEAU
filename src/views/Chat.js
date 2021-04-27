@@ -6,7 +6,6 @@ import Chatitem from '../componente/Chatitem'
 import firestore from '@react-native-firebase/firestore'
 import auth from '@react-native-firebase/auth'
 
-
 export default function Chat({navigation, route}) {
 
     let chat = useSelector(state => state.chat.chat)
@@ -38,6 +37,8 @@ export default function Chat({navigation, route}) {
         
 
     return  (
+    <>
+
     <FlatList
     keyExtractor={item => item.id}
     data={chat}
@@ -45,6 +46,8 @@ export default function Chat({navigation, route}) {
         item: item
     })}/>}
     />
+
+    </>
     )
 
         

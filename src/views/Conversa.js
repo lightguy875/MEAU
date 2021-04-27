@@ -5,10 +5,12 @@ SafeAreaView,
 View,
 StyleSheet
 } from 'react-native'
-import {GiftedChat, Actions} from  'react-native-gifted-chat';
+import {GiftedChat, Actions, Bubble, Send} from  'react-native-gifted-chat';
 import {useSelector} from 'react-redux'
 import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+
 export default function Conversa({navigation,route}) {
 
 const [messages, setMessages] = useState([]);
@@ -61,16 +63,6 @@ useEffect( () => {
    
 }
 
-
-// updateMessages2((msg) => {
-      
-//     //console.log
-//     ('teste mensagem atual2:', messages);
-//           setMessages((prevMsgs) => GiftedChat.append(prevMsgs, msg));
-//         });
-//         return function cleanup() {
-//           updateMessages2();
-
 const sendChatMessage = async(chat) => {
 
 await firestore().collection('Chat').doc(route.params.item.id).update({
@@ -95,6 +87,28 @@ await firestore().collection('Chat').doc(route.params.item.id).update({
     });
   };
 
+  const renderBubble = props => {
+      return (
+        <Bubble {...props} 
+        wrapperStyle= {{
+            right: {
+                backgroundColor: '#88c9bf'
+            }
+        }}
+        />
+      )
+  }
+
+  const renderSend = props => {
+      return (
+          <Send {...props}>
+              <View>
+                <MaterialCommunityIcons name='send-circle' size={46} color='#88c9bf'/>
+              </View>
+          </Send>
+      )
+  }
+
 
 
 
@@ -102,7 +116,7 @@ await firestore().collection('Chat').doc(route.params.item.id).update({
 
     return(
         <SafeAreaView style={styles.container}>
-        <GiftedChat messages={messages} user={user} onSend={onSend} />
+        <GiftedChat messages={messages} user={user} onSend={onSend} renderBubble={renderBubble} renderSend={renderSend}/>
         </SafeAreaView>
     )
 
