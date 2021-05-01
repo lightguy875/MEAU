@@ -111,7 +111,7 @@ export function PerfilStack({ navigation }) {
 
 
       <Stack.Screen name="Perfil" component={Perfil} options={{
-        title: 'Perfil',
+        title: 'Meu Perfil',
         headerLeft: () => AbrirMenu({ navigation }),
         headerStyle: {
           backgroundColor:'#88c9bf'
@@ -155,7 +155,7 @@ export function PetsStack({ navigation }) {
     <Stack.Navigator initialRouteName="Todos_Pets">
 
       <Stack.Screen name="Todos os Pets" component={Todos_Pets} options={{
-        title: 'Todos os Pets',
+        title: 'Adotar',
 
         headerLeft: () => AbrirMenu({ navigation }),
         headerStyle: {
