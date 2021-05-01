@@ -40,7 +40,7 @@ if(usuario.user)
         <Text style={styles.textoPrincipal}>{`${dado.name.split(' ').slice(0,2).join(' ')}` + ` | ` + `${dado.Nome_do_animal}`}</Text>
         <Text>{ `${props.ultima_mensagem.substring(0,30)}` + ((props.ultima_mensagem.length > 30) ? ('...') : ('')) }</Text>
         </View> 
-        <Text style={styles.textoTempo}>{`${d.split(':').slice(0,2).join(' ')}`}</Text>
+        <Text style={styles.textoTempo}>{`${d.split(':').slice(0,2).join(':')}`}</Text>
         <View style={styles.linha}></View>
         </View>
     </View>

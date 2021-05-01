@@ -41,23 +41,31 @@ export function LoginStack({ navigation }) {
         },
 
         headerLeft: () => AbrirMenu({ navigation }),
-      }} />
-
-      <Stack.Screen name="Notificacoes" component={Notificacoes} options={{
-        title: 'Notificações',
-        headerStyle: {
-          backgroundColor: '#cfe9e5'
-        },
-      }} />
-
+      }} /> 
+{/* 
       <Stack.Screen name="ErroLogin" component={ErroLogin} options={{
         headerStyle: {
           backgroundColor: '#cfe9e5'
         },
-      }} />
+      }} /> */}
 
     </Stack.Navigator>
   );
+}
+
+export function NotificacoesStack({navigation}) {
+  return (
+  <Stack.Navigator initialRouteName="Notificacoes">
+        <Stack.Screen name="Notificacoes" component={Notificacoes} options={{
+        title: 'Notificações',
+        headerStyle: {
+          backgroundColor: '#cfe9e5'
+        },
+        headerLeft: () => AbrirMenu({ navigation })
+      }} />
+
+      </Stack.Navigator>
+  )
 }
 
 

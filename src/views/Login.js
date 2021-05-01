@@ -56,6 +56,8 @@ export default function Login({navigation, route , props}) {
 
      const Entrar = ({email, senha}) => {
       dispatch(user_login({email, senha}))
+      reset()
+      navigation.navigate('Todos os Pets')
      }
 
 
@@ -129,7 +131,7 @@ export default function Login({navigation, route , props}) {
       }else{
         return(
         <View>
-            <View style={{ alignItems: 'center', justifyContent: 'center'}}>
+            {/* <View style={{ alignItems: 'center', justifyContent: 'center'}}>
             <TouchableOpacity onPress={() => navigation.navigate('Notificacoes')}>
           <Image
               style={Estilo.imageIcon}
@@ -138,9 +140,9 @@ export default function Login({navigation, route , props}) {
             />
             <Text style={{ alignSelf:'center'}}>{notifications.interesse ? notifications.resposta ?  notifications.resposta.length + notifications.interesse.length : notifications.interesse.length : '0'}</Text> 
             </TouchableOpacity>
-            </View>
+            </View> */}
 
-          
+{/*           
           <TouchableOpacity
           style={botao.botaoLogin}
          
@@ -148,7 +150,7 @@ export default function Login({navigation, route , props}) {
           >
             <Text style={{color: '#000'}}>Sair</Text>
   
-          </TouchableOpacity>
+          </TouchableOpacity> */}
 
 
           </View>
@@ -158,7 +160,7 @@ export default function Login({navigation, route , props}) {
   
    const Sair = () => {
       dispatch(user_logout())
-      reset()
+      
     }
 
 
