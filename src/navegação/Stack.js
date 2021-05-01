@@ -143,7 +143,7 @@ export function CachorroStack({ navigation }) {
         title: 'Interessados',
         headerLeft: () => AbrirMenu({ navigation }),
         headerStyle: {
-          backgroundColor:'#88c9bf'
+          backgroundColor:'#cfe9e5'
         }
       }} />
     </Stack.Navigator>
@@ -186,6 +186,9 @@ export function ChatStack({ navigation }) {
 
       <Stack.Screen name="Conversa" component={Conversa} options={{
         title: 'Conversa',
+        headerStyle: {
+          backgroundColor:'#cfe9e5'
+        }
       }} />
 
 

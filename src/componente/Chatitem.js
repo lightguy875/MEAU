@@ -42,6 +42,10 @@ if(usuario.user)
         </View> 
         <Text style={styles.textoTempo}>{`${d.split(':').slice(0,2).join(':')}`}</Text>
         </View>
+       
+    </View>
+    <View style={styles.linha}>
+
     </View>
     </TouchableOpacity>
     );
@@ -59,10 +63,6 @@ const styles = StyleSheet.create({
     container: {
         flexDirection:'row',
         height: 100,
-        borderBottomColor: '#e6e7e8',
-        borderBottomWidth: 2,
-        marginLeft:16,
-        marginRight:16,
     },
     textcontainer:  {
         flexDirection:'column',
@@ -101,11 +101,12 @@ const styles = StyleSheet.create({
         justifyContent:'space-between',
         flex: 1,
     },
-
     linha: {
-        marginTop:16,
-        backgroundColor:'#e6e7e8',
+        marginLeft:16,
+        marginRight:16,
         height:2,
+        marginTop:16,
+        backgroundColor: '#e6e7e8',
     },
 
     

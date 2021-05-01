@@ -5,7 +5,7 @@ SafeAreaView,
 View,
 StyleSheet,
 } from 'react-native'
-import {GiftedChat, Actions, Bubble, Send} from  'react-native-gifted-chat';
+import {GiftedChat, Bubble, Send, InputToolbar} from  'react-native-gifted-chat';
 import {useSelector} from 'react-redux'
 import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
@@ -90,11 +90,13 @@ await firestore().collection('Chat').doc(route.params.item.id).update({
   const renderBubble = props => {
       return (
         <Bubble {...props} 
-        wrapperStyle= {{
+        wrapperStyle={{
             right: {
-                backgroundColor: '#88c9bf'
+                backgroundColor: '#88c9bf',
+                
             }
         }}
+        
         />
       )
   }
@@ -109,6 +111,12 @@ await firestore().collection('Chat').doc(route.params.item.id).update({
       )
   }
 
+  const renderInputText = props => {
+      return (  
+            <InputToolbar {...props} placeholder={'Digite a sua mensagem'}  />    
+      )
+  }
+
 
 
 
@@ -116,7 +124,7 @@ await firestore().collection('Chat').doc(route.params.item.id).update({
 
     return(
         <SafeAreaView style={styles.container}>
-        <GiftedChat messages={messages} user={user} onSend={onSend} renderBubble={renderBubble} renderSend={renderSend} renderAvatar={() => null} showAvatarForEveryMessage={true} />
+        <GiftedChat messages={messages} renderInputToolbar={renderInputText} user={user} onSend={onSend} renderBubble={renderBubble} renderSend={renderSend} renderAvatar={() => null} showAvatarForEveryMessage={true} />
         </SafeAreaView>
     )
 
@@ -126,5 +134,13 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor:'#FFF',
         flex: 1,
+    },
+    IconStyle:{
+        marginRight:16,
+    },
+    inputContainer: {
+        flex:1,
+        marginLeft:16,
+        marginBottom:12,
     }
 })
