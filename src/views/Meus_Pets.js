@@ -85,7 +85,7 @@ export default function Meus_Pets({ navigation, route }) {
                 <FlatList
                     keyExtractor={item => item.id}
                     data={meus_pets.pets}
-                    renderItem={({ item }) => <Dadoanimal {...item} onPress={() => navigation.navigate('Perfil Pet', {
+                    renderItem={({ item }) => <Dadoanimal {...item} tipo={'meu_pet'} onPress={() => navigation.navigate('Perfil Pet', {
                         item: item,
                     })} />
                     }
