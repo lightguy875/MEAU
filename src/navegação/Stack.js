@@ -114,7 +114,7 @@ export function PerfilStack({ navigation }) {
         title: 'Meu Perfil',
         headerLeft: () => AbrirMenu({ navigation }),
         headerStyle: {
-          backgroundColor:'#88c9bf'
+          backgroundColor:'#cfe9e5'
         }
       }} />
 

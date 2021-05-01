@@ -22,25 +22,35 @@ export default function Perfil({ navigation, route }) {
             
 
             return (
-                <ScrollView>
+                <ScrollView style={{backgroundColor:'#fafafa'}}>
                 {/* <StatusBar backgroundColor='#88c9bf' barStyle="light-content"/>  */}
 
-                    <SafeAreaView style={Estilo.container}>
-                        <Text style={Estilo.textoPerfilUsuario}>Informações do Usuário</Text>
-                        <Text style={Estilo.textoPerfil}>Nome: {usuario.user.name} </Text>
-                        <Text style={Estilo.textoPerfil}>Idade: {usuario.user.idade} </Text>
-                        <Text style={Estilo.textoPerfil}>Email: {usuario.user.email} </Text>
-                        <Text style={Estilo.textoPerfil}>Endereço: {usuario.user.endereço} </Text>
-                        <Text style={Estilo.textoPerfil}>Telefone: {usuario.user.telefone}</Text>
-                        <Text style={Estilo.textoPerfil}>Cidade: {usuario.user.cidade} </Text>
-                        <Text style={Estilo.textoPerfil}>Estado: {usuario.user.Estado} </Text>
+                    <SafeAreaView style={styles.container}>
+                    <View style={styles.imagemview}>
+                    <Image
+                        style={styles.imagem}
+                        source={{uri: usuario.user.imagemurl}}
+                    />
+                    </View>
+                        <Text style={styles.TextoNome}>{usuario.user.name.split(' ').slice(0,2).join(' ')}</Text>
+                        <Text style={styles.textoTitulo}>NOME COMPLETO</Text>
+                        <Text style={styles.textodado}>{usuario.user.name}</Text>
+                        <Text style={styles.textoTitulo}>IDADE</Text>
+                        <Text style={styles.textodado}>{usuario.user.idade}</Text>
+                        <Text style={styles.textoTitulo}>EMAIL</Text>
+                        <Text style={styles.textodado}>{usuario.user.email}</Text>
+                        <Text style={styles.textoTitulo}>LOCALIZAÇÃO</Text>
+                        <Text style={styles.textodado}>{`${usuario.user.cidade} - ${usuario.user.Estado}`}</Text>
+                        <Text style={styles.textoTitulo}>ENDEREÇO</Text>
+                        <Text style={styles.textodado}>{usuario.user.endereço}</Text>
+                        <Text style={styles.textoTitulo}>TELEFONE</Text>
+                        <Text style={styles.textodado}>{usuario.user.telefone}</Text>
+                        <Text style={styles.textoTitulo}>NOME DE USUÁRIO</Text>
+                        <Text style={styles.textodado}>{usuario.user.nome_de_usuario}</Text>
                     </SafeAreaView>
 
 
-                    <Image
-                        style={{ width: 300, height: 300, resizeMode: 'contain' }}
-                        source={{uri: usuario.user.imagemurl}}
-                    />
+                    
                 </ScrollView>
 
 
@@ -70,3 +80,39 @@ export default function Perfil({ navigation, route }) {
     )
 
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent:'center',
+        alignItems:'center',
+    },
+    imagemview: {
+        height: 112,
+        width: 112,
+        borderRadius:112,
+        resizeMode: 'contain',
+        marginTop:16,
+    },
+
+    imagem: {
+        width: 112, 
+        height: 112, 
+        borderRadius:112 
+    },
+    TextoNome: {
+        marginTop: 12,
+        color: '#434343',
+        fontSize:16,
+    },
+    textoTitulo: {
+        marginTop:36,
+        fontSize:12,
+        color:'#589b9b',
+    },
+    textodado:{
+        marginTop:8,
+        fontSize:14,
+        color: '#757575',
+    }
+})
