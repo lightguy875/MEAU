@@ -173,7 +173,7 @@ export default function Login({ navigation, route, props }) {
 
   return (
     <KeyboardAvoidingView style={Estilo.container}>
-      <StatusBar backgroundColor='#000' />
+      {/* <StatusBar backgroundColor='#000' /> */}
 
 
 

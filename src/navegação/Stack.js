@@ -142,6 +142,9 @@ export function CachorroStack({ navigation }) {
       <Stack.Screen name="Interessados" component={Interessados} options={{
         title: 'Interessados',
         headerLeft: () => AbrirMenu({ navigation }),
+        headerStyle: {
+          backgroundColor:'#88c9bf'
+        }
       }} />
     </Stack.Navigator>
   );

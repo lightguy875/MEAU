@@ -10,7 +10,7 @@ export default StyleSheet.create({
         borderRadius: 5,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: cor.fundoPadrao,
+        backgroundColor: '#88c9bf',
         marginBottom: 10,
         elevation: 5,
     },
