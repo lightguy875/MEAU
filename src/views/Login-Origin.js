@@ -132,10 +132,6 @@ export default function Login({navigation}) {
     
 
     <KeyboardAvoidingView style={Estilo.container}>
-      <StatusBar
-            backgroundColor={Cor.topo}
-            
-        />
 
         
 

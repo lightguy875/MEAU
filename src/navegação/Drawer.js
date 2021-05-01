@@ -10,6 +10,7 @@ import Principal from '../views/Principal'
 import TelaInicial from '../views/TelaInicial';
 import CustomDrawer from './CustomDrawer'
 import ForgotPassword from '../views/ForgotPassword'
+import auth from '@react-native-firebase/auth'
 import {
   Text
 } from 'react-native'
@@ -20,11 +21,13 @@ import {
 const Drawer = createDrawerNavigator();
 // (props) => <CustomDrawer {...props}/>
 export default () => {
-  const [atalho,setatalho] = useState(false)
+
+  const valor = auth().currentUser ? "Todos os Pets" : "Login"
+
 
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Login" drawerContent={(props) => <CustomDrawer {...props}/>}>
+      <Drawer.Navigator initialRouteName={`${valor}`} drawerContent={(props) => <CustomDrawer {...props}/>}>
         <Drawer.Screen name="Login" component={LoginStack} />
         <Drawer.Screen name="Chat" component={ChatStack} />
         <Drawer.Screen name="Meus Pets" component={CachorroStack}/>

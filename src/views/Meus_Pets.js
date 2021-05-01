@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, StyleSheet, Text, View, TouchableOpacity, Alert, StatusBar, ScrollView, Image, SafeAreaView, SectionList } from 'react-native';
+import { Button, StyleSheet, Text, View, TouchableOpacity, Alert, StatusBar, ScrollView, Image, SafeAreaView,ActivityIndicator } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import Estilo from '../estilo/estilo'
 import Cor from '../estilo/cor'
@@ -39,7 +39,10 @@ export default function Meus_Pets({ navigation, route }) {
 
     // useEffect(() => {
     //     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    //     carregar_animais()
+
+    //     navigation.setOptions({
+            
+    //     });
     //     return subscriber; // unsubscribe on unmount
 
     // }, [auth().currentUser], []);
@@ -77,11 +80,10 @@ export default function Meus_Pets({ navigation, route }) {
             
     //     }
     // }
-
     function renderizar() {
         if (auth().currentUser && meus_pets.pets) {
             return (
-
+                <>
                 <FlatList
                     keyExtractor={item => item.id}
                     data={meus_pets.pets}
@@ -90,11 +92,14 @@ export default function Meus_Pets({ navigation, route }) {
                     })} />
                     }
                 />
+                </>
             )
         }
         else {
             return (
-                <Text style={Estilo.textoPerfil}>Voce não está logado no sistema</Text>
+                <View style={styles.container}>
+                 <ActivityIndicator size='large' color='#000'/> 
+                </View>
             )
         }
 
@@ -103,14 +108,21 @@ export default function Meus_Pets({ navigation, route }) {
 
 
     return (
-        <SafeAreaView>
+        <>
 
             {renderizar()}
-        </SafeAreaView>
+        </>
     )
 }
 
 
 
+const styles = StyleSheet.create({
+    container:{
+        flex: 1,
+        justifyContent:'center',
+        alignItems:'center'
+    },
 
+})
 

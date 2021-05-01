@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, StyleSheet, Text, View, TouchableOpacity, Alert, StatusBar, ScrollView, Image, SafeAreaView } from 'react-native';
+import { Button, StyleSheet, Text, View, TouchableOpacity, Alert, StatusBar, ScrollView, Image, SafeAreaView} from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import Estilo from '../estilo/estilo'
 import Cor from '../estilo/cor'
@@ -23,6 +23,8 @@ export default function Perfil({ navigation, route }) {
 
             return (
                 <ScrollView>
+                {/* <StatusBar backgroundColor='#88c9bf' barStyle="light-content"/>  */}
+
                     <SafeAreaView style={Estilo.container}>
                         <Text style={Estilo.textoPerfilUsuario}>Informações do Usuário</Text>
                         <Text style={Estilo.textoPerfil}>Nome: {usuario.user.name} </Text>

@@ -3,7 +3,7 @@ import {
 Text,
 SafeAreaView,
 View,
-StyleSheet
+StyleSheet,
 } from 'react-native'
 import {GiftedChat, Actions, Bubble, Send} from  'react-native-gifted-chat';
 import {useSelector} from 'react-redux'

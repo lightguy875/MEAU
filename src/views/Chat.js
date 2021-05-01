@@ -1,6 +1,6 @@
 import React from 'react'
 import { Alert } from 'react-native'
-import {FlatList, SafeAreaView, Text} from 'react-native'
+import {FlatList, SafeAreaView, Text , StatusBar} from 'react-native'
 import {useSelector} from 'react-redux'
 import Chatitem from '../componente/Chatitem'
 import firestore from '@react-native-firebase/firestore'
@@ -38,7 +38,6 @@ export default function Chat({navigation, route}) {
 
     return  (
     <>
-
     <FlatList
     keyExtractor={item => item.id}
     data={chat}

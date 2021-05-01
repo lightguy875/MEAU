@@ -37,7 +37,7 @@ export function LoginStack({ navigation }) {
       <Stack.Screen name="Login" component={Login} options={{
         title: 'Login',
         headerStyle: {
-          backgroundColor: '#cfe9e5'
+          backgroundColor: '#88c9bf'
         },
 
         headerLeft: () => AbrirMenu({ navigation }),
@@ -45,7 +45,7 @@ export function LoginStack({ navigation }) {
 {/* 
       <Stack.Screen name="ErroLogin" component={ErroLogin} options={{
         headerStyle: {
-          backgroundColor: '#cfe9e5'
+          backgroundColor: '#88c9bf'
         },
       }} /> */}
 
@@ -59,7 +59,7 @@ export function NotificacoesStack({navigation}) {
         <Stack.Screen name="Notificacoes" component={Notificacoes} options={{
         title: 'Notificações',
         headerStyle: {
-          backgroundColor: '#cfe9e5'
+          backgroundColor: '#88c9bf'
         },
         headerLeft: () => AbrirMenu({ navigation })
       }} />
@@ -75,7 +75,7 @@ export function CadastroPessoalStack({ navigation }) {
       <Stack.Screen name="CadastroPessoal" component={CadastroPessoal} options={{
         title: 'Cadastro Pessoal',
         headerStyle: {
-          backgroundColor: '#cfe9e5'
+          backgroundColor: '#88c9bf'
         },
         headerLeft: () => AbrirMenu({ navigation }),
       }} />
@@ -93,6 +93,9 @@ export function CadastroAnimalStack({ navigation }) {
       <Stack.Screen name="Cadastroanimal" component={Cadastroanimal} options={{
         title: 'Cadastro Animal',
         headerLeft: () => AbrirMenu({ navigation }),
+        headerStyle: {
+          backgroundColor:'#88c9bf'
+        }
       }} />
 
       <Stack.Screen options={{ title: "Escolha uma imagem" }} name="Camera" component={Camera} />
@@ -110,6 +113,9 @@ export function PerfilStack({ navigation }) {
       <Stack.Screen name="Perfil" component={Perfil} options={{
         title: 'Perfil',
         headerLeft: () => AbrirMenu({ navigation }),
+        headerStyle: {
+          backgroundColor:'#88c9bf'
+        }
       }} />
 
     </Stack.Navigator>
@@ -124,6 +130,9 @@ export function CachorroStack({ navigation }) {
       <Stack.Screen name="Meus Pets" component={Meus_Pets} options={{
         title: 'Meus Pets',
         headerLeft: () => AbrirMenu({ navigation }),
+        headerStyle: {
+          backgroundColor:'#88c9bf'
+        }
       }} />
 
       <Stack.Screen name="Perfil Pet" component={Perfilmeupet} options={{
@@ -134,7 +143,6 @@ export function CachorroStack({ navigation }) {
         title: 'Interessados',
         headerLeft: () => AbrirMenu({ navigation }),
       }} />
-
     </Stack.Navigator>
   );
 }
@@ -145,7 +153,12 @@ export function PetsStack({ navigation }) {
 
       <Stack.Screen name="Todos os Pets" component={Todos_Pets} options={{
         title: 'Todos os Pets',
+
         headerLeft: () => AbrirMenu({ navigation }),
+        headerStyle: {
+          backgroundColor:'#ffd358'
+        }
+        
       }} />
 
       <Stack.Screen name="Perfil Pet" component={Perfilmeupet} options={{
@@ -162,7 +175,10 @@ export function ChatStack({ navigation }) {
 
       <Stack.Screen name="Chat" component={Chat} options={{
         title: 'Chat',
-        headerLeft: () => AbrirMenu({ navigation })
+        headerLeft: () => AbrirMenu({ navigation }),
+        headerStyle: {
+          backgroundColor:'#88c9bf'
+        }
       }} />
 
       <Stack.Screen name="Conversa" component={Conversa} options={{

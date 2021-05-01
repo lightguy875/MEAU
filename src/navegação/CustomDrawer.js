@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect } from 'react'
-import { Button, StyleSheet, Text, View, Image, TouchableOpacity, Alert, StatusBar, KeyboardAvoidingView } from 'react-native';
+import { Button, StyleSheet, Text, View, Image, TouchableOpacity, Alert, KeyboardAvoidingView } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { DrawerItemList, DrawerItem } from '@react-navigation/drawer';
 import firestore from '@react-native-firebase/firestore';

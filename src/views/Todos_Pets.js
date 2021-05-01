@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, StyleSheet, Text, View, TouchableOpacity, Alert, StatusBar, ScrollView, Image, SafeAreaView, SectionList } from 'react-native';
+import { Button, StyleSheet, Text, View, TouchableOpacity, Alert, StatusBar, ScrollView, Image, SafeAreaView, SectionList,ActivityIndicator } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import Estilo from '../estilo/estilo'
 import Cor from '../estilo/cor'
@@ -78,11 +78,14 @@ export default function Todos_Pets({ navigation, route }) {
             
     //     }
     // }
+    // StatusBar.setBackgroundColor('#ffd358')
 
     function renderizar() {
         if (auth().currentUser && pettodos.pets) {
             return (
-
+                <>
+                {/* <StatusBar barStyle="light-content" /> */}
+              
                 <FlatList
                     keyExtractor={item => item.id}
                     data={pettodos.pets}
@@ -91,11 +94,15 @@ export default function Todos_Pets({ navigation, route }) {
                     })} />
                     }
                 />
+                </>
             )
         }
         else {
             return (
-                <Text style={Estilo.textoPerfil}>Voce não está logado no sistema</Text>
+                // <Text style={Estilo.textoPerfil}>Voce não está logado no sistema</Text>
+                <View style={styles.container}>
+                 <ActivityIndicator size='large' color='#000'/> 
+                </View>
             )
         }
 
@@ -104,14 +111,21 @@ export default function Todos_Pets({ navigation, route }) {
 
 
     return (
-        <SafeAreaView>
+        <>
 
             {renderizar()}
-        </SafeAreaView>
+      </>
     )
 }
 
-
+const styles = StyleSheet.create({
+    container:{
+        justifyContent: 'center',
+        alignItems: 'center',
+        flex: 1,
+        
+    },
+})
 
 
 

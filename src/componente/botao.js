@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, StyleSheet, Text, View, TouchableOpacity, Alert, StatusBar, ScrollView} from 'react-native';
+import { Button, StyleSheet, Text, View, TouchableOpacity, Alert, ScrollView} from 'react-native';
 import botao from '../estilo/botao.style'
 import Icon from 'react-native-vector-icons/Feather'
 

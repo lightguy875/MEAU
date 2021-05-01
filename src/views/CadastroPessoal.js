@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, StyleSheet, Text, View, TouchableOpacity, Alert, StatusBar, ScrollView, Image ,LogBox} from 'react-native';
+import { Button, StyleSheet, Text, View, TouchableOpacity, Alert, ScrollView, Image ,LogBox} from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import Estilo from '../estilo/estilo'
 import Cor from '../estilo/cor'
@@ -90,10 +90,6 @@ export default function CadastroPessoal({ navigation, route }) {
 
   return (
     <ScrollView>
-      <StatusBar
-        backgroundColor={Cor.topo}
-
-      />
 
       <View style={Estilo.container}>
 
