@@ -13,7 +13,7 @@ import { notifications_load_interesses_success, notifications_load_respostas_suc
 import { chat_get_success } from '../store/actions/chat'
 import { useDispatch, useStore, useSelector } from 'react-redux'
 import { TouchableWithoutFeedback } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 // import  botao from '../estilo/botao.style'
 
 
@@ -174,7 +174,7 @@ export default (props) => {
                             <View style={Estilo.perfilview}>
 
                                 <Text style={Estilo.txtProfile}>{usuario.user ? usuario.user.nome_de_usuario : 'carregando'}</Text>
-                                {meuatalho ? <Icon name="caret-down" size={24} color='#757575' style={Estilo.Icon} /> : <Icon name="caret-up" size={24} color='#757575' style={Estilo.Icon} />}
+                                {meuatalho ? <Icon name="arrow-drop-down" size={24} color='#757575' style={Estilo.Icon} /> : <Icon name="arrow-drop-up" size={24} color='#757575' style={Estilo.Icon} />}
                             </View>
                         </TouchableWithoutFeedback>
                     </View>
@@ -189,13 +189,13 @@ export default (props) => {
                         <View style={Estilo.Atalhos}>
                             <View style={Estilo.Itens}>
                                 <View style={Estilo.textoimagem}>
-                                    <Icon name="paw" size={24} color='#757575' style={Estilo.IconStyle} />
+                                    <Icon name="pets" size={24} color='#434343' style={Estilo.IconStyle} />
 
                                     <Text style={Estilo.texto}>
                                         Atalhos
                     </Text>
                                 </View>
-                                {atalho ? <Icon name="caret-down" size={24} color='#757575' style={Estilo.Icon} /> : <Icon name="caret-up" size={24} color='#757575' style={Estilo.Icon} />}
+                                {atalho ? <Icon name="arrow-drop-down" size={24} color='#757575' style={Estilo.Icon} /> : <Icon name="arrow-drop-up" size={24} color='#757575' style={Estilo.Icon} />}
                             </View>
                         </View>
                     </TouchableWithoutFeedback>
@@ -241,7 +241,7 @@ export default (props) => {
                             <View style={Estilo.perfilview}>
 
                                 <Text style={Estilo.txtProfile}>Usuário</Text>
-                                {meuatalho ? <Icon name="caret-down" size={24} color='#757575' style={Estilo.Icon} /> : <Icon name="caret-up" size={24} color='#757575' style={Estilo.Icon} />}
+                                {meuatalho ? <Icon name="arrow-drop-down" size={24} color='#757575' style={Estilo.Icon} /> : <Icon name="arrow-drop-up" size={24} color='#757575' style={Estilo.Icon} />}
                             </View>
                         </TouchableWithoutFeedback>
                     </View>
@@ -256,13 +256,13 @@ export default (props) => {
                         <View style={Estilo.Atalhos}>
                             <View style={Estilo.Itens}>
                                 <View style={Estilo.textoimagem}>
-                                    <Icon name="paw" size={24} color='#757575' style={Estilo.IconStyle} />
+                                    <Icon name="pets" size={24} color='#434343' style={Estilo.IconStyle} />
 
                                     <Text style={Estilo.texto}>
                                         Atalhos
                     </Text>
                                 </View>
-                                {atalho ? <Icon name="caret-down" size={24} color='#757575' style={Estilo.Icon} /> : <Icon name="caret-up" size={24} color='#757575' style={Estilo.Icon} />}
+                                {atalho ? <Icon name="arrow-drop-down" size={24} color='#757575' style={Estilo.Icon} /> : <Icon name="arrow-drop-up" size={24} color='#757575' style={Estilo.Icon} />}
                             </View>
                         </View>
                     </TouchableWithoutFeedback>
