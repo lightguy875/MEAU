@@ -9,7 +9,7 @@ import Icon from 'react-native-vector-icons/Feather'
 
  export function BotaoPrimario(props) {
   return (
-    
+
 
     <TouchableOpacity style={[botao.botaoPrimario,props.style]} onPress={props.onPress}>
         <Text>{props.name}</Text>
@@ -21,7 +21,7 @@ import Icon from 'react-native-vector-icons/Feather'
 export function BotaoImagem(props) {
   return (
 
-    <TouchableOpacity style={botao.botaoImagem} onPress={props.onPress}>
+    <TouchableOpacity style={[botao.botaoImagem,props.style]} onPress={props.onPress}>
       <Icon name="plus-circle" size={18}></Icon>
       <Text>adicionar imagem</Text>
     </TouchableOpacity>
