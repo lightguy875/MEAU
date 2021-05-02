@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { TouchableOpacity } from 'react-native'
 import {
     Image,
@@ -14,25 +14,42 @@ import cor from '../estilo/cor'
 export default props => {
 
     // const moment = extendMoment(Moment);
-
-
+    var d = new Date(props.momento)
+    var k;
     let usuario = useSelector(state => state.user)
+    const MINUTE_MS = 60000;
+    const _MS_PER_DAY = 1000 * 60 * 60 * 24;
+    const [diff,setdiff] = useState(0)
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+        k = new Date()
+        var daysk = Date.UTC(k.getFullYear(), k.getMonth(), k.getDate());
+        var daysd = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate());  
+        setdiff(Math.floor((daysk - daysd) / _MS_PER_DAY))
+        }, MINUTE_MS );
+        k = new Date()
+        var daysk = Date.UTC(k.getFullYear(), k.getMonth(), k.getDate());
+        var daysd = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate());  
+        setdiff(Math.floor((daysk - daysd) / _MS_PER_DAY))
+        return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
+      }, [])
 
 
     if (usuario.user) {
         let dado = props.users.filter(elemento => {
             return elemento.name != usuario.user.name && elemento.nome_de_usuario != usuario.user.nome_de_usuario
         })
-        dado = dado[0]
-        var d = new Date(props.momento)
-        var k = new Date()
-        const _MS_PER_DAY = 1000 * 60 * 60 * 24;
-        var daysk = Date.UTC(k.getFullYear(), k.getMonth(), k.getDate());
-        var daysd = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate());
+       
+        dado = dado[0]  
+
+
+
+
+        
         // var daysd = Math.round(d/8.64e7)
         // var daysk = Math.round(k/8.64e7)
         // var diff = daysk - daysd
-        var diff = Math.floor((daysk - daysd) / _MS_PER_DAY);
     //     var range = moment.range(d,k)
     //     // console.log(`${k.getDate()}/${k.getMonth()}/${k.getFullYear()}`)
     //    var diffdias = range.diff('days')
