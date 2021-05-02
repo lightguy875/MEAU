@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { TouchableOpacity } from 'react-native'
 import {
     Image,
@@ -9,15 +9,14 @@ import {
 } from 'react-native'
 import { useSelector } from 'react-redux'
 import cor from '../estilo/cor'
-import Moment from 'moment';
-import { extendMoment } from 'moment-range';
+// import Moment from 'moment';
+// import { extendMoment } from 'moment-range';
 export default props => {
 
-    const moment = extendMoment(Moment);
+    // const moment = extendMoment(Moment);
 
 
     let usuario = useSelector(state => state.user)
-
 
 
     if (usuario.user) {
@@ -25,14 +24,18 @@ export default props => {
             return elemento.name != usuario.user.name && elemento.nome_de_usuario != usuario.user.nome_de_usuario
         })
         dado = dado[0]
-        var d = new Date(0)
+        var d = new Date(props.momento)
         var k = new Date()
-        
-        d.setMilliseconds(props.momento)
-        var range = moment.range(d,k)
-        
-        // console.log(`${k.getDate()}/${k.getMonth()}/${k.getFullYear()}`)
-        var days = range.diff('days')
+    
+        var daysd = Math.round(d/8.64e7)
+        var daysk = Math.round(k/8.64e7)
+        var diff = daysk - daysd
+
+    //     var range = moment.range(d,k)
+    //     // console.log(`${k.getDate()}/${k.getMonth()}/${k.getFullYear()}`)
+    //    var diffdias = range.diff('days')
+
+
        
         return (
             <TouchableOpacity onPress={props.onPress} onLongPress={props.onLongPress}>
@@ -48,7 +51,7 @@ export default props => {
                             <Text>{`${props.ultima_mensagem.substring(0, 30)}` + ((props.ultima_mensagem.length > 30) ? ('...') : (''))}</Text>
                         </View>
                         <View style={{justifyContent:'flex-end'}}>
-                        <Text style={styles.textoTempo}>{days < 1 ? `${d.toLocaleTimeString('pt-br', { hour: '2-digit', minute: '2-digit' }).split(':').slice(0, 2).join(':')}` : `${d.getDate()}/${d.getMonth()}/${d.getFullYear()}`}</Text>
+                        <Text style={styles.textoTempo}>{diff < 1 ? `${d.toLocaleTimeString('pt-br', { hour: '2-digit', minute: '2-digit' }).split(':').slice(0, 2).join(':')}` : diff > 1  ? `${d.getDate()}/${d.getMonth()}/${d.getFullYear()}` : `Ontem`}</Text>
                         </View>
                     </View>
 
@@ -90,13 +93,11 @@ const styles = StyleSheet.create({
         marginLeft: 16,
         marginRight: 8,
         marginVertical: 16,
-
     },
     textoPrincipal: {
         fontSize: 14,
         marginTop: 20,
         color: cor.titulo,
-
     },
 
     textoTempo: {
