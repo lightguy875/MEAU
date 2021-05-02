@@ -26,11 +26,13 @@ export default props => {
         dado = dado[0]
         var d = new Date(props.momento)
         var k = new Date()
-    
-        var daysd = Math.round(d/8.64e7)
-        var daysk = Math.round(k/8.64e7)
-        var diff = daysk - daysd
-
+        const _MS_PER_DAY = 1000 * 60 * 60 * 24;
+        var daysk = Date.UTC(k.getFullYear(), k.getMonth(), k.getDate());
+        var daysd = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate());
+        // var daysd = Math.round(d/8.64e7)
+        // var daysk = Math.round(k/8.64e7)
+        // var diff = daysk - daysd
+        var diff = Math.floor((daysk - daysd) / _MS_PER_DAY);
     //     var range = moment.range(d,k)
     //     // console.log(`${k.getDate()}/${k.getMonth()}/${k.getFullYear()}`)
     //    var diffdias = range.diff('days')
