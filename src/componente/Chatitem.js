@@ -9,9 +9,11 @@ import {
 } from 'react-native'
 import { useSelector } from 'react-redux'
 import cor from '../estilo/cor'
-
+import Moment from 'moment';
+import { extendMoment } from 'moment-range';
 export default props => {
 
+    const moment = extendMoment(Moment);
 
 
     let usuario = useSelector(state => state.user)
@@ -25,9 +27,12 @@ export default props => {
         dado = dado[0]
         var d = new Date(0)
         var k = new Date()
+        
         d.setMilliseconds(props.momento)
+        var range = moment.range(d,k)
+        
         // console.log(`${k.getDate()}/${k.getMonth()}/${k.getFullYear()}`)
-       var days = Math.floor(k.getTime()/8.64e7) - Math.floor(props.momento/8.64e7)
+        var days = range.diff('days')
        
         return (
             <TouchableOpacity onPress={props.onPress} onLongPress={props.onLongPress}>
@@ -43,7 +48,7 @@ export default props => {
                             <Text>{`${props.ultima_mensagem.substring(0, 30)}` + ((props.ultima_mensagem.length > 30) ? ('...') : (''))}</Text>
                         </View>
                         <View style={{justifyContent:'flex-end'}}>
-                        <Text style={styles.textoTempo}>{days <= 1 ? `${d.toLocaleTimeString('pt-br', { hour: '2-digit', minute: '2-digit' }).split(':').slice(0, 2).join(':')}` :`${d.getDate()}/${d.getMonth()}/${d.getFullYear()}`}</Text>
+                        <Text style={styles.textoTempo}>{days < 1 ? `${d.toLocaleTimeString('pt-br', { hour: '2-digit', minute: '2-digit' }).split(':').slice(0, 2).join(':')}` : `${d.getDate()}/${d.getMonth()}/${d.getFullYear()}`}</Text>
                         </View>
                     </View>
 
