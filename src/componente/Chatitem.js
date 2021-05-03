@@ -38,7 +38,7 @@ export default props => {
         var daysk = Date.UTC(k.getFullYear(), k.getMonth(), k.getDate());
         var daysd = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate());  
         setdiff(Math.floor((daysk - daysd) / _MS_PER_DAY))
-        return () => setdiff(diff)
+        
     }, [props.momento])
 
     if (usuario.user) {
