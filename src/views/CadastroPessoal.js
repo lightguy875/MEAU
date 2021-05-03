@@ -48,7 +48,7 @@ export default function CadastroPessoal({ navigation, route }) {
 
 
   const renderbotao = () => {
-    return <BotaoImagem style={{elevation:20}}onPress={() => navigation.push('Camera', { nave: 'CadastroPessoal' })} />
+    return <BotaoImagem style={{elevation:5}}onPress={() => navigation.push('Camera', { nave: 'CadastroPessoal' })} />
   }
 
   const Cadastro = (dados) => {

@@ -16,6 +16,7 @@ export default props => {
     // const moment = extendMoment(Moment);
     var d = new Date(props.momento)
     var k;
+    var x;
     let usuario = useSelector(state => state.user)
     const MINUTE_MS = 60000;
     const _MS_PER_DAY = 1000 * 60 * 60 * 24;
@@ -27,14 +28,20 @@ export default props => {
         var daysk = Date.UTC(k.getFullYear(), k.getMonth(), k.getDate());
         var daysd = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate());  
         setdiff(Math.floor((daysk - daysd) / _MS_PER_DAY))
+        console.log('passou aqui interval')
         }, MINUTE_MS );
+        return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
+      }, [])
+
+    useEffect(() => {
+
         k = new Date()
         var daysk = Date.UTC(k.getFullYear(), k.getMonth(), k.getDate());
         var daysd = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate());  
         setdiff(Math.floor((daysk - daysd) / _MS_PER_DAY))
-        return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
-      }, [])
-
+        console.log('passou aqui props')
+        return () => setdiff(diff)
+    }, [props.momento])
 
     if (usuario.user) {
         let dado = props.users.filter(elemento => {
@@ -42,7 +49,10 @@ export default props => {
         })
        
         dado = dado[0]  
-
+        // k = new Date()
+        // var daysk = Date.UTC(k.getFullYear(), k.getMonth(), k.getDate());
+        // var daysd = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate());  
+        // var diff = Math.floor((daysk - daysd) / _MS_PER_DAY)
 
 
 

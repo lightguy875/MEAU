@@ -60,7 +60,7 @@ export default function Cadastro_animal({ navigation, route }) {
   }
 
   const renderbotao = () => {
-    return <BotaoImagem style={{elevation:20}} onPress={() => navigation.push('Camera', { nave: 'Cadastroanimal' })} />
+    return <BotaoImagem style={{elevation:5}} onPress={() => navigation.push('Camera', { nave: 'Cadastroanimal' })} />
   }
 
   async function Cadastro_animal(dados) {
