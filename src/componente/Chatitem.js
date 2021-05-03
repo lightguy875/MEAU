@@ -28,7 +28,6 @@ export default props => {
         var daysk = Date.UTC(k.getFullYear(), k.getMonth(), k.getDate());
         var daysd = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate());  
         setdiff(Math.floor((daysk - daysd) / _MS_PER_DAY))
-        console.log('passou aqui interval')
         }, MINUTE_MS );
         return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
       }, [])
@@ -39,7 +38,6 @@ export default props => {
         var daysk = Date.UTC(k.getFullYear(), k.getMonth(), k.getDate());
         var daysd = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate());  
         setdiff(Math.floor((daysk - daysd) / _MS_PER_DAY))
-        console.log('passou aqui props')
         return () => setdiff(diff)
     }, [props.momento])
 
