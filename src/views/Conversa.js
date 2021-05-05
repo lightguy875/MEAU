@@ -83,6 +83,8 @@ await firestore().collection('Chat').doc(route.params.item.id).update({
       const { text, user, _id } = msg;
       const message = { _id, text, user, createdAt: new Date().getTime(),};
 
+      setMessages([message,...messages])
+
       sendChatMessage(message);
     });
   };

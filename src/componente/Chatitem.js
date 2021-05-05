@@ -75,7 +75,8 @@ export default props => {
                     <View style={styles.containerTempo}>
                         <View style={styles.textcontainer}>
                             <Text style={styles.textoPrincipal}>{`${dado.name.split(' ').slice(0, 2).join(' ')}` + ` | ` + `${dado.Nome_do_animal}`}</Text>
-                            <Text>{`${props.ultima_mensagem.substring(0, 30)}` + ((props.ultima_mensagem.length > 30) ? ('...') : (''))}</Text>
+                            <Text numberOfLines={1}>{`${props.ultima_mensagem}`}</Text>
+                            {/* `${props.ultima_mensagem.substring(0, 30)}` + ((props.ultima_mensagem.length > 30) ? ('...') : ('')) */}
                         </View>
                         <View style={{justifyContent:'flex-end'}}>
                         <Text style={styles.textoTempo}>{diff < 1 ? `${d.toLocaleTimeString('pt-br', { hour: '2-digit', minute: '2-digit' }).split(':').slice(0, 2).join(':')}` : diff > 1  ? `${d.getDate()}/${d.getMonth()}/${d.getFullYear()}` : `Ontem`}</Text>
