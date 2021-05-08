@@ -43,7 +43,6 @@ export default function Dadoanimal(props) {
 //source={{uri: props.imagemurl}}
 const styles = StyleSheet.create({
     Card: {
-        width: Dimensions.get('window').width - 16,
         height:264,
         borderRadius:10,
         backgroundColor:'#FFF',
@@ -52,7 +51,6 @@ const styles = StyleSheet.create({
     },
     CardHeader:{
         flexDirection:'row',
-        width:Dimensions.get('window').width - 16,
         height:32,
         borderTopLeftRadius:10,
         borderTopRightRadius:10,
@@ -65,7 +63,6 @@ const styles = StyleSheet.create({
         color: '#434343'
     },
     imagemView:{
-        width:Dimensions.get('window').width - 16,
         height:183,
 
     },
