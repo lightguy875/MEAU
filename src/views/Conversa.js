@@ -125,7 +125,7 @@ await firestore().collection('Chat').doc(route.params.item.id).update({
       return (
         //right:-Dimensions.get('window').width + Dimensions.get('window').width*3/4 + 32 f1f2f2
               <View style={{backgroundColor:'#f1f2f2', height:'100%', width: Dimensions.get('window').width*1/7,justifyContent:'flex-end',paddingLeft:8}}>
-                <Send {...props} containerStyle={{alignSelf:'flex-start',top:4}} >
+                <Send {...props} containerStyle={{alignSelf:'flex-end',top:4}} >
                 <MaterialCommunityIcons name='send-circle' size={48} color='#88c9bf'/>
                 </Send>
               </View>
