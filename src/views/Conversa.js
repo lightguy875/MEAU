@@ -4,13 +4,15 @@ Text,
 SafeAreaView,
 View,
 StyleSheet,
+Dimensions,
 } from 'react-native'
 import {GiftedChat, Bubble, Send, InputToolbar} from  'react-native-gifted-chat';
 import {useSelector} from 'react-redux'
 import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-
+import { TouchableOpacity } from 'react-native';
+import br from 'dayjs/locale/pt-br'
 export default function Conversa({navigation,route}) {
 
 const [messages, setMessages] = useState([]);
@@ -96,7 +98,23 @@ await firestore().collection('Chat').doc(route.params.item.id).update({
             right: {
                 backgroundColor: '#88c9bf',
                 
-            }
+            },
+            left: {
+                backgroundColor:'#FFF',
+            },   
+        }}
+        textProps={{
+            style: {
+              color:'#434343',
+            },
+        }}
+        timeTextStyle={{
+            right: {
+                color:'#434343',
+            },
+            left: {
+                color:'#434343',
+            },
         }}
         
         />
@@ -105,17 +123,19 @@ await firestore().collection('Chat').doc(route.params.item.id).update({
 
   const renderSend = props => {
       return (
-          <Send {...props}>
+        //right:-Dimensions.get('window').width + Dimensions.get('window').width*3/4 + 32
               <View>
-                <MaterialCommunityIcons name='send-circle' size={46} color='#88c9bf'/>
+                <Send {...props}>
+                <MaterialCommunityIcons name='send-circle' size={48} color='#88c9bf'/>
+                </Send>
               </View>
-          </Send>
+          
       )
   }
 
   const renderInputText = props => {
       return (  
-            <InputToolbar {...props} placeholder={'Digite a sua mensagem'}  />    
+            <InputToolbar {...props} primaryStyle={{alignItems:'center'}} containerStyle={{ borderRadius: 5, backgroundColor: '#FFF',left:16,right:30, borderTopColor: 'transparent'}} placeholder={'Digite a sua mensagem'}/>    
       )
   }
 
@@ -126,7 +146,7 @@ await firestore().collection('Chat').doc(route.params.item.id).update({
 
     return(
         <SafeAreaView style={styles.container}>
-        <GiftedChat messages={messages} renderInputToolbar={renderInputText} user={user} onSend={onSend} renderBubble={renderBubble} renderSend={renderSend} renderAvatar={() => null} showAvatarForEveryMessage={true} />
+        <GiftedChat messages={messages} renderInputToolbar={renderInputText} user={user} onSend={onSend} renderBubble={renderBubble} renderSend={renderSend} renderAvatar={() => null} showAvatarForEveryMessage={true} locale={'pt-br'}/>
         </SafeAreaView>
     )
 
@@ -134,7 +154,7 @@ await firestore().collection('Chat').doc(route.params.item.id).update({
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor:'#FFF',
+        backgroundColor:'#f1f2f2',
         flex: 1,
     },
     IconStyle:{

@@ -125,7 +125,7 @@ export default function Login({ navigation, route, props }) {
 
             onPress={(handleSubmit(Entrar))}
           >
-            <Text style={[Estilo.txtBotao, { color: 'black' }]}>LOGIN</Text>
+            <Text style={[Estilo.txtBotao, { color: 'black' }]}>ENTRAR</Text>
           </TouchableOpacity>
         </>
       )

@@ -37,7 +37,7 @@ export function LoginStack({ navigation }) {
       <Stack.Screen name="Login" component={Login} options={{
         title: 'Login',
         headerStyle: {
-          backgroundColor: '#88c9bf'
+          backgroundColor: '#cfe9e5'
         },
 
         headerLeft: () => AbrirMenu({ navigation }),
