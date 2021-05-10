@@ -20,21 +20,24 @@ export default function Notificacoes({navigation, route}) {
             return(
 
             <>
-                <FlatList
+            {notifications.interesse.length ? <Text style={styles.textotitulo}>Interesses</Text> : <Text></Text>}
+             {notifications.interesse.length ?  <FlatList
+                    style={{flex:1}}
                     keyExtractor={item => item.id}
                     data={notifications.interesse}
                     renderItem={({ item }) => <Interesse {...item}/> } 
-                    />
+                    /> : <Text></Text>
                     
+            }
 
-
-
-
-                <FlatList
+            { notifications.resposta.length ? <Text style={styles.textotitulo}>Respostas</Text> : <Text></Text>}    
+            { notifications.resposta.length ?   <FlatList
+                    style={{flex:1}}
                     keyExtractor={item => item.id}
                     data={notifications.resposta}
                     renderItem={({ item }) => <Resposta {...item} />}
-                />
+                /> : <Text></Text>
+            }
 
             </>
             )
@@ -43,7 +46,7 @@ export default function Notificacoes({navigation, route}) {
         }
         else {
             return (
-                <Text style={Estilo.textoPerfil}>Voce não está logado no sistema</Text>
+                <Text></Text>
             )
         }
 
@@ -59,11 +62,20 @@ export default function Notificacoes({navigation, route}) {
 }
 const styles = StyleSheet.create({
     container: {
-        //flex: 1,
+        flex: 1,
         //backgroundColor: '#fff',
        // alignItems: 'center',
         justifyContent: 'center',
         padding: 16,
     },
+
+    textotitulo: {
+        alignSelf:'center',
+        fontSize:16,
+        color: '#589b9b',
+        marginBottom:8,
+        
+    }
+    
 
 })

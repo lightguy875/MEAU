@@ -195,9 +195,9 @@ export default function Perfilmeupet({ navigation, route }) {
                 <Text style={styles.textoPrincipal}> {(route.params.item.Termo_de_adoção ? 'Termo de adoçao ' : '') + (route.params.item.Fotos_de_casa ? 'Fotos de casa, ' : '') + (route.params.item.Visita_previa_ao_animal ? 'Visita Prévia ao animal , ' : '') + (route.params.item.Acompanhamento_pos_adocao ? 'Acompanhamento de ' + `${route.params.item.Tempo_de_acompanhamento}` : '')} </Text>
             </View>
             <View style={{ alignItems: 'center', justifyContent: 'space-between'}}>
-                {route.params.item.dono != auth().currentUser.uid ? avaliador ?  <BotaoPrimario name="Remover pretensão"  style={{backgroundColor:'#fdcf58'}} onPress={() => desmarcar_interesse()}/> : <BotaoPrimario name="Pretendo Adotar" style={{backgroundColor:'#fdcf58'}} onPress={() => marcar_interesse()}/> : (<View style={styles.Viewbotoes}>
-                <BotaoPrimario name='Ver interessados' style={{width: Dimensions.get('window').width/2 - 32, marginRight:8}}onPress={() => navigation.navigate('Interessados', {item: route.params.item})}/>
-                <BotaoPrimario name="Remover Pet" style={{width: Dimensions.get('window').width/2 - 32, marginLeft:8}} onPress={() => delete_animal()}/>
+                {route.params.item.dono != auth().currentUser.uid ? avaliador ?  <BotaoPrimario name="Remover pretensão"  style={{backgroundColor:'#fdcf58',elevation:0}} onPress={() => desmarcar_interesse()}/> : <BotaoPrimario name="Pretendo Adotar" style={{backgroundColor:'#fdcf58', elevation:0}} onPress={() => marcar_interesse()}/> : (<View style={styles.Viewbotoes}>
+                <BotaoPrimario name='Ver interessados' style={{width: 148,height:40, marginRight:8, elevation:0}}onPress={() => navigation.navigate('Interessados', {item: route.params.item})}/>
+                <BotaoPrimario name="Remover Pet" style={{width:148,height:40, marginLeft:8, elevation:0}} onPress={() => delete_animal()}/>
                 </View>)
                 }
 
@@ -272,7 +272,7 @@ const styles = StyleSheet.create({
     },
     Viewbotoes:{
         flexDirection:'row',
-        justifyContent:'space-between',
+        justifyContent:'center',
 
     }
 

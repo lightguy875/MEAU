@@ -109,12 +109,12 @@ export default function Interesse(props) {
                 flex: 3,
                 flexDirection: 'row',
                 alignItems: 'center',
-                justifyContent: 'space-between',
-                width: 70,
+                justifyContent: 'flex-end',
+                width: 70
 
 
             }}>
-                <TouchableOpacity onPress={() => mudar_dono_pet()}>
+                <TouchableOpacity onPress={() => mudar_dono_pet()} style={{marginRight:10}}>
                     <Icon name='check-circle-o' size={30} color='#090' />
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => recusar_proposta()}>
@@ -135,12 +135,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        marginTop: 15,
+        marginTop: 10,
         height: 80,
         paddingLeft: 15,
         backgroundColor: '#DCDCDC',
         borderRadius: 10,
-        padding: 10,
+        marginLeft:5,
+        marginRight:5,
+        elevation:10,
+        marginBottom:8,
     },
 
     text: {

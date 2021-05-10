@@ -146,7 +146,7 @@ await firestore().collection('Chat').doc(route.params.item.id).update({
 
     return(
         <SafeAreaView style={styles.container}>
-        <GiftedChat messages={messages} renderInputToolbar={renderInputText} user={user} onSend={onSend} renderBubble={renderBubble} renderSend={renderSend} renderAvatar={() => null} showAvatarForEveryMessage={true} locale={'pt-br'} alwaysShowSend={true} minInputToolbarHeight={56}/>
+        <GiftedChat messages={messages} renderInputToolbar={renderInputText} user={user} onSend={onSend} renderBubble={renderBubble} renderSend={renderSend} renderAvatar={() => null} showAvatarForEveryMessage={true} locale={'pt-br'} dateFormat={'LL'} alwaysShowSend={true} minInputToolbarHeight={56}/>
         </SafeAreaView>
     )
 

@@ -80,16 +80,20 @@ export default function Resposta(props) {
 
 const styles = StyleSheet.create({
     containeraceitou: {
-        flexDirection: 'row',
         textAlign:'center',
+        flexDirection: 'row',
         alignItems:'center',
         justifyContent: 'space-evenly',
-        marginTop:15,
+        marginTop:10,
         height:80,
         paddingLeft:15,
-        backgroundColor: '#85F952',
-        borderRadius:15,
+        backgroundColor: '#CEF7A9',
+        borderRadius:10,
         padding:10,
+        elevation:10,
+        marginLeft:5,
+        marginRight:5,
+        marginBottom:8,
     },
 
     containerrecusou: {
@@ -97,12 +101,16 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems:'center',
         justifyContent: 'space-evenly',
-        marginTop:15,
+        marginTop:10,
         height:80,
         paddingLeft:15,
-        backgroundColor: '#F95252',
-        borderRadius:15,
+        backgroundColor: '#FCC1C0',
+        borderRadius:10,
         padding:10,
+        elevation:10,
+        marginLeft:5,
+        marginRight:5,
+        marginBottom:8
     },
 
     text: {
@@ -110,6 +118,8 @@ const styles = StyleSheet.create({
         fontSize:13,
 
     }
+
+//  #F95252 #85F952
 
 
 

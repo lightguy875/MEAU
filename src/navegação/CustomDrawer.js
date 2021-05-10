@@ -378,12 +378,10 @@ const Estilo = StyleSheet.create({
     },
     botaosair: {
         height: 40,
-        borderRadius: 5,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#88c9bf',
         marginBottom: 60,
-        elevation: 5,
         // marginTop: 50,
     }
 
