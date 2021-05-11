@@ -20,7 +20,7 @@ export default function Notificacoes({navigation, route}) {
             return(
 
             <>
-            {notifications.interesse.length ? <Text style={styles.textotitulo}>Interesses</Text> : <Text></Text>}
+            {notifications.interesse.length ? <Text style={styles.textotitulo}>Interesse</Text> : <Text></Text>}
              {notifications.interesse.length ?  <FlatList
                     style={{flex:1}}
                     keyExtractor={item => item.id}
@@ -30,7 +30,7 @@ export default function Notificacoes({navigation, route}) {
                     
             }
 
-            { notifications.resposta.length ? <Text style={styles.textotitulo}>Respostas</Text> : <Text></Text>}    
+            { notifications.resposta.length ? <Text style={styles.textotitulo}>Resposta</Text> : <Text></Text>}    
             { notifications.resposta.length ?   <FlatList
                     style={{flex:1}}
                     keyExtractor={item => item.id}

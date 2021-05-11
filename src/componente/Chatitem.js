@@ -14,9 +14,8 @@ import cor from '../estilo/cor'
 export default props => {
 
     // const moment = extendMoment(Moment);
-    var d = new Date(props.momento)
     var k;
-    var x;
+    var d = new Date(props.momento)
     let usuario = useSelector(state => state.user)
     const MINUTE_MS = 60000;
     const _MS_PER_DAY = 1000 * 60 * 60 * 24;
@@ -33,7 +32,7 @@ export default props => {
       }, [])
 
     useEffect(() => {
-
+        d = new Date(props.momento)
         k = new Date()
         var daysk = Date.UTC(k.getFullYear(), k.getMonth(), k.getDate());
         var daysd = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate());  
