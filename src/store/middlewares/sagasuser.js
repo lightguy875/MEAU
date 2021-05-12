@@ -31,30 +31,33 @@ function* sagasuser() {
 function* loginuser(action) {
 
     try {
-        auth().signInWithEmailAndPassword(action.payload.email, action.payload.senha)
+        yield auth().signInWithEmailAndPassword(action.payload.email, action.payload.senha)
         Alert.alert('Login', 'Login realizado com sucesso')
+        action.payload.reset()
+        action.payload.navigation.navigate('Todos os Pets')
         yield put(user_login_success())
+        
 
     } catch (error) {
-        var menssagem = '';
+        var mensagem = '';
         switch (error.code) {
             case 'auth/invalid-email':
-                menssagem = 'E-mail inválido';
+                mensagem = 'E-mail inválido';
                 break;
 
             case 'auth/user-not-found':
-                menssagem = 'Usuário não cadastrado';
+                mensagem = 'Usuário não cadastrado';
                 break;
 
             case 'auth/wrong-password':
-                menssagem = 'Senha incorreta';
-
+                mensagem = 'Senha incorreta';
+                break;
             default:
-                menssagem = 'Tente novamente';
+                mensagem = 'Tente novamente';
                 break;
         }
 
-        Alert.alert('Error', mensagem);
+        Alert.alert('Erro', mensagem);
         yield put(user_login_failure())
     }
 }

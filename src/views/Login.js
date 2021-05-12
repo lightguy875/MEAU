@@ -56,9 +56,7 @@ export default function Login({ navigation, route, props }) {
 
 
   const Entrar = ({ email, senha }) => {
-    dispatch(user_login({ email, senha }))
-    reset()
-    navigation.navigate('Todos os Pets')
+    dispatch(user_login({ email, senha, navigation,reset }))
   }
 
 
