@@ -27,26 +27,34 @@ export default props => {
         let k = new Date()
         let daysk = Date.UTC(k.getFullYear(), k.getMonth(), k.getDate());
         setdiff(Math.floor((daysk - daysd) / _MS_PER_DAY))
+        const interval = setInterval(() => {
+            let k = new Date()
+            let daysk = Date.UTC(k.getFullYear(), k.getMonth(), k.getDate());
+            setdiff(Math.floor((daysk - daysd) / _MS_PER_DAY))
+            }, MINUTE_MS );
+            return () => clearInterval(interval); 
     }, [props.momento])
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-        let k = new Date()
-        let daysk = Date.UTC(k.getFullYear(), k.getMonth(), k.getDate());
-        setdiff(Math.floor((daysk - daysd) / _MS_PER_DAY))
-    
-        }, MINUTE_MS );
-        return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
-      }, [])
+
 
 
 
     if (usuario.user) {
-        let dado = props.users.filter(elemento => {
+        var dado = props.users.filter(elemento => {
             return elemento.name != usuario.user.name && elemento.nome_de_usuario != usuario.user.nome_de_usuario
         })
        
         dado = dado[0]  
+
+        // useEffect(() => {
+        //     const interval = setInterval(() => {
+        //     let k = new Date()
+        //     let daysk = Date.UTC(k.getFullYear(), k.getMonth(), k.getDate());
+        //     setdiff(Math.floor((daysk - daysd) / _MS_PER_DAY))
+        //     }, MINUTE_MS );
+        //     return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
+        //   }, [])
+
         // k = new Date()
         // var daysk = Date.UTC(k.getFullYear(), k.getMonth(), k.getDate());
         // var daysd = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate());  
