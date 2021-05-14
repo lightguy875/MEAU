@@ -38,9 +38,9 @@ export const user_load_data_failure = () => ({
 })
 
 
-export const user_cadastro = user => ({
+export const user_cadastro = payload => ({
         type: USER_CADASTRO,
-        payload: user,
+        payload: payload,
 })
 
 export const user_cadastro_success = user => ({

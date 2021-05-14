@@ -96,19 +96,25 @@ function* loaddatauser(action) {
 function* cadastrouser(action) {
 
     try {
-        let newUser = action.payload
-        const ref = storage().ref(action.payload.imagem)
-        yield ref.putFile(action.payload.imagem)
+        const {Estado, cidade, email, endereço, idade, imagem, imagemurl, name, nome_de_usuario, telefone} = action.payload.valor
+        let newUser = {Estado,cidade,email,endereço,idade,imagem,imagemurl,name,nome_de_usuario,telefone}
+        const ref = storage().ref(action.payload.valor.imagem)
+        yield ref.putFile(action.payload.valor.imagem)
         yield ref.getDownloadURL().then((url) => {
             newUser.imagemurl = url
         })
-        const login = yield auth().createUserWithEmailAndPassword(action.payload.email,action.payload.senha)
+        const login = yield auth().createUserWithEmailAndPassword(action.payload.valor.email,action.payload.valor.senha)
 
         yield firestore().collection('Users').doc(login.user.uid).set(newUser)
+
 
         yield put(user_cadastro_success(newUser))
 
         Alert.alert('Cadastro', 'Usuário Cadastrado com sucesso')
+        
+        action.payload.reset()
+        action.payload.setImage('')
+
 
     } catch (error) {
         Alert.alert('Error', 'Usuário não cadastrado')

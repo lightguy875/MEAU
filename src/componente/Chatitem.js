@@ -14,31 +14,32 @@ import cor from '../estilo/cor'
 export default props => {
 
     // const moment = extendMoment(Moment);
-    var k;
-    var d = new Date(props.momento)
+
     let usuario = useSelector(state => state.user)
     const MINUTE_MS = 60000;
     const _MS_PER_DAY = 1000 * 60 * 60 * 24;
-    const [diff,setdiff] = useState(0)
+    var d = new Date(props.momento)
+    var daysd = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate());
+    const[diff,setdiff] = useState(0)
+
+
+    useEffect(() => {
+        let k = new Date()
+        let daysk = Date.UTC(k.getFullYear(), k.getMonth(), k.getDate());
+        setdiff(Math.floor((daysk - daysd) / _MS_PER_DAY))
+    }, [props.momento])
 
     useEffect(() => {
         const interval = setInterval(() => {
-        k = new Date()
-        var daysk = Date.UTC(k.getFullYear(), k.getMonth(), k.getDate());
-        var daysd = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate());  
+        let k = new Date()
+        let daysk = Date.UTC(k.getFullYear(), k.getMonth(), k.getDate());
         setdiff(Math.floor((daysk - daysd) / _MS_PER_DAY))
+    
         }, MINUTE_MS );
         return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
       }, [])
 
-    useEffect(() => {
-        d = new Date(props.momento)
-        k = new Date()
-        var daysk = Date.UTC(k.getFullYear(), k.getMonth(), k.getDate());
-        var daysd = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate());  
-        setdiff(Math.floor((daysk - daysd) / _MS_PER_DAY))
-        
-    }, [props.momento])
+
 
     if (usuario.user) {
         let dado = props.users.filter(elemento => {

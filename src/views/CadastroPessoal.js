@@ -55,9 +55,9 @@ export default function CadastroPessoal({ navigation, route }) {
     if (!auth().currentUser) {
       if (image) {
         var valor = Object.assign(dados, {imagem: image}, {imagemurl: ''})
-            dispatch(user_cadastro(valor))
-            reset()
-            setImage('')
+            dispatch(user_cadastro({valor,reset,setImage}))
+            // reset()
+            // setImage('')
             
         } else {
           Alert.alert('Erro', 'Voce precisa cadastrar uma imagem de perfil')
